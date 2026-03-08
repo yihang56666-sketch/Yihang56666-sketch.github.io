@@ -17,11 +17,11 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1772964604949">
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1772965050202">
 
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
 
-<link rel="stylesheet" href="/css/style.css?v=1772964604949">
+<link rel="stylesheet" href="/css/style.css?v=1772965050202">
 
 
 
@@ -33,7 +33,7 @@
 <script src="/lib/lax.min.js" async></script>
 
 
-<script async src="/js/app.js?v=1772964604949"></script>
+<script async src="/js/app.js?v=1772965050202"></script>
 
  
 
@@ -509,7 +509,7 @@
 </style>
 
 
-    <script async src="/js/search.js?v=1772964604949"></script>
+    <script async src="/js/search.js?v=1772965050202"></script>
         
 
             
@@ -1917,48 +1917,136 @@
   });
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
-
-<meting-js
-    server="netease"
-    type="playlist"
-    id="3172051648" 
-    fixed="true"
-    autoplay="false"
-    theme="#ff9800"
-    order="random"
-    preload="auto"
-    list-folded="true">
-</meting-js>
+<div id="mochi-pet">
+   <div class="mochi-speech">考研辛苦啦，摸摸头~</div>
+   <svg viewBox="0 0 120 120" id="mochi-svg">
+      <path id="mochi-body" d="M 10 70 Q 10 30 60 30 Q 110 30 110 70 Q 110 100 60 100 Q 10 100 10 70 Z" fill="rgba(255,255,255,0.95)" stroke="#ff9800" stroke-width="4"/>
+      <path d="M 20 45 L 30 10 L 50 35 Z" fill="rgba(255,255,255,0.95)" stroke="#ff9800" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M 100 45 L 90 10 L 70 35 Z" fill="rgba(255,255,255,0.95)" stroke="#ff9800" stroke-width="3" stroke-linejoin="round"/>
+      <circle cx="40" cy="65" r="6" fill="#444" id="eye-l"/>
+      <circle cx="80" cy="65" r="6" fill="#444" id="eye-r"/>
+      <path d="M 55 75 Q 60 82 65 75" fill="none" stroke="#444" stroke-width="3" stroke-linecap="round" id="mouth"/>
+      <ellipse cx="25" cy="72" rx="7" ry="4" fill="#ffab91" opacity="0.8"/>
+      <ellipse cx="95" cy="72" rx="7" ry="4" fill="#ffab91" opacity="0.8"/>
+   </svg>
+</div>
 
 <style>
-  /* 强制把播放器挪到屏幕右侧偏下的位置，填补看板娘和时钟之间的空白 */
-  .aplayer.aplayer-fixed {
-      left: auto !important;
-      right: 0 !important;
-      max-width: 320px;
-      bottom: 35% !important; /* 调整这个百分比可以控制它的上下高度 */
-      z-index: 9999;
-      box-shadow: -2px 5px 15px rgba(255,152,0,0.2) !important;
+  #mochi-pet {
+    position: fixed;
+    right: 30px;
+    bottom: 35%; /* 刚好在时钟和看板娘中间 */
+    z-index: 9999;
+    width: 140px;
+    cursor: pointer;
+    animation: floatMochi 3s ease-in-out infinite;
+    filter: drop-shadow(0 10px 15px rgba(255,152,0,0.2));
   }
-  .aplayer.aplayer-fixed .aplayer-body {
-      left: auto !important;
-      right: 0 !important;
+  /* 悬浮呼吸动画 */
+  @keyframes floatMochi {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(3deg); }
   }
-  /* 让播放列表向左展开，并加上圆角 */
-  .aplayer.aplayer-fixed .aplayer-list {
-      border-radius: 10px 0 0 10px !important;
-      border: 1px solid rgba(255,152,0,0.3);
+  /* 鼠标移上去变红一点 */
+  #mochi-pet:hover #mochi-body {
+    fill: #fff3e0;
+    transition: fill 0.3s;
   }
-  /* 迷你模式的封面变成圆形，更有黑胶唱片的感觉 */
-  .aplayer.aplayer-fixed .aplayer-pic {
-      border-radius: 50% !important;
-      margin: 10px;
-      height: 46px !important;
-      width: 46px !important;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  /* 气泡样式 */
+  .mochi-speech {
+    position: absolute;
+    right: 120px;
+    top: -10px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    padding: 10px 15px;
+    border-radius: 15px 15px 0 15px;
+    border: 2px solid #ffccbc;
+    color: #f4511e;
+    font-weight: bold;
+    width: max-content;
+    max-width: 180px;
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+    box-shadow: 0 5px 15px rgba(255,152,0,0.15);
+  }
+  .mochi-speech::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    bottom: -2px;
+    border-width: 10px 0 0 10px;
+    border-style: solid;
+    border-color: transparent transparent transparent #ffccbc;
+  }
+  #mochi-pet:hover .mochi-speech {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  /* 被戳时的挤压动画 */
+  .squish {
+    animation: squishAnim 0.3s ease-out;
+  }
+  @keyframes squishAnim {
+    0% { transform: scale(1, 1); }
+    50% { transform: scale(1.1, 0.8) translateY(10px); }
+    100% { transform: scale(1, 1); }
   }
 </style>
+
+<script>
+  // 让眼睛跟着鼠标转的魔法
+  document.addEventListener('mousemove', (e) => {
+    const pet = document.getElementById('mochi-pet');
+    if(!pet) return;
+    const rect = pet.getBoundingClientRect();
+    const petX = rect.left + rect.width / 2;
+    const petY = rect.top + rect.height / 2;
+    
+    const angle = Math.atan2(e.clientY - petY, e.clientX - petX);
+    const distance = Math.min(4, Math.hypot(e.clientX - petX, e.clientY - petY) / 60);
+    
+    const eyeOffsetX = Math.cos(angle) * distance;
+    const eyeOffsetY = Math.sin(angle) * distance;
+    
+    document.getElementById('eye-l').setAttribute('cx', 40 + eyeOffsetX);
+    document.getElementById('eye-l').setAttribute('cy', 65 + eyeOffsetY);
+    document.getElementById('eye-r').setAttribute('cx', 80 + eyeOffsetX);
+    document.getElementById('eye-r').setAttribute('cy', 65 + eyeOffsetY);
+  });
+
+  const mochi = document.getElementById('mochi-pet');
+  const speech = document.querySelector('.mochi-speech');
+  const dialogues = [
+    "考研加油喵！", 
+    "今天也要元气满满哦！", 
+    "别摸鱼啦，快去刷题！", 
+    "遇到难题了吗？深呼吸~", 
+    "本喵一直在陪着你哦！",
+    "控制工程专硕，冲鸭！",
+    "是不是又在看手机啦？"
+  ];
+  
+  // 鼠标悬停说话
+  mochi.addEventListener('mouseenter', () => {
+    speech.innerText = dialogues[Math.floor(Math.random() * dialogues.length)];
+  });
+
+  // 鼠标点击互动 (变形 + 换委屈嘴巴)
+  mochi.addEventListener('click', () => {
+    speech.innerText = "喵呜！痛痛痛！别戳我啦！";
+    document.getElementById('mouth').setAttribute('d', 'M 50 78 Q 60 70 70 78'); 
+    
+    mochi.style.animation = 'none';
+    mochi.classList.add('squish');
+    
+    setTimeout(() => {
+      document.getElementById('mouth').setAttribute('d', 'M 55 75 Q 60 82 65 75');
+      mochi.classList.remove('squish');
+      mochi.style.animation = 'floatMochi 3s ease-in-out infinite';
+    }, 1000);
+  });
+</script>
 </div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":30,"vOffset":-20},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body></html>
