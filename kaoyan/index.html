@@ -21,11 +21,11 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1772964223483">
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1772964604942">
 
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
 
-<link rel="stylesheet" href="/css/style.css?v=1772964223483">
+<link rel="stylesheet" href="/css/style.css?v=1772964604942">
 
 
 
@@ -37,7 +37,7 @@
 <script src="/lib/lax.min.js" async></script>
 
 
-<script async src="/js/app.js?v=1772964223483"></script>
+<script async src="/js/app.js?v=1772964604943"></script>
 
  
 
@@ -513,7 +513,7 @@
 </style>
 
 
-    <script async src="/js/search.js?v=1772964223483"></script>
+    <script async src="/js/search.js?v=1772964604943"></script>
         
 
             
@@ -1106,7 +1106,7 @@
 </div>
   
   
-    <script async src="/js/copy-codeblock.js?v=1772964223466"></script>
+    <script async src="/js/copy-codeblock.js?v=1772964604923"></script>
   
 
   
@@ -1864,6 +1864,46 @@
 
     
         
+
+        <div class="nexmoe-pd-item">
+    <div class="qweather">
+        <div id="he-plugin-standard">
+            <iframe allowtransparency="true" frameborder="0" width="304" height="96" scrolling="no"
+                src="//tianqi.2345.com/plugin/widget/index.htm?s=2&z=1&t=0&v=0&d=2&bd=0&k=000000&f=ff8040&ltf=009944&htf=cc0000&q=1&e=1&a=1&c=54511&w=300&h=96&align=center"></iframe>
+        </div>
+        <div class="qweather-logo">
+
+        </div>
+    </div>
+</div>
+
+<style>
+    .qweather {
+        position: relative;
+        padding-right: 5px;
+    }
+
+    .qweather #he-plugin-standard {
+        border: 2px solid var(--color-primary);
+        box-shadow: 0 1px 0 0 var(--color-primary), 0 1px 2px 0 var(--color-primary);
+        border-radius: 8px;
+        width: 300px;
+        overflow: hidden;
+    }
+
+    .qweather-logo {
+        position: absolute;
+        right: 0;
+        top: -15px;
+        width: 40px;
+        height: 40px;
+        background-image: var(--qweather-logo);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+</style>
+
+    
 </div>
 <style>
     .nexmoe-pd {
@@ -2244,14 +2284,13 @@
 
   /* 🌟 3. 终极布局：苹果同款半透明毛玻璃卡片 + 呼吸悬浮发光 */
   .nexmoe-post, .nexmoe-widget-wrap {
-      background: rgba(255, 255, 255, 0.85) !important; /* 85%的透明度白底，透出背景 */
-      backdrop-filter: blur(12px) !important; /* 核心魔法：高斯模糊 */
+      background: rgba(255, 255, 255, 0.85) !important; 
+      backdrop-filter: blur(12px) !important; 
       -webkit-backdrop-filter: blur(12px) !important;
-      border: 1px solid rgba(255, 255, 255, 0.6) !important; /* 微弱的高光边框增加玻璃质感 */
-      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important; /* 丝滑过渡 */
+      border: 1px solid rgba(255, 255, 255, 0.6) !important; 
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important; 
       border-radius: 16px !important; 
   }
-  /* 鼠标移上去卡片起飞发光 */
   .nexmoe-post:hover, .nexmoe-widget-wrap:hover {
       transform: translateY(-8px); 
       box-shadow: 0 15px 30px rgba(255, 152, 0, 0.2) !important; 
@@ -2280,4 +2319,49 @@
       }
   });
 </script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+
+<meting-js
+    server="netease"
+    type="playlist"
+    id="3172051648" 
+    fixed="true"
+    autoplay="false"
+    theme="#ff9800"
+    order="random"
+    preload="auto"
+    list-folded="true">
+</meting-js>
+
+<style>
+  /* 强制把播放器挪到屏幕右侧偏下的位置，填补看板娘和时钟之间的空白 */
+  .aplayer.aplayer-fixed {
+      left: auto !important;
+      right: 0 !important;
+      max-width: 320px;
+      bottom: 35% !important; /* 调整这个百分比可以控制它的上下高度 */
+      z-index: 9999;
+      box-shadow: -2px 5px 15px rgba(255,152,0,0.2) !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-body {
+      left: auto !important;
+      right: 0 !important;
+  }
+  /* 让播放列表向左展开，并加上圆角 */
+  .aplayer.aplayer-fixed .aplayer-list {
+      border-radius: 10px 0 0 10px !important;
+      border: 1px solid rgba(255,152,0,0.3);
+  }
+  /* 迷你模式的封面变成圆形，更有黑胶唱片的感觉 */
+  .aplayer.aplayer-fixed .aplayer-pic {
+      border-radius: 50% !important;
+      margin: 10px;
+      height: 46px !important;
+      width: 46px !important;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+</style>
 </div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":30,"vOffset":-20},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body></html>
