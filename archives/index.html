@@ -17,11 +17,11 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1772972272132">
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1772972692803">
 
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
 
-<link rel="stylesheet" href="/css/style.css?v=1772972272132">
+<link rel="stylesheet" href="/css/style.css?v=1772972692803">
 
 
 
@@ -33,7 +33,7 @@
 <script src="/lib/lax.min.js" async></script>
 
 
-<script async src="/js/app.js?v=1772972272132"></script>
+<script async src="/js/app.js?v=1772972692803"></script>
 
  
 
@@ -516,7 +516,7 @@
 </style>
 
 
-    <script async src="/js/search.js?v=1772972272132"></script>
+    <script async src="/js/search.js?v=1772972692804"></script>
         
 
             
@@ -1890,17 +1890,12 @@
     }
   }
 </style></div><div id="nexmoe-footer"><!--!--></div><div id="nexmoe-search-space"><div class="search-container"><div class="search-header"><div class="search-input-container"><input class="search-input" type="text" placeholder="搜索" onInput="sinput();"></div><a class="search-close" onclick="sclose();">×</a></div><div class="search-body"></div></div></div><div><style>
+  /* 全局优雅字体 */
   @import url('https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.6.0/style.css');
 
   body {
       font-family: "LXGW WenKai Screen", "Microsoft YaHei", sans-serif !important;
       cursor: url('https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/default.cur'), default !important;
-      animation: pageFadeIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); /* 全局入场动画 */
-  }
-  
-  @keyframes pageFadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
   }
 
   a, .nexmoe-post a, .nexmoe-widget-wrap a {
@@ -1909,6 +1904,7 @@
 
   .nexmoe-footer .powred-by, .nexmoe-footer .theme-info { display: none !important; }
 
+  /* 元气滚动条 */
   ::-webkit-scrollbar { width: 8px; height: 8px; }
   ::-webkit-scrollbar-thumb {
     background-color: #ff9800;
@@ -1917,6 +1913,7 @@
   }
   ::-webkit-scrollbar-track { background-color: rgba(255, 255, 255, 0.3); border-radius: 2em; }
 
+  /* 苹果级毛玻璃卡片 */
   .nexmoe-post, .nexmoe-widget-wrap {
       background: rgba(255, 255, 255, 0.85) !important; 
       backdrop-filter: blur(12px) !important; 
@@ -1937,7 +1934,7 @@
       border-radius: 12px !important;
       box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
       margin: 20px 0 !important;
-      padding-top: 35px !important; /* 给红黄绿三个点留出空间 */
+      padding-top: 35px !important;
       position: relative;
   }
   .nexmoe-post figure.highlight::before {
@@ -1948,8 +1945,8 @@
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: #fc625d; /* 苹果红 */
-      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b; /* 苹果黄、苹果绿 */
+      background: #fc625d;
+      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
       z-index: 2;
   }
 </style>
@@ -1961,18 +1958,18 @@
 <script type="text/javascript" color="0,205,205" opacity="0.7" zIndex="-1" count="99" src="https://cdn.bootcdn.net/ajax/libs/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll("a").forEach(link => {
-      if (link.hostname === window.location.hostname && !link.hash && link.target !== "_blank") {
-        link.addEventListener("click", e => {
-          e.preventDefault();
-          document.body.style.transition = "opacity 0.4s ease, transform 0.4s ease";
-          document.body.style.opacity = "0";
-          document.body.style.transform = "translateY(-10px)";
-          setTimeout(() => window.location = link.href, 350);
-        });
+  var OriginTitle = document.title;
+  var titleTime;
+  document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+          document.title = '╭(°A°`)╮ 页面崩溃啦 ~';
+          clearTimeout(titleTime);
+      } else {
+          document.title = '(ฅ>ω<*ฅ) 噫又好了~ ' + OriginTitle;
+          titleTime = setTimeout(function () {
+              document.title = OriginTitle;
+          }, 2000);
       }
-    });
   });
 </script>
 
@@ -2003,4 +2000,6 @@
   document.addEventListener('mousemove', (e) => { const pet = document.getElementById('mochi-pet'); if(!pet) return; const rect = pet.getBoundingClientRect(); const petX = rect.left + rect.width / 2; const petY = rect.top + rect.height / 2; const angle = Math.atan2(e.clientY - petY, e.clientX - petX); const distance = Math.min(4, Math.hypot(e.clientX - petX, e.clientY - petY) / 60); const eyeOffsetX = Math.cos(angle) * distance; const eyeOffsetY = Math.sin(angle) * distance; document.getElementById('eye-l').setAttribute('cx', 40 + eyeOffsetX); document.getElementById('eye-l').setAttribute('cy', 65 + eyeOffsetY); document.getElementById('eye-r').setAttribute('cx', 80 + eyeOffsetX); document.getElementById('eye-r').setAttribute('cy', 65 + eyeOffsetY); });
   const mochi = document.getElementById('mochi-pet'); const speech = document.querySelector('.mochi-speech'); const dialogues = ["考研加油喵！", "今天也要元气满满哦！", "别摸鱼啦，快去刷题！", "遇到难题了吗？深呼吸~", "本喵一直在陪着你哦！", "控制工程专硕，冲鸭！", "是不是又在看手机啦？"]; mochi.addEventListener('mouseenter', () => { speech.innerText = dialogues[Math.floor(Math.random() * dialogues.length)]; }); mochi.addEventListener('click', () => { speech.innerText = "喵呜！痛痛痛！别戳我啦！"; document.getElementById('mouth').setAttribute('d', 'M 50 78 Q 60 70 70 78'); mochi.style.animation = 'none'; mochi.classList.add('squish'); setTimeout(() => { document.getElementById('mouth').setAttribute('d', 'M 55 75 Q 60 82 65 75'); mochi.classList.remove('squish'); mochi.style.animation = 'floatMochi 3s ease-in-out infinite'; }, 1000); });
 </script>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/instant.page/5.2.0/instantpage.min.js" type="module"></script>
 </div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":30,"vOffset":-20},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body></html>
