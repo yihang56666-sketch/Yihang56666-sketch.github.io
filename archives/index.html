@@ -17,11 +17,11 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1772965050195">
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1772972272132">
 
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
 
-<link rel="stylesheet" href="/css/style.css?v=1772965050195">
+<link rel="stylesheet" href="/css/style.css?v=1772972272132">
 
 
 
@@ -33,7 +33,7 @@
 <script src="/lib/lax.min.js" async></script>
 
 
-<script async src="/js/app.js?v=1772965050195"></script>
+<script async src="/js/app.js?v=1772972272132"></script>
 
  
 
@@ -58,6 +58,13 @@
             <i class="mdui-list-item-icon nexmoefont icon-meishi"></i>
             <div class="mdui-list-item-content">
                 回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/projects/" title="项目大厅">
+            <i class="mdui-list-item-icon nexmoefont icon-bokeyuan"></i>
+            <div class="mdui-list-item-content">
+                项目大厅
             </div>
         </a>
         
@@ -509,7 +516,7 @@
 </style>
 
 
-    <script async src="/js/search.js?v=1772965050195"></script>
+    <script async src="/js/search.js?v=1772972272132"></script>
         
 
             
@@ -1883,22 +1890,25 @@
     }
   }
 </style></div><div id="nexmoe-footer"><!--!--></div><div id="nexmoe-search-space"><div class="search-container"><div class="search-header"><div class="search-input-container"><input class="search-input" type="text" placeholder="搜索" onInput="sinput();"></div><a class="search-close" onclick="sclose();">×</a></div><div class="search-body"></div></div></div><div><style>
-  /* 🌟 1. 引入神级开源字体：霞鹜文楷 (让排版极其优雅) */
   @import url('https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.6.0/style.css');
 
-  /* 🌟 2. 全局字体替换 & 换上二次元专属小鼠标指针 */
   body {
       font-family: "LXGW WenKai Screen", "Microsoft YaHei", sans-serif !important;
       cursor: url('https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/default.cur'), default !important;
+      animation: pageFadeIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); /* 全局入场动画 */
   }
+  
+  @keyframes pageFadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+  }
+
   a, .nexmoe-post a, .nexmoe-widget-wrap a {
       cursor: url('https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/pointer.cur'), pointer !important;
   }
 
-  /* 隐藏原作者信息 */
   .nexmoe-footer .powred-by, .nexmoe-footer .theme-info { display: none !important; }
 
-  /* 元气橘色斑马纹滚动条 */
   ::-webkit-scrollbar { width: 8px; height: 8px; }
   ::-webkit-scrollbar-thumb {
     background-color: #ff9800;
@@ -1907,7 +1917,6 @@
   }
   ::-webkit-scrollbar-track { background-color: rgba(255, 255, 255, 0.3); border-radius: 2em; }
 
-  /* 🌟 3. 终极布局：苹果同款半透明毛玻璃卡片 + 呼吸悬浮发光 */
   .nexmoe-post, .nexmoe-widget-wrap {
       background: rgba(255, 255, 255, 0.85) !important; 
       backdrop-filter: blur(12px) !important; 
@@ -1921,6 +1930,28 @@
       box-shadow: 0 15px 30px rgba(255, 152, 0, 0.2) !important; 
       z-index: 2; 
   }
+
+  /* 💻 顶级极客：Mac 风格代码块美化 */
+  .nexmoe-post figure.highlight {
+      background: #2d2d2d !important;
+      border-radius: 12px !important;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+      margin: 20px 0 !important;
+      padding-top: 35px !important; /* 给红黄绿三个点留出空间 */
+      position: relative;
+  }
+  .nexmoe-post figure.highlight::before {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 15px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #fc625d; /* 苹果红 */
+      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b; /* 苹果黄、苹果绿 */
+      z-index: 2;
+  }
 </style>
 
 <script>
@@ -1930,18 +1961,18 @@
 <script type="text/javascript" color="0,205,205" opacity="0.7" zIndex="-1" count="99" src="https://cdn.bootcdn.net/ajax/libs/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
 
 <script>
-  var OriginTitle = document.title;
-  var titleTime;
-  document.addEventListener('visibilitychange', function () {
-      if (document.hidden) {
-          document.title = '╭(°A°`)╮ 页面崩溃啦 ~';
-          clearTimeout(titleTime);
-      } else {
-          document.title = '(ฅ>ω<*ฅ) 噫又好了~ ' + OriginTitle;
-          titleTime = setTimeout(function () {
-              document.title = OriginTitle;
-          }, 2000);
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("a").forEach(link => {
+      if (link.hostname === window.location.hostname && !link.hash && link.target !== "_blank") {
+        link.addEventListener("click", e => {
+          e.preventDefault();
+          document.body.style.transition = "opacity 0.4s ease, transform 0.4s ease";
+          document.body.style.opacity = "0";
+          document.body.style.transform = "translateY(-10px)";
+          setTimeout(() => window.location = link.href, 350);
+        });
       }
+    });
   });
 </script>
 
@@ -1958,123 +1989,18 @@
       <ellipse cx="95" cy="72" rx="7" ry="4" fill="#ffab91" opacity="0.8"/>
    </svg>
 </div>
-
 <style>
-  #mochi-pet {
-    position: fixed;
-    right: 30px;
-    bottom: 35%; /* 刚好在时钟和看板娘中间 */
-    z-index: 9999;
-    width: 140px;
-    cursor: pointer;
-    animation: floatMochi 3s ease-in-out infinite;
-    filter: drop-shadow(0 10px 15px rgba(255,152,0,0.2));
-  }
-  /* 悬浮呼吸动画 */
-  @keyframes floatMochi {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-15px) rotate(3deg); }
-  }
-  /* 鼠标移上去变红一点 */
-  #mochi-pet:hover #mochi-body {
-    fill: #fff3e0;
-    transition: fill 0.3s;
-  }
-  /* 气泡样式 */
-  .mochi-speech {
-    position: absolute;
-    right: 120px;
-    top: -10px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(5px);
-    padding: 10px 15px;
-    border-radius: 15px 15px 0 15px;
-    border: 2px solid #ffccbc;
-    color: #f4511e;
-    font-weight: bold;
-    width: max-content;
-    max-width: 180px;
-    opacity: 0;
-    transform: scale(0.8) translateY(10px);
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    pointer-events: none;
-    box-shadow: 0 5px 15px rgba(255,152,0,0.15);
-  }
-  .mochi-speech::after {
-    content: '';
-    position: absolute;
-    right: -10px;
-    bottom: -2px;
-    border-width: 10px 0 0 10px;
-    border-style: solid;
-    border-color: transparent transparent transparent #ffccbc;
-  }
-  #mochi-pet:hover .mochi-speech {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-  /* 被戳时的挤压动画 */
-  .squish {
-    animation: squishAnim 0.3s ease-out;
-  }
-  @keyframes squishAnim {
-    0% { transform: scale(1, 1); }
-    50% { transform: scale(1.1, 0.8) translateY(10px); }
-    100% { transform: scale(1, 1); }
-  }
+  #mochi-pet { position: fixed; right: 30px; bottom: 35%; z-index: 9999; width: 140px; cursor: pointer; animation: floatMochi 3s ease-in-out infinite; filter: drop-shadow(0 10px 15px rgba(255,152,0,0.2)); }
+  @keyframes floatMochi { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-15px) rotate(3deg); } }
+  #mochi-pet:hover #mochi-body { fill: #fff3e0; transition: fill 0.3s; }
+  .mochi-speech { position: absolute; right: 120px; top: -10px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); padding: 10px 15px; border-radius: 15px 15px 0 15px; border: 2px solid #ffccbc; color: #f4511e; font-weight: bold; width: max-content; max-width: 180px; opacity: 0; transform: scale(0.8) translateY(10px); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); pointer-events: none; box-shadow: 0 5px 15px rgba(255,152,0,0.15); }
+  .mochi-speech::after { content: ''; position: absolute; right: -10px; bottom: -2px; border-width: 10px 0 0 10px; border-style: solid; border-color: transparent transparent transparent #ffccbc; }
+  #mochi-pet:hover .mochi-speech { opacity: 1; transform: scale(1) translateY(0); }
+  .squish { animation: squishAnim 0.3s ease-out; }
+  @keyframes squishAnim { 0% { transform: scale(1, 1); } 50% { transform: scale(1.1, 0.8) translateY(10px); } 100% { transform: scale(1, 1); } }
 </style>
-
 <script>
-  // 让眼睛跟着鼠标转的魔法
-  document.addEventListener('mousemove', (e) => {
-    const pet = document.getElementById('mochi-pet');
-    if(!pet) return;
-    const rect = pet.getBoundingClientRect();
-    const petX = rect.left + rect.width / 2;
-    const petY = rect.top + rect.height / 2;
-    
-    const angle = Math.atan2(e.clientY - petY, e.clientX - petX);
-    const distance = Math.min(4, Math.hypot(e.clientX - petX, e.clientY - petY) / 60);
-    
-    const eyeOffsetX = Math.cos(angle) * distance;
-    const eyeOffsetY = Math.sin(angle) * distance;
-    
-    document.getElementById('eye-l').setAttribute('cx', 40 + eyeOffsetX);
-    document.getElementById('eye-l').setAttribute('cy', 65 + eyeOffsetY);
-    document.getElementById('eye-r').setAttribute('cx', 80 + eyeOffsetX);
-    document.getElementById('eye-r').setAttribute('cy', 65 + eyeOffsetY);
-  });
-
-  const mochi = document.getElementById('mochi-pet');
-  const speech = document.querySelector('.mochi-speech');
-  const dialogues = [
-    "考研加油喵！", 
-    "今天也要元气满满哦！", 
-    "别摸鱼啦，快去刷题！", 
-    "遇到难题了吗？深呼吸~", 
-    "本喵一直在陪着你哦！",
-    "控制工程专硕，冲鸭！",
-    "是不是又在看手机啦？"
-  ];
-  
-  // 鼠标悬停说话
-  mochi.addEventListener('mouseenter', () => {
-    speech.innerText = dialogues[Math.floor(Math.random() * dialogues.length)];
-  });
-
-  // 鼠标点击互动 (变形 + 换委屈嘴巴)
-  mochi.addEventListener('click', () => {
-    speech.innerText = "喵呜！痛痛痛！别戳我啦！";
-    document.getElementById('mouth').setAttribute('d', 'M 50 78 Q 60 70 70 78'); 
-    
-    mochi.style.animation = 'none';
-    mochi.classList.add('squish');
-    
-    setTimeout(() => {
-      document.getElementById('mouth').setAttribute('d', 'M 55 75 Q 60 82 65 75');
-      mochi.classList.remove('squish');
-      mochi.style.animation = 'floatMochi 3s ease-in-out infinite';
-    }, 1000);
-  });
+  document.addEventListener('mousemove', (e) => { const pet = document.getElementById('mochi-pet'); if(!pet) return; const rect = pet.getBoundingClientRect(); const petX = rect.left + rect.width / 2; const petY = rect.top + rect.height / 2; const angle = Math.atan2(e.clientY - petY, e.clientX - petX); const distance = Math.min(4, Math.hypot(e.clientX - petX, e.clientY - petY) / 60); const eyeOffsetX = Math.cos(angle) * distance; const eyeOffsetY = Math.sin(angle) * distance; document.getElementById('eye-l').setAttribute('cx', 40 + eyeOffsetX); document.getElementById('eye-l').setAttribute('cy', 65 + eyeOffsetY); document.getElementById('eye-r').setAttribute('cx', 80 + eyeOffsetX); document.getElementById('eye-r').setAttribute('cy', 65 + eyeOffsetY); });
+  const mochi = document.getElementById('mochi-pet'); const speech = document.querySelector('.mochi-speech'); const dialogues = ["考研加油喵！", "今天也要元气满满哦！", "别摸鱼啦，快去刷题！", "遇到难题了吗？深呼吸~", "本喵一直在陪着你哦！", "控制工程专硕，冲鸭！", "是不是又在看手机啦？"]; mochi.addEventListener('mouseenter', () => { speech.innerText = dialogues[Math.floor(Math.random() * dialogues.length)]; }); mochi.addEventListener('click', () => { speech.innerText = "喵呜！痛痛痛！别戳我啦！"; document.getElementById('mouth').setAttribute('d', 'M 50 78 Q 60 70 70 78'); mochi.style.animation = 'none'; mochi.classList.add('squish'); setTimeout(() => { document.getElementById('mouth').setAttribute('d', 'M 55 75 Q 60 82 65 75'); mochi.classList.remove('squish'); mochi.style.animation = 'floatMochi 3s ease-in-out infinite'; }, 1000); });
 </script>
 </div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":30,"vOffset":-20},"mobile":{"show":false},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body></html>
