@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的考研效率管家</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f4f9; text-align: center; padding: 50px; }
+        .container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,00,0.1); max-width: 400px; margin: auto; }
+        input { padding: 10px; width: 60%; margin-right: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        button { padding: 10px 15px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #218838; }
+        ul { list-style-type: none; padding: 0; }
+        li { background: #eee; margin: 10px 0; padding: 10px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; }
+        .completed { text-decoration: line-through; color: gray; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>📚 考研进度打卡 V1.0</h2>
+        <div>
+            <input type="text" id="taskInput" placeholder="例如：高数第3章习题...">
+            <button onclick="addTask()">添加任务</button>
+        </div>
+        <ul id="taskList">
+            </ul>
+    </div>
+
+    <script>
+        function addTask() {
+            // 1. 获取输入框里的文字
+            let input = document.getElementById("taskInput");
+            let taskText = input.value;
+
+            // 2. 如果没写字就点按钮，提示一下
+            if (taskText === "") {
+                alert("兄弟，你还没写任务呢！");
+                return;
+            }
+
+            // 3. 创建一个新的列表项 (li)
+            let ul = document.getElementById("taskList");
+            let li = document.createElement("li");
+            li.innerHTML = `<span>${taskText}</span> <button onclick="completeTask(this)" style="background-color:#007bff; padding:5px 10px;">搞定</button>`;
+
+            // 4. 把新任务加到列表里，并清空输入框
+            ul.appendChild(li);
+            input.value = "";
+        }
+
+        function completeTask(btn) {
+            // 点击“搞定”按钮后，给文字加上删除线
+            let li = btn.parentElement;
+            li.classList.add("completed");
+            btn.remove(); // 搞定后删掉按钮
+        }
+    </script>
+
+</body>
+</html>
