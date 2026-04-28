@@ -17,11 +17,11 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1774856063875">
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1777374651146">
 
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
 
-<link rel="stylesheet" href="/css/style.css?v=1774856063875">
+<link rel="stylesheet" href="/css/style.css?v=1777374651146">
 
 
 
@@ -33,7 +33,7 @@
 <script src="/lib/lax.min.js" async></script>
 
 
-<script async src="/js/app.js?v=1774856063875"></script>
+<script async src="/js/app.js?v=1777374651146"></script>
 
  
 
@@ -516,7 +516,7 @@
 </style>
 
 
-    <script async src="/js/search.js?v=1774856063875"></script>
+    <script async src="/js/search.js?v=1777374651147"></script>
         
 
             
@@ -539,7 +539,7 @@
 			></i> </a
 		><a
 			class="mdui-ripple"
-			href="mailto:你的真实邮箱@xxx.com"
+			href="mailto:your-email@example.com"
 			target="_blank"
 			mdui-tooltip="{content: 'mail'}"
 			style="
@@ -1029,150 +1029,696 @@
     }
   }
 </style></div><div id="nexmoe-footer"><!--!--></div><div id="nexmoe-search-space"><div class="search-container"><div class="search-header"><div class="search-input-container"><input class="search-input" type="text" placeholder="搜索" onInput="sinput();"></div><a class="search-close" onclick="sclose();">×</a></div><div class="search-body"></div></div></div><div><style>
-  /* 全局优雅字体 */
-  @import url('https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.6.0/style.css');
+  /* =============================================
+     字体导入
+  ============================================= */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-  
-  /* 调整背景滤镜：因为启用了好看的阳光树林背景，不再隐藏背景图 */
-  #nexmoe-background {
-      filter: blur(4px) brightness(1.05); /* 微微模糊与提亮，让背景显得更梦幻、更极简不刺眼 */
+  /* =============================================
+     覆盖主题色 — 靛蓝 Indigo
+  ============================================= */
+  :root {
+    --color-primary: #4f46e5;
+    --color2: #6366f1;
+    --color3: #818cf8;
+    --color4: #a5b4fc;
+    --color5: #6366f1;
+    --color6: #4f46e5;
+    --color7: #3730a3;
+    --color-primary-bg: rgba(79, 70, 229, 0.1);
+    --color2-bg: rgba(99, 102, 241, 0.1);
+    --color3-bg: rgba(129, 140, 248, 0.1);
+    --color4-bg: rgba(165, 180, 252, 0.1);
+    --color5-bg: rgba(99, 102, 241, 0.1);
+    --color6-bg: rgba(79, 70, 229, 0.1);
+    --color7-bg: rgba(55, 48, 163, 0.1);
+    --color-shadow: rgba(79, 70, 229, 0.1);
+    --color-card: #ffffff;
+    --color-card-opacity: #ffffff;
+    --color-text-1: #1e293b;
+    --color-text-2: #475569;
+    --color-text-3: #64748b;
   }
-  .nexmoe-bg {
-      opacity: 1 !important;
+  .dark:root {
+    --color-card: #1a1d29;
+    --color-card-opacity: rgba(26, 29, 41, 0.85);
+    --color-text-1: #e2e8f0;
+    --color-text-2: #94a3b8;
+    --color-text-3: #64748b;
+    --color-shadow: rgba(0, 0, 0, 0.3);
   }
+
+  /* =============================================
+     全局基础
+  ============================================= */
+  html { scroll-behavior: smooth; }
+
   body {
-      font-family: "LXGW WenKai Screen", "Inter", "Microsoft YaHei", sans-serif !important;
-      color: #3b423c !important; /* 颜色调为深灰绿，融入树林主题 */
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    color: var(--color-text-1) !important;
   }
 
-  /* 移除 footer 多余信息 */
-  .nexmoe-footer .powred-by, .nexmoe-footer .theme-info { display: none !important; }
-
-  /* 极简滚动条 */
-  ::-webkit-scrollbar { width: 6px; height: 6px; }
-  ::-webkit-scrollbar-thumb {
-    background-color: #dbdbdb;
-    border-radius: 4px;
+  /* =============================================
+     背景 — 极简纯色 + 背景图极淡纹理
+  ============================================= */
+  #nexmoe-background {
+    filter: none !important;
   }
-  ::-webkit-scrollbar-track { background-color: #fafafa; }
-
-  /* Ins 高级卡片质感: 阳光玻璃 (Glassmorphism) */
-  .nexmoe-post, .nexmoe-widget-wrap {
-      background: rgba(255, 255, 255, 0.85) !important; 
-      backdrop-filter: blur(16px) saturate(120%);
-      -webkit-backdrop-filter: blur(16px) saturate(120%);
-      border: 1px solid rgba(255, 255, 255, 0.4) !important; 
-      box-shadow: 0 4px 20px rgba(0,0,0,0.03), inset 0 0 0 1px rgba(255, 255, 255, 0.4) !important;
-      border-radius: 12px !important; /* 温润的圆角 */
-      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important; 
+  #nexmoe-background .nexmoe-bg {
+    opacity: 0.06 !important;
+    filter: none !important;
   }
-  .nexmoe-post:hover, .nexmoe-widget-wrap:hover {
-      box-shadow: 0 12px 36px rgba(0,0,0,0.06), inset 0 0 0 1px rgba(255, 255, 255, 0.6) !important; 
-      transform: translateY(-3px); 
+  #nexmoe-background .nexmoe-character {
+    display: none !important;
+  }
+  .dark #nexmoe-background .nexmoe-bg {
+    opacity: 0.03 !important;
   }
 
-  /* 💻 Mac 风格代码块美化 (保留提升质感) */
-  .nexmoe-post figure.highlight {
-      background: #2d2d2d !important;
-      border-radius: 8px !important;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
-      margin: 20px 0 !important;
-      padding-top: 35px !important;
-      position: relative;
+  /* =============================================
+     卡片 — 清爽白底，无玻璃效果
+  ============================================= */
+  .nexmoe-post,
+  .nexmoe-widget-wrap {
+    background: #fff !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid rgba(0,0,0,0.05) !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.02) !important;
+    border-radius: 12px !important;
+    transition: all 0.25s ease !important;
   }
-  .nexmoe-post figure.highlight::before {
-      content: '';
-      position: absolute;
-      top: 12px;
-      left: 15px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #fc625d;
-      box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
-      z-index: 2;
+  .nexmoe-post:hover,
+  .nexmoe-widget-wrap:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04) !important;
+    transform: translateY(-2px);
   }
 
-  /* 极简森系头像光环 */
+  .dark .nexmoe-post,
+  .dark .nexmoe-widget-wrap {
+    background: var(--color-card) !important;
+    border-color: rgba(255,255,255,0.06) !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2) !important;
+  }
+  .dark .nexmoe-post:hover,
+  .dark .nexmoe-widget-wrap:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3) !important;
+  }
+
+  /* =============================================
+     侧栏
+  ============================================= */
+  #nexmoe-header {
+    background: #fff !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 1px solid rgba(0,0,0,0.05) !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03) !important;
+    border-radius: 12px !important;
+  }
+  .dark #nexmoe-header {
+    background: var(--color-card) !important;
+    border-color: rgba(255,255,255,0.06) !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2) !important;
+  }
+
+  /* =============================================
+     头像
+  ============================================= */
   .nexmoe-avatar {
-      padding: 4px;
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      border-radius: 50% !important; /* 必须是正圆 */
-      box-sizing: border-box;
-      display: inline-block;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.05) !important;
+    padding: 3px;
+    background: #fff !important;
+    backdrop-filter: none !important;
+    border: 1px solid rgba(0,0,0,0.06) !important;
+    border-radius: 50% !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06) !important;
   }
   .nexmoe-avatar img {
-      border: 3px solid #fff !important; /* 内圈留白 */
-      border-radius: 50% !important;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    border: 2px solid #fff !important;
+    border-radius: 50% !important;
+  }
+  .dark .nexmoe-avatar {
+    background: var(--color-card) !important;
+    border-color: rgba(255,255,255,0.1) !important;
+  }
+  .dark .nexmoe-avatar img {
+    border-color: var(--color-card) !important;
   }
 
-  /* 将全局亮色从橙色改掉 */
-  a:hover { color: #3b423c !important; }
-  .nexmoe-post a { font-weight: 500; text-decoration: underline; text-decoration-color: #dbdbdb; }
-  .nexmoe-post a:hover { text-decoration-color: #3b423c; }
+  /* =============================================
+     菜单项
+  ============================================= */
+  .nexmoe-list-item {
+    border-radius: 8px !important;
+    transition: all 0.2s ease !important;
+  }
+  .nexmoe-list-item:hover {
+    background: var(--color-primary-bg) !important;
+    color: var(--color-primary) !important;
+  }
+  .nexmoe-list-item:hover i {
+    color: var(--color-primary) !important;
+  }
 
-  /* ======================================================== */
-  /* 🚀 PHASE 2: 深度结构重塑骨骼手术 (Deep Structure Override) */
-  /* ======================================================== */
+  /* =============================================
+     统计数字圆标
+  ============================================= */
+  .nexmoe-count-item {
+    width: 54px !important;
+    padding: 12px 0 !important;
+  }
+
+  /* =============================================
+     Footer — 隐藏默认
+  ============================================= */
+  .nexmoe-footer .powred-by,
+  .nexmoe-footer .theme-info { display: none !important; }
+
+  /* =============================================
+     滚动条
+  ============================================= */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background-color: #94a3b8; }
+  ::-webkit-scrollbar-track { background: transparent; }
+
+  /* =============================================
+     链接
+  ============================================= */
+  .nexmoe-post a {
+    color: var(--color-primary) !important;
+    font-weight: 500;
+    text-decoration: none !important;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .nexmoe-post a:hover {
+    border-bottom-color: var(--color-primary);
+  }
+  body a:hover { color: var(--color-primary) !important; }
+
+  /* =============================================
+     Mac 代码块
+  ============================================= */
+  .nexmoe-post figure.highlight {
+    background: #1e1e2e !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12) !important;
+    margin: 24px 0 !important;
+    padding-top: 38px !important;
+    position: relative;
+    overflow: hidden;
+  }
+  .nexmoe-post figure.highlight::before {
+    content: '';
+    position: absolute;
+    top: 14px;
+    left: 16px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ff5f57;
+    box-shadow: 16px 0 #ffbd2e, 32px 0 #28c840;
+    z-index: 2;
+  }
+
+  /* =============================================
+     文章排版
+  ============================================= */
+  .nexmoe-post article {
+    line-height: 1.9;
+    font-size: 16px;
+    color: var(--color-text-1);
+  }
+  .nexmoe-post article h1,
+  .nexmoe-post article h2,
+  .nexmoe-post article h3,
+  .nexmoe-post article h4 {
+    font-weight: 650;
+    margin-top: 2em;
+    margin-bottom: 0.6em;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    color: var(--color-text-1);
+  }
+  .nexmoe-post article h1 {
+    font-size: 1.65em;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    padding-bottom: 0.35em;
+  }
+  .nexmoe-post article h2 { font-size: 1.35em; }
+  .nexmoe-post article h3 { font-size: 1.15em; color: var(--color-text-2); }
+  .nexmoe-post article p { margin: 1.1em 0; }
+
+  .nexmoe-post article blockquote {
+    border-left: 3px solid var(--color-primary);
+    margin: 1.4em 0;
+    padding: 0.6em 1.2em;
+    background: var(--color-primary-bg);
+    border-radius: 0 8px 8px 0;
+    color: var(--color-text-2);
+  }
+  .nexmoe-post article ul,
+  .nexmoe-post article ol {
+    padding-left: 1.5em;
+    margin: 0.8em 0;
+  }
+  .nexmoe-post article li { margin: 0.3em 0; }
+
+  .nexmoe-post article code:not([class]) {
+    background: rgba(79, 70, 229, 0.08);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    font-size: 0.88em;
+    color: #7c3aed;
+  }
+  .dark .nexmoe-post article code:not([class]) {
+    background: rgba(129, 140, 248, 0.12);
+    color: #a5b4fc;
+  }
+
+  .nexmoe-post article img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 1.5em auto;
+    display: block;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .nexmoe-post article table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.2em 0;
+    font-size: 0.9em;
+  }
+  .nexmoe-post article th,
+  .nexmoe-post article td {
+    padding: 0.6em 1em;
+    border: 1px solid rgba(0,0,0,0.06);
+    text-align: left;
+  }
+  .nexmoe-post article th {
+    background: rgba(0,0,0,0.02);
+    font-weight: 600;
+  }
+  .dark .nexmoe-post article th,
+  .dark .nexmoe-post article td { border-color: rgba(255,255,255,0.06); }
+  .nexmoe-post article hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(0,0,0,0.08), transparent);
+    margin: 2.5em 0;
+  }
+  .dark .nexmoe-post article hr {
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.06), transparent);
+  }
+
+  /* =============================================
+     首页卡片封面
+  ============================================= */
+  .nexmoe-post-cover {
+    border-radius: 12px 12px 0 0 !important;
+    overflow: hidden;
+  }
+  .nexmoe-post-cover img {
+    transition: transform 0.5s ease;
+  }
+  .nexmoe-post-cover:hover img {
+    transform: scale(1.04);
+  }
+  .nexmoe-post-cover h1 {
+    font-weight: 700 !important;
+    letter-spacing: 0;
+  }
+
+  /* =============================================
+     阅读进度条
+  ============================================= */
+  #reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #4f46e5, #818cf8);
+    z-index: 99999;
+    width: 0%;
+    transition: width 0.1s linear;
+    pointer-events: none;
+  }
+
+  /* =============================================
+     版权声明
+  ============================================= */
+  .nexmoe-post-copyright {
+    background: rgba(0,0,0,0.02);
+    border-radius: 8px;
+    padding: 1em 1.2em;
+    font-size: 0.85em;
+    line-height: 1.8;
+    margin-top: 1.5em;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+  .dark .nexmoe-post-copyright {
+    background: rgba(255,255,255,0.03);
+    border-color: rgba(255,255,255,0.06);
+  }
+
+  /* =============================================
+     Giscus 评论区
+  ============================================= */
+  .giscus-container {
+    margin-top: 40px !important;
+    padding: 24px !important;
+    background: #fff !important;
+    border-radius: 12px !important;
+    backdrop-filter: none !important;
+    border: 1px solid rgba(0,0,0,0.05) !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03) !important;
+  }
+  .giscus-title {
+    margin-top: 0;
+    color: var(--color-primary);
+    font-size: 1.15em;
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-primary-bg);
+    padding-bottom: 10px;
+  }
+  .dark .giscus-container {
+    background: var(--color-card) !important;
+    border-color: rgba(255,255,255,0.06) !important;
+  }
+
+  /* =============================================
+     桌面 Flex 布局
+  ============================================= */
   @media screen and (min-width: 1024px) {
-      body {
-          /* 页面整体限制为 1000px 宽，并完美居中 */
-          max-width: 1000px !important;
-          margin: 0 auto !important; 
-          padding-left: 0 !important;
-          display: flex !important;
-          justify-content: space-between !important;
-          align-items: flex-start !important;
-      }
-
-      /* 重新定义左侧挂载：从定死在左边变成可随屏幕滚动的优雅悬浮侧栏 */
-      #nexmoe-header {
-          position: sticky !important;
-          top: 40px !important;
-          left: unset !important;
-          width: 270px !important;
-          height: auto !important;
-          max-height: calc(100vh - 80px) !important;
-          overflow-y: auto !important; /* 防止内容过长 */
-          /* 同样赋予它干净的玻璃材质 */
-          background: rgba(255, 255, 255, 0.7) !important;
-          backdrop-filter: blur(20px) !important;
-          border-radius: 16px !important;
-          z-index: 100 !important;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.03) !important;
-          border: 1px solid rgba(255, 255, 255, 0.4) !important;
-      }
-      
-      /* 中心信息流：紧贴旁边悬浮栏 */
-      #nexmoe-content {
-          flex: 1 !important;
-          width: auto !important;
-          margin-left: 40px !important;
-          margin-top: 40px !important;
-          padding-bottom: 40px !important;
-      }
+    body {
+      max-width: 1120px !important;
+      margin: 0 auto !important;
+      padding-left: 0 !important;
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: flex-start !important;
+    }
+    #nexmoe-header {
+      position: sticky !important;
+      top: 40px !important;
+      left: unset !important;
+      width: 240px !important;
+      height: auto !important;
+      max-height: calc(100vh - 80px) !important;
+      overflow-y: auto !important;
+      flex-shrink: 0 !important;
+    }
+    #nexmoe-content {
+      flex: 1 !important;
+      width: auto !important;
+      min-width: 0 !important;
+      margin-left: 32px !important;
+      margin-top: 40px !important;
+      padding-bottom: 40px !important;
+    }
   }
 
-  /* 全局彻底隐藏所有杂乱无关的系统内置列与挂件空间 */
+  /* =============================================
+     隐藏多余元素
+  ============================================= */
   .nexmoe-post-right, #nexmoe-pendant {
-      display: none !important;
-      width: 0 !important;
-      height: 0 !important;
-      overflow: hidden !important;
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+  #nexmoe-chatbot,
+  #nexmoe-footer,
+  #nexmoe-search-space {
+    position: fixed !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: visible !important;
+    pointer-events: none !important;
+  }
+  #nexmoe-chatbot *,
+  #nexmoe-search-space * {
+    pointer-events: auto !important;
   }
 
-  /* 🛡️ 占位骨架色修复：防止卡顿时 CDN 未响应导致图片圈变成惊悚的白洞 */
+  /* =============================================
+     图片占位色
+  ============================================= */
   .nexmoe-avatar img, .nexmoe-post-cover img {
-      background: #eef1ee; /* 极简森林系的灰绿色占位背景 */
-      color: transparent;  /* 隐藏在加载失败时极不优雅的 "alt" 文字 */
+    background: #f1f5f9;
+    color: transparent;
+  }
+
+  /* =============================================
+     移动端适配
+  ============================================= */
+  @media screen and (max-width: 1023px) {
+    .nexmoe-post article { font-size: 15px; line-height: 1.8; }
+    .nexmoe-post article h1 { font-size: 1.4em; }
+    .nexmoe-post article h2 { font-size: 1.2em; }
+    .nexmoe-post article h3 { font-size: 1.1em; }
+  }
+
+  /* =============================================
+     Scroll Fade-in Animation
+  ============================================= */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .fade-in-delay-1 { transition-delay: 0.05s; }
+  .fade-in-delay-2 { transition-delay: 0.1s; }
+
+  /* =============================================
+     回到顶部按钮
+  ============================================= */
+  #back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 9999;
+    color: var(--color-text-3);
+    font-size: 18px;
+    line-height: 1;
+  }
+  #back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  #back-to-top:hover {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 16px rgba(79,70,229,0.25);
+    transform: translateY(-2px);
+  }
+
+  /* =============================================
+     文章首个段落强调（lead）
+  ============================================= */
+  .nexmoe-post article > p:first-of-type {
+    font-size: 1.05em;
+    color: var(--color-text-2);
+    line-height: 2;
+  }
+
+  /* =============================================
+     Post Meta 标签样式强化
+  ============================================= */
+  .nexmoe-post-meta .nexmoefont {
+    font-size: 0.82em;
+    color: var(--color-text-3);
+    margin-right: 0.4em;
+  }
+  .nexmoe-post-meta .nexmoefont.-link,
+  .nexmoe-post-meta .nexmoefont.-none-link {
+    display: inline-block;
+    padding: 0.2em 0.7em;
+    border-radius: 6px;
+    font-size: 0.78em;
+    font-weight: 500;
+  }
+
+  /* =============================================
+     侧栏小部件美化
+  ============================================= */
+
+  /* --- 标签云 --- */
+  .nexmoe-widget.tagcloud a {
+    display: inline-block;
+    padding: 0.25em 0.7em;
+    margin: 0.2em;
+    border-radius: 6px;
+    background: var(--color-primary-bg);
+    color: var(--color-primary) !important;
+    font-size: 0.82em !important;
+    transition: all 0.2s ease;
+  }
+  .nexmoe-widget.tagcloud a:hover {
+    background: var(--color-primary);
+    color: #fff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(79,70,229,0.2);
+  }
+
+  /* --- 最新文章 & 归档列表 --- */
+  .nexmoe-widget ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .nexmoe-widget ul li {
+    padding: 0.45em 0;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+  }
+  .nexmoe-widget ul li:last-child {
+    border-bottom: none;
+  }
+  .nexmoe-widget ul li a {
+    color: var(--color-text-2);
+    transition: color 0.2s;
+    font-size: 0.9em;
+  }
+  .nexmoe-widget ul li a:hover {
+    color: var(--color-primary);
+  }
+  .archive-list-item .archive-list-count {
+    float: right;
+    background: var(--color-primary-bg);
+    color: var(--color-primary);
+    padding: 0.05em 0.55em;
+    border-radius: 10px;
+    font-size: 0.78em;
+    font-weight: 500;
+  }
+
+  /* --- 搜索框 --- */
+  .st-default-search-input,
+  .search-input {
+    border-radius: 8px !important;
+    border: 1px solid rgba(0,0,0,0.06) !important;
+    transition: all 0.25s ease !important;
+    background: rgba(0,0,0,0.02) !important;
+  }
+  .st-default-search-input:focus,
+  .search-input:focus {
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 0 3px var(--color-primary-bg) !important;
+    outline: none !important;
+    background: #fff !important;
+  }
+  .dark .st-default-search-input,
+  .dark .search-input {
+    background: rgba(255,255,255,0.04) !important;
+    border-color: rgba(255,255,255,0.08) !important;
+    color: var(--color-text-1) !important;
+  }
+  .dark .st-default-search-input:focus,
+  .dark .search-input:focus {
+    background: var(--color-card) !important;
+    border-color: var(--color-primary) !important;
+  }
+
+  /* --- widget 标题 --- */
+  .nexmoe-widget-title {
+    font-size: 0.92em;
+    font-weight: 600;
+    color: var(--color-text-1);
+    padding-bottom: 0.5em;
+    margin-bottom: 0.5em;
+    border-bottom: 2px solid var(--color-primary-bg);
+  }
+
+  /* =============================================
+     深色模式适配 — 小部件
+  ============================================= */
+  .dark .nexmoe-widget ul li {
+    border-bottom-color: rgba(255,255,255,0.04);
   }
 </style>
+
+<!-- 阅读进度条 -->
+<div id="reading-progress"></div>
+
+<!-- 回到顶部按钮 -->
+<button id="back-to-top" aria-label="回到顶部">↑</button>
+
+<script>
+  (function(){
+    /* ---------- 阅读进度条 ---------- */
+    var bar = document.getElementById('reading-progress');
+    if (bar) {
+      function updateBar(){
+        var s = window.scrollY,
+            h = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (h > 0 ? Math.min(s / h * 100, 100) : 0) + '%';
+      }
+      window.addEventListener('scroll', updateBar, { passive: true });
+      window.addEventListener('resize', updateBar, { passive: true });
+      updateBar();
+    }
+
+    /* ---------- 回到顶部 ---------- */
+    var btn = document.getElementById('back-to-top');
+    if (btn) {
+      function toggleBtn(){
+        btn.classList.toggle('visible', window.scrollY > 300);
+      }
+      window.addEventListener('scroll', toggleBtn, { passive: true });
+      toggleBtn();
+      btn.addEventListener('click', function(){
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    /* ---------- 滚动入场动画 (IntersectionObserver) ---------- */
+    if (window.IntersectionObserver) {
+      var animObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            animObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
+
+      document.querySelectorAll('.nexmoe-post, .nexmoe-widget-wrap').forEach(function(el, i){
+        el.classList.add('fade-in');
+        if (i > 0) el.classList.add('fade-in-delay-' + Math.min(i, 2));
+        animObserver.observe(el);
+      });
+    } else {
+      // fallback: 直接显示
+      document.querySelectorAll('.nexmoe-post, .nexmoe-widget-wrap').forEach(function(el){
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+    }
+  })();
+</script>
 
 <script src="https://cdn.bootcdn.net/ajax/libs/instant.page/5.2.0/instantpage.min.js" type="module"></script>
 </div></body></html>
