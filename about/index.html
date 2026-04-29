@@ -21,11 +21,11 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1777470215560">
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1777473116244">
 
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
 
-<link rel="stylesheet" href="/css/style.css?v=1777470215560">
+<link rel="stylesheet" href="/css/style.css?v=1777473116245">
 
 
 
@@ -37,7 +37,7 @@
 <script src="/lib/lax.min.js" async></script>
 
 
-<script async src="/js/app.js?v=1777470215560"></script>
+<script async src="/js/app.js?v=1777473116245"></script>
 
  
 
@@ -534,7 +534,7 @@
 </style>
 
 
-    <script async src="/js/search.js?v=1777470215561"></script>
+    <script async src="/js/search.js?v=1777473116245"></script>
         
 
             
@@ -799,7 +799,7 @@
 </div>
   
   
-    <script async src="/js/copy-codeblock.js?v=1777470215538"></script>
+    <script async src="/js/copy-codeblock.js?v=1777473116220"></script>
   
 
   
@@ -1192,24 +1192,26 @@
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
   /* =============================================
-     覆盖主题色 — 靛蓝 Indigo
+     覆盖主题色 — 二次元粉紫
   ============================================= */
   :root {
-    --color-primary: #4f46e5;
-    --color2: #6366f1;
-    --color3: #818cf8;
-    --color4: #a5b4fc;
-    --color5: #6366f1;
-    --color6: #4f46e5;
-    --color7: #3730a3;
-    --color-primary-bg: rgba(79, 70, 229, 0.1);
-    --color2-bg: rgba(99, 102, 241, 0.1);
-    --color3-bg: rgba(129, 140, 248, 0.1);
-    --color4-bg: rgba(165, 180, 252, 0.1);
-    --color5-bg: rgba(99, 102, 241, 0.1);
-    --color6-bg: rgba(79, 70, 229, 0.1);
-    --color7-bg: rgba(55, 48, 163, 0.1);
-    --color-shadow: rgba(79, 70, 229, 0.1);
+    --color-primary: #ec4899;
+    --color2: #f472b6;
+    --color3: #a855f7;
+    --color4: #c084fc;
+    --color5: #f472b6;
+    --color6: #ec4899;
+    --color7: #db2777;
+    --color-primary-bg: rgba(236, 72, 153, 0.12);
+    --color2-bg: rgba(244, 114, 182, 0.1);
+    --color3-bg: rgba(168, 85, 247, 0.1);
+    --color4-bg: rgba(192, 132, 252, 0.1);
+    --color5-bg: rgba(244, 114, 182, 0.1);
+    --color6-bg: rgba(236, 72, 153, 0.1);
+    --color7-bg: rgba(219, 39, 119, 0.1);
+    --color-shadow: rgba(236, 72, 153, 0.1);
+    --color-accent: #06b6d4;
+    --color-accent-bg: rgba(6, 182, 212, 0.1);
     --color-card: #ffffff;
     --color-card-opacity: #ffffff;
     --color-text-1: #1e293b;
@@ -1236,14 +1238,22 @@
   }
 
   /* =============================================
-     背景 — 极简纯色 + 背景图极淡纹理
+     背景 — 二次元渐变
   ============================================= */
   #nexmoe-background {
     filter: none !important;
   }
   #nexmoe-background .nexmoe-bg {
-    opacity: 0.06 !important;
+    opacity: 0.05 !important;
     filter: none !important;
+  }
+  #nexmoe-background::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(236,72,153,0.04), rgba(168,85,247,0.04), rgba(6,182,212,0.02));
+    pointer-events: none;
+    z-index: -1;
   }
   #nexmoe-background .nexmoe-character {
     display: none !important;
@@ -1518,11 +1528,11 @@
 
   /* 选中颜色 */
   ::selection {
-    background: rgba(79, 70, 229, 0.2);
+    background: rgba(236, 72, 153, 0.2);
     color: var(--color-text-1);
   }
   .dark ::selection {
-    background: rgba(129, 140, 248, 0.25);
+    background: rgba(192, 132, 252, 0.25);
   }
 
   /* 深色/浅色切换过渡 */
@@ -1574,7 +1584,7 @@
     top: 0;
     left: 0;
     height: 2px;
-    background: linear-gradient(90deg, #4f46e5, #818cf8);
+    background: linear-gradient(90deg, #ec4899, #a855f7);
     z-index: 99999;
     width: 0%;
     transition: width 0.1s linear;
@@ -1745,7 +1755,7 @@
     background: var(--color-primary);
     color: #fff;
     border-color: var(--color-primary);
-    box-shadow: 0 4px 16px rgba(79,70,229,0.25);
+    box-shadow: 0 4px 16px rgba(236,72,153,0.25);
     transform: translateY(-2px);
   }
 
@@ -1873,7 +1883,116 @@
   }
 
   /* =============================================
-     锁屏 — 粒子星空
+     浮动樱花花瓣
+  ============================================= */
+  #sakura-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .sakura-petal {
+    position: absolute;
+    top: -30px;
+    width: 14px;
+    height: 14px;
+    opacity: 0;
+    animation: sakura-fall linear infinite;
+    pointer-events: none;
+  }
+  .sakura-petal::before {
+    content: '🌸';
+    font-size: inherit;
+  }
+  @keyframes sakura-fall {
+    0% {
+      transform: translateY(0) rotate(0deg) scale(0);
+      opacity: 0;
+    }
+    5% {
+      opacity: 0.35;
+      transform: translateY(0) rotate(0deg) scale(1);
+    }
+    85% {
+      opacity: 0.25;
+    }
+    100% {
+      transform: translateY(105vh) rotate(720deg) scale(0.6);
+      opacity: 0;
+    }
+  }
+
+  /* 浮动光点 */
+  #sparkle-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: sparkle-float linear infinite;
+  }
+  @keyframes sparkle-float {
+    0% {
+      transform: translateY(100vh) scale(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.6;
+      transform: translateY(90vh) scale(1);
+    }
+    90% {
+      opacity: 0.4;
+    }
+    100% {
+      transform: translateY(-10vh) scale(0);
+      opacity: 0;
+    }
+  }
+
+  /* =============================================
+     页面标题渐变
+  ============================================= */
+  .page-title {
+    background: linear-gradient(135deg, #ec4899, #a855f7, #06b6d4) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+  }
+
+  /* =============================================
+     Card 二次元圆角增强
+  ============================================= */
+  .nexmoe-post,
+  .nexmoe-widget-wrap {
+    border-radius: 16px !important;
+  }
+  #nexmoe-header {
+    border-radius: 16px !important;
+  }
+
+  /* =============================================
+     二次元页脚小彩蛋
+  ============================================= */
+  .nexmoe-footer::after {
+    content: '✧  powered by love and anime  ✧';
+    display: block;
+    text-align: center;
+    font-size: 0.8em;
+    color: var(--color-text-3);
+    margin-top: 8px;
+    letter-spacing: 0.05em;
+  }
+
+  /* =============================================
+     锁屏 — 二次元樱花星空
   ============================================= */
   #lockscreen {
     position: fixed;
@@ -1883,35 +2002,49 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #08080f;
+    background: linear-gradient(135deg, #1a0a1e 0%, #2d1b3d 25%, #1a1a3e 50%, #0d1b2a 100%);
     cursor: pointer;
     user-select: none;
     overflow: hidden;
+  }
+  #lockscreen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(236,72,153,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(168,85,247,0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba(6,182,212,0.06) 0%, transparent 50%);
+    z-index: 0;
+    pointer-events: none;
   }
   #lockscreen-canvas {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
   }
   .ls-card {
     position: relative;
-    z-index: 1;
-    background: rgba(255,255,255,0.04);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.08);
+    z-index: 2;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255,255,255,0.1);
     border-radius: 28px;
     padding: 48px 64px;
     text-align: center;
-    box-shadow: 0 8px 48px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 48px rgba(0,0,0,0.3), 0 0 80px rgba(236,72,153,0.06);
     min-width: 300px;
     transition: transform 0.3s ease;
   }
   .ls-time {
     font-size: clamp(4.5rem, 15vw, 9rem);
     font-weight: 700;
-    color: #fff;
+    background: linear-gradient(135deg, #f9a8d4, #c084fc, #67e8f9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     letter-spacing: -0.04em;
     line-height: 1;
     font-variant-numeric: tabular-nums;
@@ -1925,13 +2058,13 @@
   }
   .ls-greeting {
     font-size: clamp(1rem, 2.5vw, 1.3rem);
-    color: rgba(255,255,255,0.7);
+    color: rgba(255,255,255,0.65);
     margin-top: 24px;
     font-weight: 500;
   }
   .ls-poetry {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     margin-top: 44px;
     font-size: clamp(1rem, 2.2vw, 1.25rem);
     color: rgba(255,255,255,0.3);
@@ -1948,7 +2081,7 @@
   .ls-hint {
     position: absolute;
     bottom: clamp(36px, 7vh, 70px);
-    z-index: 1;
+    z-index: 2;
     color: rgba(255,255,255,0.22);
     font-size: 0.8rem;
     display: flex;
@@ -1972,14 +2105,27 @@
   .ls-ripple {
     position: fixed;
     border-radius: 50%;
-    border: 1.5px solid rgba(255,255,255,0.25);
     pointer-events: none;
-    z-index: 2;
+    z-index: 3;
+    background: radial-gradient(circle, rgba(236,72,153,0.15), rgba(168,85,247,0.1), transparent);
     animation: ls-ripple-expand 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
   @keyframes ls-ripple-expand {
     0%   { width: 0; height: 0; opacity: 1; }
     100% { width: 220vmax; height: 220vmax; opacity: 0; }
+  }
+
+  /* 樱花花瓣爆炸 (解锁) */
+  .ls-petal-burst {
+    position: fixed;
+    pointer-events: none;
+    z-index: 3;
+    font-size: 18px;
+    animation: petal-burst 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  @keyframes petal-burst {
+    0%   { opacity: 1; transform: translate(0, 0) rotate(0deg) scale(1); }
+    100% { opacity: 0; transform: translate(var(--tx), var(--ty)) rotate(720deg) scale(0.3); }
   }
 
   /* 解锁动画 */
@@ -1999,7 +2145,7 @@
   body.lockscreen-active { overflow: hidden; }
 </style>
 
-<!-- 锁屏 — 粒子星空 -->
+<!-- 锁屏 — 二次元樱花星空 -->
 <div id="lockscreen">
   <canvas id="lockscreen-canvas"></canvas>
   <div class="ls-card">
@@ -2009,12 +2155,15 @@
   </div>
   <div class="ls-poetry" id="lsPoetry"></div>
   <div class="ls-hint">
-    <span>点击解锁</span>
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-      <path d="M12 5v14M5 12l7 7 7-7"/>
-    </svg>
+    <span>🌸 轻触解锁</span>
   </div>
 </div>
+
+<!-- 浮动樱花花瓣 -->
+<div id="sakura-container"></div>
+
+<!-- 浮动光点 -->
+<div id="sparkle-container"></div>
 
 <!-- 阅读进度条 -->
 <div id="reading-progress"></div>
@@ -2074,7 +2223,7 @@
       });
     }
 
-    /* ---------- 锁屏 — 粒子星空 ---------- */
+    /* ---------- 锁屏 — 二次元樱花 ---------- */
     var lockScreen = document.getElementById('lockscreen');
     if (lockScreen) {
       if (sessionStorage.getItem('lockscreen_dismissed')) {
@@ -2120,19 +2269,19 @@
           var y = now.getFullYear(), mon = now.getMonth() + 1, d = now.getDate();
           dateEl.textContent = y + '年' + mon + '月' + d + '日 周' + weekdays[now.getDay()];
           if (h < 6) greetEl.textContent = '夜深了，早点休息';
-          else if (h < 12) greetEl.textContent = '早上好';
-          else if (h < 14) greetEl.textContent = '中午好';
-          else if (h < 18) greetEl.textContent = '下午好';
-          else greetEl.textContent = '晚上好';
+          else if (h < 12) greetEl.textContent = '早上好~';
+          else if (h < 14) greetEl.textContent = '中午好~';
+          else if (h < 18) greetEl.textContent = '下午好~';
+          else greetEl.textContent = '晚上好~';
         }
         updateClock();
         setInterval(updateClock, 1000);
 
-        /* ---- Canvas 粒子星空 ---- */
+        /* ---- Canvas 樱花飘落 ---- */
         var canvas = document.getElementById('lockscreen-canvas');
         var ctx = canvas.getContext('2d');
-        var W, H, particles = [], mouseX = -9999, mouseY = -9999;
-        var MAX_PARTICLES = 140;
+        var W, H, petals = [];
+        var MAX_PETALS = 40;
 
         function resize() {
           W = canvas.width = window.innerWidth;
@@ -2141,88 +2290,83 @@
         resize();
         window.addEventListener('resize', resize);
 
-        function onMouse(e) {
-          mouseX = e.clientX;
-          mouseY = e.clientY;
-        }
-        document.addEventListener('mousemove', onMouse);
-        document.addEventListener('mouseleave', function() {
-          mouseX = -9999;
-          mouseY = -9999;
-        });
+        function Petal() { this.reset(); }
 
-        function Particle() { this.reset(); }
-
-        Particle.prototype.reset = function() {
+        Petal.prototype.reset = function() {
           this.x = Math.random() * W;
-          this.y = Math.random() * H;
-          this.size = Math.random() * 2 + 0.5;
-          this.speedY = -(Math.random() * 0.3 + 0.1);
-          this.speedX = (Math.random() - 0.5) * 0.15;
-          this.opacity = Math.random() * 0.6 + 0.2;
-          this.twinkleSpeed = Math.random() * 0.02 + 0.005;
-          this.twinklePhase = Math.random() * Math.PI * 2;
-          this.initialX = this.x;
-          this.initialY = this.y;
+          this.y = Math.random() * -H;
+          this.size = Math.random() * 8 + 6;
+          this.speedY = Math.random() * 0.8 + 0.3;
+          this.speedX = (Math.random() - 0.5) * 0.3;
+          this.rotation = Math.random() * Math.PI * 2;
+          this.rotSpeed = (Math.random() - 0.5) * 0.02;
+          this.swayAmp = Math.random() * 30 + 10;
+          this.swaySpeed = Math.random() * 0.02 + 0.005;
+          this.baseX = this.x;
+          this.opacity = Math.random() * 0.3 + 0.15;
         };
 
-        Particle.prototype.update = function() {
-          var dx = mouseX - this.x;
-          var dy = mouseY - this.y;
-          var dist = Math.sqrt(dx * dx + dy * dy);
+        Petal.prototype.draw = function() {
+          ctx.save();
+          ctx.translate(this.x, this.y);
+          ctx.rotate(this.rotation);
+          ctx.globalAlpha = this.opacity;
 
-          if (dist < 120) {
-            var force = (120 - dist) / 120 * 0.8;
-            this.x -= dx / dist * force;
-            this.y -= dy / dist * force;
-          } else {
-            this.x += (this.initialX - this.x) * 0.005;
-            this.y += (this.initialY - this.y) * 0.005;
-          }
-
-          this.y += this.speedY;
-          this.x += this.speedX;
-
-          if (this.y < -10 || this.x < -10 || this.x > W + 10) {
-            this.initialX = Math.random() * W;
-            this.initialY = H + 10;
-            this.x = this.initialX;
-            this.y = this.initialY;
-          }
-        };
-
-        Particle.prototype.draw = function() {
-          var twinkle = Math.sin(Date.now() * this.twinkleSpeed + this.twinklePhase) * 0.3 + 0.7;
-          var alpha = this.opacity * twinkle;
+          // 绘制五瓣樱花
+          var s = this.size;
           ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(255,255,255,' + alpha + ')';
+          for (var i = 0; i < 5; i++) {
+            var angle = (i / 5) * Math.PI * 2 - Math.PI / 2;
+            var cx = Math.cos(angle) * s * 0.6;
+            var cy = Math.sin(angle) * s * 0.6;
+            var cp1x = Math.cos(angle - 0.45) * s;
+            var cp1y = Math.sin(angle - 0.45) * s;
+            var cp2x = Math.cos(angle + 0.45) * s;
+            var cp2y = Math.sin(angle + 0.45) * s;
+            if (i === 0) ctx.moveTo(cx, cy);
+            else ctx.lineTo(cx, cy);
+            ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, cx, cy);
+          }
+          ctx.closePath();
+
+          var grad = ctx.createRadialGradient(0, 0, 0, 0, 0, s);
+          grad.addColorStop(0, 'rgba(249,168,212,0.6)');
+          grad.addColorStop(0.6, 'rgba(236,72,153,0.3)');
+          grad.addColorStop(1, 'rgba(236,72,153,0.05)');
+          ctx.fillStyle = grad;
           ctx.fill();
+          ctx.restore();
         };
 
-        for (var i = 0; i < MAX_PARTICLES; i++) particles.push(new Particle());
+        Petal.prototype.update = function() {
+          this.x += this.speedX + Math.sin(Date.now() * this.swaySpeed + this.baseX) * 0.3;
+          this.y += this.speedY;
+          this.rotation += this.rotSpeed;
 
-        // 几颗亮星
-        for (var i = 0; i < 5; i++) {
-          var p = new Particle();
-          p.size = Math.random() * 1.5 + 2.5;
-          p.opacity = 0.8;
-          particles.push(p);
-        }
+          if (this.y > H + 30) {
+            this.x = Math.random() * W;
+            this.y = -30;
+            this.baseX = this.x;
+          }
+          if (this.x < -30) this.x = W + 30;
+          if (this.x > W + 30) this.x = -30;
+        };
+
+        for (var i = 0; i < MAX_PETALS; i++) petals.push(new Petal());
 
         var animId;
 
         function animate() {
           ctx.clearRect(0, 0, W, H);
-          for (var i = 0; i < particles.length; i++) {
-            particles[i].update();
-            particles[i].draw();
+          for (var i = 0; i < petals.length; i++) {
+            petals[i].update();
+            petals[i].draw();
           }
           animId = requestAnimationFrame(animate);
         }
         animate();
 
-        /* ---- 解锁 (涟漪 + 粒子爆炸) ---- */
+        /* ---- 解锁 (涟漪 + 樱花爆散) ---- */
         lockScreen.addEventListener('click', function(e) {
           if (lockScreen.classList.contains('unlocking')) return;
 
@@ -2230,17 +2374,26 @@
           var ripple = document.createElement('div');
           ripple.className = 'ls-ripple';
           var rx = e.clientX, ry = e.clientY;
-          ripple.style.left = rx + 'px';
-          ripple.style.top = ry + 'px';
+          ripple.style.left = (rx - 100) + 'px';
+          ripple.style.top = (ry - 100) + 'px';
           document.body.appendChild(ripple);
 
-          // 粒子爆炸
-          for (var i = 0; i < particles.length; i++) {
+          // 樱花爆散
+          var burstEmoji = ['🌸', '✨', '💗', '🌟', '💕'];
+          for (var i = 0; i < 30; i++) {
+            var el = document.createElement('div');
+            el.className = 'ls-petal-burst';
+            el.textContent = burstEmoji[Math.floor(Math.random() * burstEmoji.length)];
             var angle = Math.random() * Math.PI * 2;
-            var speed = Math.random() * 8 + 4;
-            particles[i].speedX = Math.cos(angle) * speed;
-            particles[i].speedY = Math.sin(angle) * speed - 2;
-            particles[i].size *= 1.8;
+            var dist = Math.random() * 200 + 100;
+            el.style.setProperty('--tx', Math.cos(angle) * dist + 'px');
+            el.style.setProperty('--ty', Math.sin(angle) * dist + 'px');
+            el.style.left = e.clientX + 'px';
+            el.style.top = e.clientY + 'px';
+            document.body.appendChild(el);
+            setTimeout(function(elm) {
+              if (elm.parentNode) elm.parentNode.removeChild(elm);
+            }, 1200, el);
           }
 
           lockScreen.classList.add('unlocking');
@@ -2256,6 +2409,45 @@
             if (ripple.parentNode) ripple.parentNode.removeChild(ripple);
           }, 700);
         });
+      }
+    }
+
+    /* ---------- 浮动樱花 (CSS动画) ---------- */
+    var sakuraContainer = document.getElementById('sakura-container');
+    if (sakuraContainer) {
+      var hideSakura = document.getElementById('lockscreen') && !sessionStorage.getItem('lockscreen_dismissed');
+      if (!hideSakura) {
+        var sakuraEmojis = ['🌸', '🌸', '🌸', '🌸', '🌸'];
+        for (var i = 0; i < 10; i++) {
+          var p = document.createElement('div');
+          p.className = 'sakura-petal';
+          p.textContent = sakuraEmojis[Math.floor(Math.random() * sakuraEmojis.length)];
+          p.style.left = (Math.random() * 95) + '%';
+          p.style.fontSize = (Math.random() * 10 + 12) + 'px';
+          p.style.animationDuration = (Math.random() * 8 + 10) + 's';
+          p.style.animationDelay = (Math.random() * 15) + 's';
+          sakuraContainer.appendChild(p);
+        }
+      }
+    }
+
+    /* ---------- 浮动光点 (CSS动画) ---------- */
+    var sparkleContainer = document.getElementById('sparkle-container');
+    if (sparkleContainer) {
+      var hideSparkle = document.getElementById('lockscreen') && !sessionStorage.getItem('lockscreen_dismissed');
+      if (!hideSparkle) {
+        var colors = ['#f9a8d4', '#c084fc', '#67e8f9', '#f472b6', '#a78bfa'];
+        for (var i = 0; i < 20; i++) {
+          var s = document.createElement('div');
+          s.className = 'sparkle';
+          s.style.left = (Math.random() * 95) + '%';
+          s.style.width = (Math.random() * 3 + 2) + 'px';
+          s.style.height = s.style.width;
+          s.style.background = colors[Math.floor(Math.random() * colors.length)];
+          s.style.animationDuration = (Math.random() * 12 + 15) + 's';
+          s.style.animationDelay = (Math.random() * 20) + 's';
+          sparkleContainer.appendChild(s);
+        }
       }
     }
   })();
