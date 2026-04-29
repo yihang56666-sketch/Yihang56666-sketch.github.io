@@ -17,11 +17,11 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1777457898274">
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1777469035898">
 
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
 
-<link rel="stylesheet" href="/css/style.css?v=1777457898274">
+<link rel="stylesheet" href="/css/style.css?v=1777469035898">
 
 
 
@@ -33,7 +33,7 @@
 <script src="/lib/lax.min.js" async></script>
 
 
-<script async src="/js/app.js?v=1777457898274"></script>
+<script async src="/js/app.js?v=1777469035898"></script>
 
  
 
@@ -79,6 +79,20 @@
             <i class="mdui-list-item-icon nexmoefont icon-cola"></i>
             <div class="mdui-list-item-content">
                 考研阵地
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/links/" title="友情链接">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                友情链接
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple false" href="/reading/" title="书影记录">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                书影记录
             </div>
         </a>
         
@@ -516,7 +530,7 @@
 </style>
 
 
-    <script async src="/js/search.js?v=1777457898274"></script>
+    <script async src="/js/search.js?v=1777469035898"></script>
         
 
             
@@ -1344,12 +1358,19 @@
   }
 
   /* =============================================
-     文章排版
+     文章排版增强
   ============================================= */
   .nexmoe-post article {
     line-height: 1.9;
     font-size: 16px;
     color: var(--color-text-1);
+  }
+  /* 阅读内容区宽幅控制 */
+  .nexmoe-post .article-entry,
+  .nexmoe-post article {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .nexmoe-post article h1,
   .nexmoe-post article h2,
@@ -1405,6 +1426,17 @@
     display: block;
     box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   }
+  /* 图片标题/说明文字 */
+  .nexmoe-post article img + br + em,
+  .nexmoe-post article img + em {
+    display: block;
+    text-align: center;
+    font-size: 0.85em;
+    color: var(--color-text-3);
+    margin-top: -0.5em;
+    margin-bottom: 1.5em;
+    font-style: normal;
+  }
   .nexmoe-post article table {
     width: 100%;
     border-collapse: collapse;
@@ -1421,8 +1453,14 @@
     background: rgba(0,0,0,0.02);
     font-weight: 600;
   }
+  .nexmoe-post article tr:nth-child(even) td {
+    background: rgba(0,0,0,0.01);
+  }
   .dark .nexmoe-post article th,
   .dark .nexmoe-post article td { border-color: rgba(255,255,255,0.06); }
+  .dark .nexmoe-post article tr:nth-child(even) td {
+    background: rgba(255,255,255,0.015);
+  }
   .nexmoe-post article hr {
     border: none;
     height: 1px;
@@ -1432,6 +1470,38 @@
   .dark .nexmoe-post article hr {
     background: linear-gradient(to right, transparent, rgba(255,255,255,0.06), transparent);
   }
+
+  /* 选中颜色 */
+  ::selection {
+    background: rgba(79, 70, 229, 0.2);
+    color: var(--color-text-1);
+  }
+  .dark ::selection {
+    background: rgba(129, 140, 248, 0.25);
+  }
+
+  /* 深色/浅色切换过渡 */
+  * { transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; }
+
+  /* 页面标题美化 */
+  .page-title {
+    font-size: 1.8em;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5em;
+    background: linear-gradient(135deg, var(--color-primary), var(--color3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .nexmoe-post .nexmoe-post-title {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  /* 卡片整体微调 */
+  .nexmoe-post { padding: 24px; }
+  .nexmoe-post .nexmoe-post-cover { margin: -24px -24px 16px -24px; }
 
   /* =============================================
      首页卡片封面
