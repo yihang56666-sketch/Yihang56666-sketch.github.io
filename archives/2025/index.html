@@ -17,11 +17,11 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1779442639272">
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1779443564261">
 
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
 
-<link rel="stylesheet" href="/css/style.css?v=1779442639272">
+<link rel="stylesheet" href="/css/style.css?v=1779443564261">
 
 
 
@@ -33,7 +33,7 @@
 <script src="/lib/lax.min.js" async></script>
 
 
-<script async src="/js/app.js?v=1779442639272"></script>
+<script async src="/js/app.js?v=1779443564261"></script>
 
  
 
@@ -530,7 +530,7 @@
 </style>
 
 
-    <script async src="/js/search.js?v=1779442639272"></script>
+    <script async src="/js/search.js?v=1779443564261"></script>
         
 
             
@@ -1127,6 +1127,36 @@
   }
   .dark #nexmoe-background .nexmoe-bg {
     opacity: 0.03 !important;
+  }
+
+  #dynamic-wallpaper {
+    position: fixed;
+    inset: 0;
+    z-index: -4;
+    overflow: hidden;
+    pointer-events: none;
+    background: #080a10;
+  }
+  #dynamic-wallpaper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.62;
+    filter: saturate(1.04) contrast(1.04) brightness(0.84);
+    transform: scale(1.02);
+  }
+  #dynamic-wallpaper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 18%, rgba(255,255,255,0.10), transparent 30%),
+      linear-gradient(180deg, rgba(8,10,16,0.36), rgba(8,10,16,0.64));
+  }
+  .dark #dynamic-wallpaper video {
+    opacity: 0.52;
+    filter: saturate(1.02) contrast(1.08) brightness(0.72);
   }
 
   :root {
@@ -2138,12 +2168,24 @@
       animation: none !important;
       transform: none !important;
     }
+    #dynamic-wallpaper {
+      display: none !important;
+    }
     .nexmoe-post::before,
     .nexmoe-widget-wrap::before,
     .nexmoe-post article blockquote::after,
     .nexmoe-post article pre::after,
     .nexmoe-post article table::after {
       display: none !important;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    #dynamic-wallpaper {
+      display: none !important;
+    }
+    #nexmoe-background .nexmoe-bg {
+      opacity: 0.08 !important;
     }
   }
 
@@ -2164,6 +2206,12 @@
   </div>
 </div>
 
+<div id="dynamic-wallpaper" aria-hidden="true">
+  <video autoplay muted loop playsinline preload="metadata">
+    <source src="/videos/kuroha-line-art.mp4" type="video/mp4">
+  </video>
+</div>
+
 <!-- 浮动樱花花瓣 -->
 <div id="sakura-container"></div>
 
@@ -2179,6 +2227,17 @@
 <script>
   (function(){
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---------- 动态壁纸背景 ---------- */
+    var wallpaper = document.querySelector('#dynamic-wallpaper video');
+    var mobileWallpaper = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+    if (wallpaper && (reduceMotion || mobileWallpaper)) {
+      wallpaper.removeAttribute('autoplay');
+      wallpaper.pause();
+      wallpaper.removeAttribute('src');
+      wallpaper.querySelectorAll('source').forEach(function(source){ source.removeAttribute('src'); });
+      wallpaper.load();
+    }
 
     /* ---------- 柔和背景随动 ---------- */
     if (!reduceMotion) {
