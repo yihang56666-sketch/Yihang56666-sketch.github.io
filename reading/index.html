@@ -21,11 +21,11 @@
 <link rel="stylesheet" href="/lib/mdui_043tiny/mdui.css">
 
 
-<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1777473116252">
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1779442639243">
 
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
 
-<link rel="stylesheet" href="/css/style.css?v=1777473116252">
+<link rel="stylesheet" href="/css/style.css?v=1779442639243">
 
 
 
@@ -37,7 +37,7 @@
 <script src="/lib/lax.min.js" async></script>
 
 
-<script async src="/js/app.js?v=1777473116252"></script>
+<script async src="/js/app.js?v=1779442639243"></script>
 
  
 
@@ -534,7 +534,7 @@
 </style>
 
 
-    <script async src="/js/search.js?v=1777473116252"></script>
+    <script async src="/js/search.js?v=1779442639243"></script>
         
 
             
@@ -826,7 +826,7 @@
 </div>
   
   
-    <script async src="/js/copy-codeblock.js?v=1777473116221"></script>
+    <script async src="/js/copy-codeblock.js?v=1779442639215"></script>
   
 
   
@@ -1271,15 +1271,64 @@
     content: '';
     position: fixed;
     inset: 0;
-    background: linear-gradient(135deg, rgba(236,72,153,0.04), rgba(168,85,247,0.04), rgba(6,182,212,0.02));
+    background: linear-gradient(135deg, rgba(236,72,153,0.04), rgba(168,85,247,0.04), rgba(6,182,212,0.02), rgba(51,213,122,0.025));
+    background-size: 180% 180%;
+    animation: ambient-wash 16s var(--motion-ease) infinite alternate;
+    transform: translate3d(var(--ambient-soft-x), var(--ambient-soft-y), 0);
     pointer-events: none;
     z-index: -1;
+    will-change: background-position, transform;
   }
   #nexmoe-background .nexmoe-character {
     display: none !important;
   }
   .dark #nexmoe-background .nexmoe-bg {
     opacity: 0.03 !important;
+  }
+
+  :root {
+    --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --ambient-x: 0px;
+    --ambient-y: 0px;
+    --ambient-soft-x: 0px;
+    --ambient-soft-y: 0px;
+    --ambient-opacity: 0.55;
+  }
+
+  body {
+    position: relative;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: -18vh -10vw;
+    pointer-events: none;
+    z-index: -3;
+    background:
+      linear-gradient(120deg, rgba(230,114,73,0.08) 0%, transparent 35%),
+      linear-gradient(240deg, rgba(103,232,249,0.06) 0%, transparent 40%),
+      linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 18%, transparent 82%, rgba(255,255,255,0.12) 100%);
+    opacity: var(--ambient-opacity);
+    filter: blur(14px);
+    transform: translate3d(var(--ambient-x), var(--ambient-y), 0) scale(1.04);
+    animation: ambient-drift 18s var(--motion-ease) infinite alternate;
+    will-change: transform;
+  }
+  .dark body::before {
+    opacity: 0.32;
+    background:
+      linear-gradient(120deg, rgba(255,122,89,0.10) 0%, transparent 36%),
+      linear-gradient(240deg, rgba(96,165,250,0.08) 0%, transparent 42%),
+      linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 18%, transparent 82%, rgba(255,255,255,0.06) 100%);
+  }
+  @keyframes ambient-drift {
+    0%   { transform: translate3d(calc(var(--ambient-x) - 8px), calc(var(--ambient-y) - 10px), 0) scale(1.03); }
+    100% { transform: translate3d(calc(var(--ambient-x) + 8px), calc(var(--ambient-y) + 10px), 0) scale(1.07); }
+  }
+  @keyframes ambient-wash {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
   }
 
   /* =============================================
@@ -1293,12 +1342,38 @@
     border: 1px solid rgba(0,0,0,0.05) !important;
     box-shadow: 0 1px 3px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.02) !important;
     border-radius: 12px !important;
-    transition: all 0.25s ease !important;
+    transition:
+      transform 0.35s var(--motion-ease) !important,
+      box-shadow 0.35s var(--motion-ease) !important,
+      border-color 0.35s var(--motion-ease) !important;
+    position: relative;
+    overflow: hidden;
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  .nexmoe-post::before,
+  .nexmoe-widget-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.28) 42%, transparent 58%);
+    transform: translateX(-130%);
+    transition: transform 0.8s var(--motion-ease);
+    pointer-events: none;
+    opacity: 0.35;
+  }
+  .dark .nexmoe-post::before,
+  .dark .nexmoe-widget-wrap::before {
+    background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.08) 42%, transparent 58%);
   }
   .nexmoe-post:hover,
   .nexmoe-widget-wrap:hover {
-    box-shadow: 0 4px 16px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04) !important;
-    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.04) !important;
+    transform: translateY(-4px) scale(1.005);
+  }
+  .nexmoe-post:hover::before,
+  .nexmoe-widget-wrap:hover::before {
+    transform: translateX(130%);
   }
 
   .dark .nexmoe-post,
@@ -1310,6 +1385,17 @@
   .dark .nexmoe-post:hover,
   .dark .nexmoe-widget-wrap:hover {
     box-shadow: 0 4px 16px rgba(0,0,0,0.3) !important;
+  }
+
+  .nexmoe-post-cover img,
+  .nexmoe-post article img {
+    transition: transform 0.55s var(--motion-ease), filter 0.55s var(--motion-ease);
+    will-change: transform;
+  }
+  .nexmoe-post-cover:hover img,
+  .nexmoe-post article img:hover {
+    transform: scale(1.02);
+    filter: saturate(1.04) contrast(1.02);
   }
 
   /* =============================================
@@ -1400,9 +1486,10 @@
     font-weight: 500;
     text-decoration: none !important;
     border-bottom: 1px solid transparent;
-    transition: border-color 0.2s;
+    transition: color 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
   }
   .nexmoe-post a:hover {
+    opacity: 0.92;
     border-bottom-color: var(--color-primary);
   }
   body a:hover { color: var(--color-primary) !important; }
@@ -1586,10 +1673,11 @@
     overflow: hidden;
   }
   .nexmoe-post-cover img {
-    transition: transform 0.5s ease;
+    transition: transform 0.55s var(--motion-ease), filter 0.55s var(--motion-ease);
   }
   .nexmoe-post-cover:hover img {
     transform: scale(1.04);
+    filter: saturate(1.04) contrast(1.02);
   }
   .nexmoe-post-cover h1 {
     font-weight: 700 !important;
@@ -1604,11 +1692,18 @@
     top: 0;
     left: 0;
     height: 2px;
-    background: linear-gradient(90deg, #ec4899, #a855f7);
+    background: linear-gradient(90deg, var(--color-primary), #67e8f9, #33d57a, var(--color-primary));
+    background-size: 200% 100%;
+    animation: progress-shimmer 5s linear infinite;
     z-index: 99999;
     width: 0%;
-    transition: width 0.1s linear;
+    transition: width 0.15s linear;
     pointer-events: none;
+    box-shadow: 0 0 12px rgba(230,114,73,0.35);
+  }
+  @keyframes progress-shimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
   }
 
   /* =============================================
@@ -1731,9 +1826,9 @@
   ============================================= */
   .fade-in {
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateY(20px);
+    transition: opacity 0.75s var(--motion-ease),
+                transform 0.75s var(--motion-ease);
   }
   .fade-in.visible {
     opacity: 1;
@@ -1761,11 +1856,12 @@
     justify-content: center;
     opacity: 0;
     transform: translateY(12px);
-    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.3s var(--motion-ease), opacity 0.3s var(--motion-ease), box-shadow 0.3s var(--motion-ease), background-color 0.3s var(--motion-ease), color 0.3s var(--motion-ease), border-color 0.3s var(--motion-ease);
     z-index: 9999;
     color: var(--color-text-3);
     font-size: 18px;
     line-height: 1;
+    backdrop-filter: blur(8px);
   }
   #back-to-top.visible {
     opacity: 1;
@@ -1782,6 +1878,29 @@
   /* =============================================
      文章首个段落强调（lead）
   ============================================= */
+  .nexmoe-post article blockquote,
+  .nexmoe-post article pre,
+  .nexmoe-post article table {
+    position: relative;
+    overflow: hidden;
+  }
+  .nexmoe-post article blockquote::after,
+  .nexmoe-post article pre::after,
+  .nexmoe-post article table::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.06) 50%, transparent 100%);
+    transform: translateX(-120%);
+    transition: transform 0.9s var(--motion-ease);
+    pointer-events: none;
+  }
+  .nexmoe-post article blockquote:hover::after,
+  .nexmoe-post article pre:hover::after,
+  .nexmoe-post article table:hover::after {
+    transform: translateX(120%);
+  }
+
   .nexmoe-post article > p:first-of-type {
     font-size: 1.05em;
     color: var(--color-text-2);
@@ -2162,6 +2281,29 @@
     opacity: 0;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    body::before {
+      animation: none !important;
+    }
+    #nexmoe-background::after {
+      animation: none !important;
+      transform: none !important;
+    }
+    .nexmoe-post::before,
+    .nexmoe-widget-wrap::before,
+    .nexmoe-post article blockquote::after,
+    .nexmoe-post article pre::after,
+    .nexmoe-post article table::after {
+      display: none !important;
+    }
+  }
+
   body.lockscreen-active { overflow: hidden; }
 </style>
 
@@ -2193,6 +2335,41 @@
 
 <script>
   (function(){
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---------- 柔和背景随动 ---------- */
+    if (!reduceMotion) {
+      var root = document.documentElement;
+      var ambientTicking = false;
+      var pointerX = 0;
+      var pointerY = 0;
+
+      function updateAmbient(){
+        ambientTicking = false;
+        var scrollShift = Math.min(window.scrollY * 0.025, 22);
+        var x = pointerX.toFixed(2) + 'px';
+        var y = (pointerY - scrollShift).toFixed(2) + 'px';
+        root.style.setProperty('--ambient-x', x);
+        root.style.setProperty('--ambient-y', y);
+        root.style.setProperty('--ambient-soft-x', (pointerX * 0.35).toFixed(2) + 'px');
+        root.style.setProperty('--ambient-soft-y', ((pointerY - scrollShift) * 0.35).toFixed(2) + 'px');
+      }
+      function requestAmbient(){
+        if (!ambientTicking) {
+          ambientTicking = true;
+          requestAnimationFrame(updateAmbient);
+        }
+      }
+      window.addEventListener('mousemove', function(e){
+        pointerX = (e.clientX / window.innerWidth - 0.5) * 14;
+        pointerY = (e.clientY / window.innerHeight - 0.5) * 10;
+        requestAmbient();
+      }, { passive: true });
+      window.addEventListener('scroll', requestAmbient, { passive: true });
+      window.addEventListener('resize', requestAmbient, { passive: true });
+      requestAmbient();
+    }
+
     /* ---------- 阅读进度条 ---------- */
     var bar = document.getElementById('reading-progress');
     if (bar) {
@@ -2230,14 +2407,14 @@
         });
       }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
 
-      document.querySelectorAll('.nexmoe-post, .nexmoe-widget-wrap').forEach(function(el, i){
+      document.querySelectorAll('.nexmoe-post, .nexmoe-widget-wrap, .nexmoe-post article img, .nexmoe-post article blockquote, .nexmoe-post article figure.highlight').forEach(function(el, i){
         el.classList.add('fade-in');
         if (i > 0) el.classList.add('fade-in-delay-' + Math.min(i, 2));
         animObserver.observe(el);
       });
     } else {
       // fallback: 直接显示
-      document.querySelectorAll('.nexmoe-post, .nexmoe-widget-wrap').forEach(function(el){
+      document.querySelectorAll('.nexmoe-post, .nexmoe-widget-wrap, .nexmoe-post article img, .nexmoe-post article blockquote, .nexmoe-post article figure.highlight').forEach(function(el){
         el.style.opacity = '1';
         el.style.transform = 'none';
       });
