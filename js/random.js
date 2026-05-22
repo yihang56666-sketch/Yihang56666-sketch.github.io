@@ -1,0 +1,1 @@
+var posts=["2026/04/29/OpenMV绳驱巡检装置视觉系统/","2025/09/20/hello-world/","2026/03/03/我的第一篇设计日记/","2026/04/29/嵌入式Chip-Skill工具集开发/","2026/03/03/项目复盘：基于YOLOv8的水面障碍物检测与测距系统/","2026/04/29/图像特征提取与全景拼接实践/"];function toRandomPost(){window.open('/'+posts[Math.floor(Math.random() * posts.length)],"_self");};
