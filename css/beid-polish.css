@@ -19,14 +19,24 @@ html {
 
 body {
   background:
-    linear-gradient(180deg, rgba(247, 249, 252, .95), rgba(240, 243, 247, .98)) fixed,
+    linear-gradient(180deg, rgba(247, 249, 252, .88), rgba(240, 243, 247, .96)) fixed,
+    url('/images/bocchi/bocchi-kv-pc-1920.jpg') center top / cover fixed,
     var(--beid-bg);
   color: var(--beid-text);
 }
 
 #web_bg {
-  opacity: .18;
-  filter: saturate(.9) contrast(.96);
+  opacity: .24;
+  filter: saturate(.95) contrast(.95);
+}
+
+#site-name img,
+.card-info-avatar img,
+#footer-wrap img,
+.avatar-img img,
+img.avatar-img {
+  object-fit: cover !important;
+  object-position: center !important;
 }
 
 #page-header::before {
