@@ -19,14 +19,20 @@ html {
 
 body {
   background:
-    linear-gradient(180deg, rgba(247, 249, 252, .96), rgba(240, 243, 247, .98)) fixed,
+    linear-gradient(180deg, rgba(247, 249, 252, .95), rgba(240, 243, 247, .98)) fixed,
     var(--beid-bg);
   color: var(--beid-text);
 }
 
 #web_bg {
-  opacity: .16;
-  filter: saturate(.88) contrast(.95);
+  opacity: .18;
+  filter: saturate(.9) contrast(.96);
+}
+
+#page-header::before {
+  background:
+    linear-gradient(180deg, rgba(8, 13, 24, .28), rgba(8, 13, 24, .62)),
+    linear-gradient(90deg, rgba(15, 23, 42, .28), rgba(15, 118, 110, .12)) !important;
 }
 
 #nav,
