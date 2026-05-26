@@ -30,7 +30,7 @@ body::before {
   z-index: -2;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(247, 249, 252, .72), rgba(240, 243, 247, .88)),
+    linear-gradient(180deg, rgba(247, 249, 252, .64), rgba(240, 243, 247, .86)),
     url('/images/bocchi/bocchi-kv-pc-1920.jpg') center center / cover no-repeat;
 }
 
@@ -63,7 +63,13 @@ body::after {
 .avatar-img img,
 img.avatar-img {
   object-fit: cover !important;
-  object-position: center 28% !important;
+  object-position: center 34% !important;
+}
+
+#site-name img,
+.card-info-avatar img {
+  border: 2px solid rgba(255, 255, 255, .9);
+  box-shadow: 0 8px 24px rgba(16, 24, 40, .18);
 }
 
 #page-header::before {
@@ -95,7 +101,7 @@ img.avatar-img {
 .recent-post-item {
   border: 1px solid var(--beid-line) !important;
   border-radius: 8px !important;
-  background: var(--beid-surface) !important;
+  background: rgba(255, 255, 255, .9) !important;
   box-shadow: var(--beid-shadow-soft) !important;
   backdrop-filter: blur(18px);
 }
@@ -259,6 +265,24 @@ img.avatar-img {
 
 #footer-wrap a {
   color: #fff !important;
+}
+
+#footer .footer-banner-link[href="/2023/dimension"],
+#footer .footer-banner-link[title="theme"],
+#footer .footer-banner-link[title="cc协议"],
+#footer .footer-banner-link.cc {
+  display: none !important;
+}
+
+#footer-banner .footer-banner-link:nth-of-type(2),
+#footer-banner .footer-banner-link:nth-of-type(4),
+#footer-banner .footer-banner-link:nth-of-type(6) {
+  display: none !important;
+}
+
+#footer-banner-tips::after {
+  content: " · Built as a project portfolio";
+  color: rgba(255, 255, 255, .62);
 }
 
 @media (max-width: 768px) {
