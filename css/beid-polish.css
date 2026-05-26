@@ -18,11 +18,38 @@ html {
 }
 
 body {
-  background:
-    linear-gradient(180deg, rgba(247, 249, 252, .88), rgba(240, 243, 247, .96)) fixed,
-    url('/images/bocchi/bocchi-kv-pc-1920.jpg') center top / cover fixed,
-    var(--beid-bg);
+  position: relative;
+  background: transparent !important;
   color: var(--beid-text);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(247, 249, 252, .72), rgba(240, 243, 247, .88)),
+    url('/images/bocchi/bocchi-kv-pc-1920.jpg') center center / cover no-repeat;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(15, 118, 110, .12), transparent 28%),
+    radial-gradient(circle at 88% 18%, rgba(180, 83, 9, .12), transparent 26%),
+    rgba(246, 247, 249, .18);
+}
+
+#body-wrap,
+.page,
+.post {
+  background: transparent !important;
 }
 
 #web_bg {
@@ -36,7 +63,7 @@ body {
 .avatar-img img,
 img.avatar-img {
   object-fit: cover !important;
-  object-position: center !important;
+  object-position: center 28% !important;
 }
 
 #page-header::before {
