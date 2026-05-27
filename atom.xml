@@ -11,7 +11,65 @@
   <rights>All rights reserved 2026, beid</rights>
   <subtitle>Embedded / Vision / AI Tools</subtitle>
   <title>beid</title>
-  <updated>2026-05-26T13:46:58.920Z</updated>
+  <updated>2026-05-27T03:54:02.616Z</updated>
+  <entry>
+    <author>
+      <name>beid</name>
+    </author>
+    <category term="创作记录" scheme="https://yihang56666-sketch.github.io/categories/%E5%88%9B%E4%BD%9C%E8%AE%B0%E5%BD%95/"/>
+    <category term="音乐创作" scheme="https://yihang56666-sketch.github.io/tags/%E9%9F%B3%E4%B9%90%E5%88%9B%E4%BD%9C/"/>
+    <category term="MIDI" scheme="https://yihang56666-sketch.github.io/tags/MIDI/"/>
+    <category term="AI音乐" scheme="https://yihang56666-sketch.github.io/tags/AI%E9%9F%B3%E4%B9%90/"/>
+    <category term="工作流" scheme="https://yihang56666-sketch.github.io/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/"/>
+    <content>
+      <![CDATA[<div class="post-brief">  <div><b>项目来源</b><span>D:\realdream</span></div>  <div><b>风格</b><span>Melodic rap / R&B / soft trap</span></div>  <div><b>状态</b><span>已有歌词、编曲笔记、MIDI、stems 和 demo</span></div></div><h2 id="项目概述"><a href="#项目概述" class="headerlink" title="项目概述"></a>项目概述</h2><p>这个项目把一次音乐创作过程拆成可管理的工程目录，而不是只保存一个最终音频。目录里包含写词、提示词、beat notes、MIDI、分轨和 demo，适合当作创作流程复盘。</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">D:\realdream\海和过去和你</span><br><span class="line">├── 写词</span><br><span class="line">│   ├── 歌词.md</span><br><span class="line">│   ├── 《还行》优化版.md</span><br><span class="line">│   └── 创作说明.md</span><br><span class="line">└── 做beat</span><br><span class="line">    ├── project_notes.md</span><br><span class="line">    ├── Suno提示词_还行.md</span><br><span class="line">    ├── midi</span><br><span class="line">    ├── stems</span><br><span class="line">    └── demo</span><br></pre></td></tr></table></figure><h2 id="编曲设定"><a href="#编曲设定" class="headerlink" title="编曲设定"></a>编曲设定</h2><p>项目笔记中记录的基础设定：</p><table><thead><tr><th>项目</th><th>内容</th></tr></thead><tbody><tr><td>BPM</td><td>86</td></tr><tr><td>Key</td><td>A minor</td></tr><tr><td>拍号</td><td>4&#x2F;4</td></tr><tr><td>风格</td><td>Melodic rap &#x2F; R&amp;B &#x2F; soft trap</td></tr></tbody></table><p>编曲结构也已经按段落拆好：Intro、Verse、Pre-Hook、Hook、Bridge、Final Hook、Outro。这个拆分方式让后续修改可以明确到段落，而不是在整首歌里盲改。</p><h2 id="素材组织"><a href="#素材组织" class="headerlink" title="素材组织"></a>素材组织</h2><p><code>stems</code> 目录保存分轨，<code>midi</code> 目录保存可替换音源的 MIDI 文件：</p><ul><li>drums</li><li>808 bass</li><li>electric piano chords</li><li>warm pad</li><li>melodic lead</li><li>percussion fx</li></ul><p>这种组织方式方便在 FL Studio 或其他 DAW 中继续迭代：先导入分轨对齐结构，再用 MIDI 替换音色，最后给人声留出 1-4 kHz 的空间。</p><h2 id="下一步优化"><a href="#下一步优化" class="headerlink" title="下一步优化"></a>下一步优化</h2><ol><li>补一张工程时间线：从歌词、提示词、beat 到 demo 的版本变化。</li><li>增加音频预览或可公开片段。</li><li>把提示词、歌词和编曲笔记拆成更清晰的创作复盘。</li><li>发布前确认歌词和音频素材的公开范围。</li></ol>]]>
+    </content>
+    <id>https://yihang56666-sketch.github.io/2026/05/27/%E6%B5%B7%E5%92%8C%E8%BF%87%E5%8E%BB%E5%92%8C%E4%BD%A0%E9%9F%B3%E4%B9%90%E5%88%9B%E4%BD%9C%E6%B5%81%E7%A8%8B/</id>
+    <link href="https://yihang56666-sketch.github.io/2026/05/27/%E6%B5%B7%E5%92%8C%E8%BF%87%E5%8E%BB%E5%92%8C%E4%BD%A0%E9%9F%B3%E4%B9%90%E5%88%9B%E4%BD%9C%E6%B5%81%E7%A8%8B/"/>
+    <published>2026-05-27T04:30:00.000Z</published>
+    <summary>从歌词、Suno 提示词、beat notes、MIDI、stems 到 demo，把一次音乐创作整理成可复盘项目。</summary>
+    <title>《海和过去和你》音乐创作流程</title>
+    <updated>2026-05-27T03:54:02.616Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>beid</name>
+    </author>
+    <category term="项目复盘" scheme="https://yihang56666-sketch.github.io/categories/%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98/"/>
+    <category term="Python" scheme="https://yihang56666-sketch.github.io/tags/Python/"/>
+    <category term="自动化" scheme="https://yihang56666-sketch.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
+    <category term="文档整理" scheme="https://yihang56666-sketch.github.io/tags/%E6%96%87%E6%A1%A3%E6%95%B4%E7%90%86/"/>
+    <category term="嵌入式实验" scheme="https://yihang56666-sketch.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AE%9E%E9%AA%8C/"/>
+    <content>
+      <![CDATA[<div class="post-brief">  <div><b>项目来源</b><span>D:\嵌入式实验\整理输出</span></div>  <div><b>产物</b><span>8 份实验报告、课堂笔记、提交清单</span></div>  <div><b>价值</b><span>把重复排版、图片处理和清单核对自动化</span></div></div><h2 id="项目概述"><a href="#项目概述" class="headerlink" title="项目概述"></a>项目概述</h2><p>这个项目不是硬件控制本身，而是围绕嵌入式实验课的资料整理工作做自动化。目录中已经形成了比较完整的输出：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">D:\嵌入式实验\整理输出</span><br><span class="line">├── 8份实验报告</span><br><span class="line">├── 20页课堂笔记整理稿.docx / .md</span><br><span class="line">├── 作业整理稿.docx / .md</span><br><span class="line">├── 最终提交清单.docx / .md</span><br><span class="line">├── generate_8_reports.py</span><br><span class="line">├── generate_8_reports_from_template.py</span><br><span class="line">├── generate_8_reports_revised.py</span><br><span class="line">├── insert_report_images.py</span><br><span class="line">└── optimize_report_images.py</span><br></pre></td></tr></table></figure><h2 id="做了什么"><a href="#做了什么" class="headerlink" title="做了什么"></a>做了什么</h2><p>核心目标是把“手动复制模板、插图、改标题、改格式、核对提交文件”这类重复工作改成脚本流程：</p><ul><li>批量生成 8 份实验报告</li><li>将课堂笔记和作业整理成 Markdown 与 Word 双格式</li><li>插入和优化实验图片</li><li>生成最终提交清单，减少漏交和错交</li></ul><h2 id="为什么适合放进博客"><a href="#为什么适合放进博客" class="headerlink" title="为什么适合放进博客"></a>为什么适合放进博客</h2><p>这个项目能体现两件事：</p><ol><li>嵌入式学习不只有写驱动和烧板子，实验资料管理同样需要工程化。</li><li>Python 自动化可以直接解决日常学习中的低价值重复工作。</li></ol><p>它适合继续补一篇更完整的技术文章：讲清楚输入文件约定、模板字段、图片压缩策略、Word 文档生成方式，以及如何避免覆盖手动修改过的首页。</p><h2 id="下一步优化"><a href="#下一步优化" class="headerlink" title="下一步优化"></a>下一步优化</h2><ol><li>给脚本补 <code>README.md</code>，说明输入目录、输出目录和运行命令。</li><li>把脚本参数化，避免硬编码课程名和文件名。</li><li>增加生成后校验：页数、图片数量、标题完整性、最终清单是否覆盖所有报告。</li><li>发布前清理个人信息、课程隐私和不适合公开的附件。</li></ol>]]>
+    </content>
+    <id>https://yihang56666-sketch.github.io/2026/05/27/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A%E8%87%AA%E5%8A%A8%E6%95%B4%E7%90%86/</id>
+    <link href="https://yihang56666-sketch.github.io/2026/05/27/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A%E8%87%AA%E5%8A%A8%E6%95%B4%E7%90%86/"/>
+    <published>2026-05-27T04:25:00.000Z</published>
+    <summary>用 Python 脚本批量生成和优化嵌入式实验报告、课堂笔记和最终提交清单，把重复文档工作流程化。</summary>
+    <title>嵌入式实验报告自动整理</title>
+    <updated>2026-05-27T03:54:02.398Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>beid</name>
+    </author>
+    <category term="项目复盘" scheme="https://yihang56666-sketch.github.io/categories/%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98/"/>
+    <category term="嵌入式" scheme="https://yihang56666-sketch.github.io/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    <category term="C2000" scheme="https://yihang56666-sketch.github.io/tags/C2000/"/>
+    <category term="PID" scheme="https://yihang56666-sketch.github.io/tags/PID/"/>
+    <category term="RFID" scheme="https://yihang56666-sketch.github.io/tags/RFID/"/>
+    <category term="视觉" scheme="https://yihang56666-sketch.github.io/tags/%E8%A7%86%E8%A7%89/"/>
+    <content>
+      <![CDATA[<div class="post-brief">  <div><b>项目来源</b><span>D:\diansaixiaoche</span></div>  <div><b>核心结构</b><span>Firmware / Vision / Tool</span></div>  <div><b>当前状态</b><span>工程结构完整，适合继续补实物照片和运行日志</span></div></div><h2 id="项目概述"><a href="#项目概述" class="headerlink" title="项目概述"></a>项目概述</h2><p>这是一个面向电赛送药小车题目的控制系统模板，主控侧基于 <strong>TI C2000 F28069</strong>，围绕“自动巡线、识别站点、装卸药品、按任务返回”来组织代码。项目不是单个 <code>main.c</code>，而是按固件、视觉和调试工具拆成三层，后续维护和扩展都更清楚。</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">D:\diansaixiaoche</span><br><span class="line">├── Firmware        # C2000 固件工程</span><br><span class="line">├── Vision          # 视觉侧 Python/OpenCV 原型</span><br><span class="line">└── Tool            # 串口绘图、PID 调参、视觉协议工具</span><br></pre></td></tr></table></figure><h2 id="固件分层"><a href="#固件分层" class="headerlink" title="固件分层"></a>固件分层</h2><p><code>Firmware</code> 目录按照嵌入式工程常见职责拆分：</p><table><thead><tr><th>目录</th><th>作用</th></tr></thead><tbody><tr><td><code>Config</code></td><td>引脚、板级参数、系统参数</td></tr><tr><td><code>Driver</code></td><td>电机、编码器、红外阵列、串口、RFID、舵机、显示</td></tr><tr><td><code>Module</code></td><td>PID、巡线、视觉协议、调度器、站点检测</td></tr><tr><td><code>Algorithm</code></td><td>滤波、融合等算法基础件</td></tr><tr><td><code>App</code></td><td>主循环、命令处理、任务状态机</td></tr><tr><td><code>BSP</code></td><td>板级初始化</td></tr><tr><td><code>Doc</code></td><td>硬件接线和调参说明</td></tr></tbody></table><p>主流程是典型的“初始化 + 周期调度”：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">main -&gt; BSP_Init -&gt; Driver Init -&gt; Module Init -&gt; Mission Init</span><br><span class="line">     -&gt; Sched_Add task -&gt; while(1) Sched_Run</span><br></pre></td></tr></table></figure><h2 id="任务状态机"><a href="#任务状态机" class="headerlink" title="任务状态机"></a>任务状态机</h2><p>送药任务按状态机拆解，避免把业务逻辑堆在循环里：</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">IDLE -&gt; TO_PHARMACY -&gt; AT_PHARMACY -&gt; LOAD</span><br><span class="line">     -&gt; TO_WARD -&gt; AT_WARD -&gt; UNLOAD</span><br><span class="line">     -&gt; RETURN -&gt; AT_START -&gt; DONE</span><br></pre></td></tr></table></figure><p>去程会记录关键路口的转向，返程根据路径记录反向返回。这个设计适合在赛场调试中逐段验证：先跑巡线，再接 RFID，再接舵机装卸，最后合并任务流程。</p><h2 id="调试工具"><a href="#调试工具" class="headerlink" title="调试工具"></a>调试工具</h2><p>项目里还有 <code>Tool\Python</code>：</p><ul><li><code>pid_tuner.py</code>：用于 PID 参数调试</li><li><code>serial_plotter.py</code>：串口数据可视化</li><li><code>vision_protocol.py</code>：视觉协议封装</li></ul><p>这些工具让调参不只停留在串口打印，而是可以把曲线和协议数据接出来看。下一步适合把工具截图、串口日志和调参前后效果补到这篇文章里。</p><h2 id="视觉协同"><a href="#视觉协同" class="headerlink" title="视觉协同"></a>视觉协同</h2><p><code>Vision\src</code> 提供视觉侧原型：</p><ul><li><code>line_detect.py</code>：线检测逻辑</li><li><code>protocol.py</code>：与主控通信的数据格式</li><li><code>main.py</code>：视觉主入口</li></ul><p>主控侧 <code>Module\vision_protocol.c</code> 负责解析视觉数据，固件和视觉模块之间有明确边界。这样后续无论换 OpenMV、普通 USB 摄像头，还是把算法移到上位机，都不会直接污染主控任务状态机。</p><h2 id="下一步优化"><a href="#下一步优化" class="headerlink" title="下一步优化"></a>下一步优化</h2><ol><li>补实车照片、赛道照片和关键接线图。</li><li>给 <code>Firmware</code> 补构建说明，标明 CCS&#x2F;C2000 编译环境。</li><li>把 PID 调参过程整理成一组“现象 -&gt; 参数 -&gt; 曲线变化”。</li><li>检查代码和文档里是否有不适合公开的比赛资料，再决定是否上传仓库。</li></ol>]]>
+    </content>
+    <id>https://yihang56666-sketch.github.io/2026/05/27/%E7%94%B5%E8%B5%9B%E9%80%81%E8%8D%AF%E5%B0%8F%E8%BD%A6%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F/</id>
+    <link href="https://yihang56666-sketch.github.io/2026/05/27/%E7%94%B5%E8%B5%9B%E9%80%81%E8%8D%AF%E5%B0%8F%E8%BD%A6%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F/"/>
+    <published>2026-05-27T04:20:00.000Z</published>
+    <summary>基于 TI C2000 F28069 的送药小车工程模板，包含固件分层、巡线控制、RFID 站点识别、视觉协议和 Python 调参工具。</summary>
+    <title>电赛送药小车控制系统</title>
+    <updated>2026-05-27T03:54:02.187Z</updated>
+  </entry>
   <entry>
     <author>
       <name>beid</name>

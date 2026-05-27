@@ -42,8 +42,9 @@ body::after {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(circle at 12% 12%, rgba(15, 118, 110, .12), transparent 28%),
-    radial-gradient(circle at 88% 18%, rgba(180, 83, 9, .12), transparent 26%),
+    linear-gradient(115deg, rgba(15, 118, 110, .08), transparent 32%),
+    linear-gradient(245deg, rgba(180, 83, 9, .09), transparent 34%),
+    repeating-linear-gradient(90deg, rgba(16, 24, 40, .028) 0, rgba(16, 24, 40, .028) 1px, transparent 1px, transparent 72px),
     rgba(246, 247, 249, .18);
 }
 
@@ -78,6 +79,38 @@ body::after {
   max-height: 88vh;
   border-radius: 8px;
   box-shadow: 0 30px 90px rgba(0, 0, 0, .45);
+}
+
+.beid-cursor-light {
+  position: fixed;
+  inset: auto;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: 280px;
+  height: 280px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(-50%, -50%, 0);
+  background:
+    radial-gradient(circle, rgba(15, 118, 110, .18), rgba(37, 99, 235, .08) 42%, transparent 68%);
+  mix-blend-mode: multiply;
+  transition: opacity .25s ease;
+}
+
+.beid-cursor-light.is-visible {
+  opacity: 1;
+}
+
+.beid-reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+
+.beid-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 #body-wrap,
@@ -179,6 +212,425 @@ img.avatar-img {
 #article-container img {
   border-radius: 8px;
   box-shadow: 0 16px 42px rgba(16, 24, 40, .12);
+}
+
+#page:has(.portal-shell),
+#page:has(.project-hero) {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#page:has(.portal-shell) #article-container,
+#page:has(.project-hero) #article-container {
+  padding: 0 !important;
+}
+
+#article-container .portal-shell a,
+#article-container .project-hero a,
+#article-container .project-board a,
+#article-container .radar-grid a,
+#article-container .portal-quick a {
+  border-bottom: 0 !important;
+  text-decoration: none !important;
+}
+
+.portal-shell {
+  min-height: 590px;
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  align-items: end;
+  padding: 68px;
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, rgba(8, 13, 24, .91), rgba(8, 13, 24, .36)),
+    url('/images/bocchi/bocchi-kv-pc-1920.jpg') center / cover;
+  box-shadow: 0 28px 72px rgba(16, 24, 40, .28);
+}
+
+.portal-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0 34%, rgba(255, 255, 255, .18) 45%, transparent 56% 100%);
+  transform: translateX(-120%);
+  animation: beid-sweep 5.6s ease-in-out infinite;
+}
+
+.portal-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 840px;
+}
+
+.portal-kicker,
+.project-eyebrow {
+  width: fit-content;
+  margin: 0 0 18px;
+  padding: 7px 12px;
+  border: 1px solid rgba(255, 255, 255, .28);
+  color: rgba(255, 255, 255, .86);
+  background: rgba(255, 255, 255, .1);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.portal-title {
+  margin: 0;
+  color: #fff;
+  font-size: 88px;
+  line-height: .95;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-shadow: 0 18px 44px rgba(0, 0, 0, .42);
+}
+
+.portal-subtitle {
+  max-width: 760px;
+  margin: 22px 0 0;
+  color: rgba(255, 255, 255, .9);
+  font-size: 18px;
+  line-height: 1.85;
+}
+
+.portal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.portal-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 6px;
+  color: #10131a !important;
+  background: #fff;
+  font-weight: 850;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.portal-action.secondary {
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, .28);
+  background: rgba(255, 255, 255, .12);
+}
+
+.portal-action:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, .22);
+}
+
+.portal-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 700px;
+  margin-top: 34px;
+}
+
+.portal-metric,
+.project-scoreboard div {
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .1);
+  color: rgba(255, 255, 255, .8);
+  backdrop-filter: blur(14px);
+}
+
+.portal-metric b,
+.project-scoreboard b {
+  display: block;
+  color: #fff;
+  font-size: 22px;
+}
+
+.portal-metric span,
+.project-scoreboard span {
+  display: block;
+  margin-top: 4px;
+}
+
+.portal-section,
+.project-section {
+  margin-top: 34px;
+}
+
+.portal-section-title,
+.project-section-title {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 16px;
+}
+
+.portal-section-title h2,
+.project-section-title h2 {
+  margin: 0;
+  color: var(--font-color);
+  font-size: 25px;
+  letter-spacing: 0;
+}
+
+.portal-section-title span,
+.project-section-title span {
+  color: var(--font-color);
+  opacity: .58;
+  font-size: 14px;
+}
+
+.portal-grid,
+.project-board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.portal-card,
+.project-tile {
+  position: relative;
+  min-height: 252px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+  border-radius: 8px;
+  color: #fff !important;
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0 18px 48px rgba(20, 25, 35, .16);
+  transition: transform .24s ease, box-shadow .24s ease, filter .24s ease;
+}
+
+.portal-card.large,
+.project-tile.featured {
+  grid-column: span 2;
+}
+
+.portal-card.bocchi-left {
+  background-position: left center;
+}
+
+.portal-card.bocchi-right {
+  background-position: right center;
+}
+
+.portal-card.bocchi-stage {
+  background-position: center 38%;
+}
+
+.portal-card::before,
+.project-tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5, 8, 14, .08), rgba(5, 8, 14, .82));
+}
+
+.portal-card::after,
+.project-tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, .16), transparent);
+  transform: translateX(-100%);
+  transition: opacity .2s ease, transform .55s ease;
+}
+
+.project-tile::after {
+  content: attr(data-status);
+  inset: 16px auto auto 16px;
+  width: auto;
+  height: auto;
+  opacity: 1;
+  transform: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, .18);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 850;
+  backdrop-filter: blur(12px);
+}
+
+.portal-card > *,
+.project-tile > * {
+  position: relative;
+  z-index: 1;
+}
+
+.portal-card small {
+  margin-bottom: 9px;
+  color: rgba(255, 255, 255, .7);
+  font-weight: 850;
+}
+
+.portal-card strong,
+.project-tile h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 22px;
+  line-height: 1.35;
+}
+
+.portal-card span,
+.project-tile p {
+  margin: 10px 0 0;
+  color: rgba(255, 255, 255, .8);
+  line-height: 1.72;
+}
+
+.portal-card:hover,
+.project-tile:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 26px 66px rgba(20, 25, 35, .28);
+  filter: saturate(1.08);
+}
+
+.portal-card:hover::after {
+  opacity: 1;
+  transform: translateX(100%);
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.project-tags span {
+  padding: 4px 9px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, .18);
+  color: #fff;
+  font-size: 12px;
+}
+
+.portal-quick,
+.radar-grid,
+.project-lanes,
+.project-roadmap {
+  display: grid;
+  gap: 12px;
+}
+
+.portal-quick {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.radar-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.project-lanes,
+.project-roadmap {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 24px;
+}
+
+.portal-link,
+.radar-item,
+.project-lanes article,
+.project-step {
+  min-height: 96px;
+  padding: 18px;
+  border: 1px solid rgba(120, 130, 150, .18);
+  border-radius: 8px;
+  color: var(--font-color) !important;
+  background: rgba(255, 255, 255, .82);
+  box-shadow: 0 12px 30px rgba(20, 25, 35, .08);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.portal-link,
+.radar-item {
+  font-weight: 850;
+}
+
+.radar-item.muted {
+  opacity: .72;
+}
+
+.portal-link small,
+.radar-item span,
+.project-lanes span,
+.project-step span {
+  display: block;
+  margin-top: 8px;
+  color: var(--font-color);
+  opacity: .62;
+  font-weight: 500;
+  line-height: 1.65;
+}
+
+.project-lanes b,
+.project-step b,
+.radar-item b {
+  color: #101828;
+}
+
+.portal-link:hover,
+.radar-item:hover,
+.project-lanes article:hover,
+.project-step:hover {
+  transform: translateY(-4px);
+  border-color: rgba(15, 118, 110, .24);
+  box-shadow: 0 18px 42px rgba(20, 25, 35, .14);
+}
+
+.project-hero {
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr);
+  gap: 24px;
+  min-height: 360px;
+  padding: 42px;
+  border-radius: 8px;
+  background:
+    linear-gradient(110deg, rgba(9, 14, 24, .92), rgba(14, 62, 68, .68)),
+    url('/images/bocchi/bocchi-kv-twitter-1500.jpg') center / cover;
+  box-shadow: 0 24px 66px rgba(16, 24, 40, .22);
+}
+
+.project-hero h1 {
+  margin: 0;
+  color: #fff;
+  font-size: 52px;
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.project-hero p {
+  max-width: 680px;
+  color: rgba(255, 255, 255, .86);
+  line-height: 1.85;
+}
+
+.project-scoreboard {
+  display: grid;
+  gap: 12px;
+  align-self: end;
+}
+
+@keyframes beid-sweep {
+  0%,
+  62% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
 }
 
 .post-brief {
@@ -352,7 +804,66 @@ img.avatar-img {
     font-size: 15px;
   }
 
+  .portal-shell {
+    min-height: 540px;
+    padding: 42px 28px;
+  }
+
+  .portal-title {
+    font-size: 58px;
+  }
+
+  .project-hero {
+    grid-template-columns: 1fr;
+    padding: 30px 24px;
+  }
+
+  .project-hero h1 {
+    font-size: 38px;
+  }
+
+  .portal-grid,
+  .project-board,
+  .portal-quick,
+  .radar-grid,
+  .project-lanes,
+  .project-roadmap,
+  .portal-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .portal-card.large,
+  .project-tile.featured {
+    grid-column: auto;
+  }
+
+  .portal-section-title,
+  .project-section-title {
+    align-items: start;
+    flex-direction: column;
+    gap: 6px;
+  }
+
   .post-brief {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+
+  .beid-reveal {
+    opacity: 1;
+    transform: none;
   }
 }
