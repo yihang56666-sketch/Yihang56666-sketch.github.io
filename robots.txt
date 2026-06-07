@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yihang56666-sketch.github.io/sitemap.xml
