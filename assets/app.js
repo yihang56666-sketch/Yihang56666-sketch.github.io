@@ -458,7 +458,7 @@
             <h2 id="${esc(id)}">${esc(section.heading)}</h2>
             ${(section.paragraphs || []).map((text) => `<p>${esc(text)}</p>`).join("")}
             ${section.bullets ? `<ul>${section.bullets.map((item) => `<li>${esc(item)}</li>`).join("")}</ul>` : ""}
-            ${section.code ? `<pre><code>${esc(section.code)}</code></pre>` : ""}
+            ${section.code ? `<pre class="terminal-block"><code>${esc(section.code)}</code></pre>` : ""}
             ${section.note ? `<div class="note-box">${esc(section.note)}</div>` : ""}
           </section>
         `;
