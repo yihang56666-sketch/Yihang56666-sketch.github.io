@@ -385,10 +385,10 @@
             .map(
               (project) => `
                 <article class="project-card aug-frame" data-augmented-ui="tl-clip br-clip border" style="--cover: ${project.cover}">
-                  <a class="project-cover" href="#/posts/${project.post}" aria-label="查看项目：${esc(project.title)}"></a>
+                  ${project.post ? `<a class="project-cover" href="#/posts/${project.post}" aria-label="查看项目：${esc(project.title)}"></a>` : '<div class="project-cover"></div>'}
                   <div class="project-content">
                     <p class="eyebrow">${esc(project.tags[0])}</p>
-                    <h2><a href="#/posts/${project.post}">${esc(project.title)}</a></h2>
+                    <h2>${project.post ? `<a href="#/posts/${project.post}">${esc(project.title)}</a>` : esc(project.title)}</h2>
                     <p>${esc(project.desc)}</p>
                     <div class="project-status">
                       <span>${esc(project.status)}</span>
