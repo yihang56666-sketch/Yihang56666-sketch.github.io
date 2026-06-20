@@ -32,13 +32,56 @@
   const projects = [
     {
       title: "Codex 多智能体编排框架",
+      slug: "codex-multi-agent",
       desc: "一个纯本地运行的 AI 多智能体协作系统，不依赖任何外部 LLM API。通过 26 个领域专家身份库、12 种协作模式和 7 种预定义工作流，将复杂任务自动拆解、路由到最适合的 specialist 智能体，并在 Codex 会话中以手动编排的方式逐个执行、同步、合并产出。",
       tags: ["ai-agents", "orchestration", "codex", "python", "cli"],
-      post: null,
       cover: covers.code,
       status: "已发布 · v1.2.0",
       updated: "06/25",
-      next: "跑一次完整的多智能体故障排查流程，把合成日志贴到这里"
+      links: {
+        github: "https://github.com/yihang56666-sketch/yihang56666-sketch.github.io",
+        docs: null
+      },
+      stats: [
+        { label: "领域身份", value: "26" },
+        { label: "协作模式", value: "12" },
+        { label: "工作流", value: "7" },
+        { label: "代码量", value: "3k+" }
+      ],
+      detail: [
+        {
+          heading: "运行模式",
+          paragraphs: [
+            "这套框架的核心设计理念是「Codex-only」—— 不依赖 Anthropic、OpenAI 或任何第三方 LLM API。所有智能体路由、任务拆解和执行跟踪都在本地完成。",
+            "正常流程是：spawn-team.py 生成 dispatch-plan → magent run 准备执行包 → 当前 Codex 会话逐个回答每个 agent 的 prompt → magent sync 刷新状态 → merge-results.py 合成为最终文档。"
+          ],
+          bullets: [
+            "26 个领域专家身份卡（前端/后端/嵌入式/安全/QA/架构等）",
+            "6 种预定义团队预设（architecture-team / embedded-team / frontend-team 等）",
+            "7 套可复用的工作流（bugfix / feature-build / security-review / refactor 等）",
+            "12 种协作模式（supervisor / handoff / SOP / group-chat / critic-loop 等）",
+            "冲突检测、检查点恢复、智能缓存（67% token 节省）"
+          ]
+        },
+        {
+          heading: "架构设计",
+          paragraphs: [
+            "框架分为三层：身份层（identity bank）、编排层（orchestration engine）、执行层（manual runtime）。身份层定义了 150+ 专家身份（含 120+ 社区导入），编排层通过关键词评分 + 技能偏好 + 锚点打破平局来做路由决策，执行层生成人工可读的执行包和状态跟踪。",
+            "所有产物都落盘到 .agents/reports/runs/ 目录，dashboard 在 localhost:8080 实时查看各 agent 状态。"
+          ]
+        },
+        {
+          heading: "CLI 命令",
+          code: "# 启动 dashboard\nmagent ui\n\n# 运行任务\nmagent run --task \"analyze auth module\" --scope \"src/auth tests/auth\"\n\n# 查看下一个待执行 agent\nmagent next latest\n\n# 同步执行状态\nmagent sync latest\n\n# 查看所有已注册 agent\nmagent agents",
+          note: "所有命令支持 magent.exe 独立执行（PyInstaller 打包，无需 Python 环境）"
+        },
+        {
+          heading: "下一步",
+          paragraphs: [
+            "跑一次完整的嵌入式故障排查多 agent 流程，把合成日志和冲突解决记录贴到博客。"
+          ]
+        }
+      ]
     }
   ];
 
@@ -385,10 +428,10 @@
             .map(
               (project) => `
                 <article class="project-card aug-frame" data-augmented-ui="tl-clip br-clip border" style="--cover: ${project.cover}">
-                  ${project.post ? `<a class="project-cover" href="#/posts/${project.post}" aria-label="查看项目：${esc(project.title)}"></a>` : '<div class="project-cover"></div>'}
+                  <a class="project-cover" href="#/projects/${project.slug}" aria-label="查看项目：${esc(project.title)}"></a>
                   <div class="project-content">
                     <p class="eyebrow">${esc(project.tags[0])}</p>
-                    <h2>${project.post ? `<a href="#/posts/${project.post}">${esc(project.title)}</a>` : esc(project.title)}</h2>
+                    <h2><a href="#/projects/${project.slug}">${esc(project.title)}</a></h2>
                     <p>${esc(project.desc)}</p>
                     <div class="project-status">
                       <span>${esc(project.status)}</span>
@@ -402,6 +445,55 @@
             )
             .join("")}</section>`
         : emptyPanel("项目内容已清空", "等你重新写项目复盘时，只需要在 assets/app.js 的 projects 数组里添加项目卡。", "回首页", "#/")}
+    `;
+  }
+
+  function renderProjectDetail(slug) {
+    const project = projects.find((item) => item.slug === slug);
+    if (!project) return renderNotFound();
+
+    main.innerHTML = `
+      <article class="article-layout">
+        <aside class="article-meta-rail">
+          <h2>项目信息</h2>
+          <div class="meta-block"><span>状态</span><strong>${esc(project.status)}</strong></div>
+          <div class="meta-block"><span>更新</span><strong>${esc(project.updated)}</strong></div>
+          ${(project.stats || []).map((s) => `<div class="meta-block"><span>${esc(s.label)}</span><strong>${esc(s.value)}</strong></div>`).join("")}
+          <div class="tag-row">${tagChips(project.tags, true)}</div>
+          ${project.links?.github ? `<a class="tag-chip" href="${esc(project.links.github)}" target="_blank" rel="noreferrer">github</a>` : ""}
+        </aside>
+        <div>
+          <div class="article-main">
+            <header class="article-hero" style="--cover: ${project.cover}">
+              <p class="eyebrow">${esc(project.tags[0])}</p>
+              <h1 class="article-title">${esc(project.title)}</h1>
+              <p>${esc(project.desc)}</p>
+            </header>
+            <div class="article-body">
+              ${(project.detail || []).map((section) => {
+                const id = slugify(section.heading);
+                return `
+                  <section>
+                    <h2 id="${esc(id)}">${esc(section.heading)}</h2>
+                    ${(section.paragraphs || []).map((text) => `<p>${esc(text)}</p>`).join("")}
+                    ${section.bullets ? `<ul>${section.bullets.map((item) => `<li>${esc(item)}</li>`).join("")}</ul>` : ""}
+                    ${section.code ? `<pre class="terminal-block"><code>${esc(section.code)}</code></pre>` : ""}
+                    ${section.note ? `<div class="note-box">${esc(section.note)}</div>` : ""}
+                  </section>
+                `;
+              }).join("")}
+              <div class="license-box">
+                <strong>${esc(project.title)}</strong>
+                <span>此为 ${esc(site.author)} 的项目复盘记录。</span>
+                <a href="#/projects">← 返回项目列表</a>
+              </div>
+            </div>
+          </div>
+          <nav class="post-nav" aria-label="上一个">
+            <a href="#/projects"><small>返回</small><strong>项目列表</strong></a>
+          </nav>
+        </div>
+      </article>
     `;
   }
 
@@ -593,6 +685,7 @@
       if (parts[0] === "posts") return { view: "post", slug: parts[1] };
       if (parts[0] === "tags" && parts[1]) return { view: "tag", tag: parts[1] };
       if (parts[0] === "categories" && parts[1]) return { view: "category", category: parts[1] };
+      if (parts[0] === "projects" && parts[1]) return { view: "project", slug: parts[1] };
       return { view: parts[0] };
     }
 
@@ -606,7 +699,7 @@
   function setActiveNav(route) {
     const links = document.querySelectorAll(".nav-links a");
     links.forEach((link) => link.removeAttribute("aria-current"));
-    const current = route.view === "post" || route.view === "tag" || route.view === "category" ? "archive" : route.view;
+    const current = route.view === "post" || route.view === "tag" || route.view === "category" ? "archive" : route.view === "project" ? "projects" : route.view;
     const target = `#/${current === "home" ? "" : current}`;
     const active = Array.from(links).find((link) => link.getAttribute("href").replace(/^\//, "") === target);
     if (active) active.setAttribute("aria-current", "page");
@@ -834,6 +927,7 @@
 
     if (route.view === "home") renderHome();
     else if (route.view === "post") renderArticle(route.slug);
+    else if (route.view === "project") renderProjectDetail(route.slug);
     else if (route.view === "tag") renderArchive({ tag: route.tag });
     else if (route.view === "category") renderArchive({ category: route.category });
     else if (pages[route.view]) renderSimplePage(route.view);
