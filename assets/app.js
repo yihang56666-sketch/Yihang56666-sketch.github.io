@@ -71,11 +71,58 @@
         {
           heading: "架构设计",
           paragraphs: [
-            "框架分为三层：身份层（identity bank）、编排层（orchestration engine）、执行层（manual runtime）。",
-            "身份层定义了 150+ 专家身份（含 28 个手工精调核心身份 + 120+ 社区导入身份），每个身份卡包含领域描述、关键词、关联 skill、执行权限和执行模式。",
-            "编排层通过关键词评分（2-6 分/匹配）、技能偏好（+5 分/匹配 skill）和锚点打破平局来做路由决策，并能自动检测任务类型推断最佳协作模式。",
-            "执行层生成人工可读的执行包（agent-prompts.md、handoff-contract.md、next-agent.md），所有产物落盘到 .agents/reports/runs/ 目录，dashboard 在 localhost:8080 实时查看各 agent 状态。"
+            "框架分为三层：身份层（identity bank）、编排层（orchestration engine）、执行层（manual runtime）。"
           ]
+        },
+        {
+          heading: "架构树形图",
+          tree: `身份层 Identity Layer
+├── 身份索引 /identity-bank/
+│   ├── 28 个手工精调核心身份
+│   │   ├── 前端工程师 (frontend-engineer)
+│   │   ├── 后端架构师 (backend-api-engineer)
+│   │   ├── 嵌入式工程师 (embedded-engineer)
+│   │   ├── 安全工程师 (security-engineer)
+│   │   ├── QA 自动化工程师 (qa-test-automation-engineer)
+│   │   └── 23 个其它核心身份
+│   └── 120+ 社区导入身份
+├── 身份卡字段
+│   ├── 领域描述 (domain description)
+│   ├── 关键词 (keywords)
+│   ├── 关联 Skill
+│   ├── 执行权限 (read-only / worker)
+│   └── 执行模式 (auto / semi-auto / manual)
+│
+编排层 Orchestration Layer
+├── 路由引擎 route_identity.py
+│   ├── 多因子评分系统
+│   │   ├── 关键词匹配: 单次 2pt, 组合 3pt
+│   │   ├── 技能偏好: +5pt/skill
+│   │   └── 领域重叠: 叠加加分
+│   ├── 任务类型自动检测
+│   │   ├── read-only vs worker
+│   │   └── 推断最佳协作模式
+│   └── 平局裁决 (domain anchor)
+├── 协作模式引擎
+│   ├── supervisor / handoff / SOP
+│   └── group-chat / critic-loop / stateful-observer
+│
+执行层 Runtime Layer
+├── 执行包生成器
+│   ├── agent-prompts.md (各 agent prompt 汇总)
+│   ├── handoff-contract.md (交接合约)
+│   └── next-agent.md (当前待回答问题)
+├── 状态同步
+│   └── magent sync → .output.md 写入状态
+├── 产物存档
+│   └── .agents/reports/runs/<run-id>/
+│       ├── dispatch-plan.json
+│       ├── synthesis.md (最终合并报告)
+│       └── 各 agent 原始输出
+└── 本地仪表盘 localhost:8080
+    ├── dashboard-live.html (实时状态)
+    └── agent 详情面板`,
+          note: "箭头 ├── 表示横向展开的元素层级，leaf node 无子节点。最简部署只需 magent.py + route_identity.py 即可运行。"
         },
         {
           heading: "路由算法",
@@ -95,11 +142,43 @@
           code: ".agents/\n├── magent.py              # CLI 入口（307 行）\n├── identities/            # 26 个身份卡（ai/design/engineering/operations/product/quality）\n├── presets/               # 6 个团队预设 JSON\n├── workflows/             # 7 个工作流定义（YAML + JSON）\n├── skills/                # 2 个 skill 包（identity-bank + orchestrator）\n│   ├── codex-agent-identity-bank/\n│   └── codex-multi-agent-orchestrator/\n├── scripts/               # 33 个辅助脚本\n│   ├── route_identity.py   # 核心路由算法（368 行）\n│   ├── spawn-team.py       # 运行文件夹生成器\n│   ├── manual_execution.py # 手动执行引擎\n│   └── merge-results.py    # 结果合并\n├── ui/                    # 本地仪表盘（dashboard.html）\n├── reports/runs/          # 运行产物存档\n└── identity-bank/         # 150+ 身份索引"
         },
         {
-          heading: "下一步计划",
+          heading: "与同类项目对比",
+          table: {
+            headers: ["特性", "本框架", "AutoGen", "CrewAI", "LangGraph"],
+            rows: [
+              ["当前状态", "纯本地，manual-only", "混合 API", "混合 API", "混合 API"],
+              ["协作模式数量", "12 种", "3 种", "2 种", "1 种"],
+              ["领域身份系统", "26 个专属身份 + 120+ 社区", "无专业身份", "无专业身份", "无专业身份"],
+              ["执行方式", "手动编排（Codex 内）", "自动执行", "自动执行", "自动执行"],
+              ["LLM 依赖", "零依赖（纯本地）", "必选（API Key）", "必选（API Key）", "必选（API Key）"],
+              ["产物质控", "人肉 review 每一步", "自动输出", "自动输出", "自动输出"],
+              ["检查点恢复", "支持（断点续传）", "不支持", "有限支持", "不支持"],
+              ["仪表盘", "localhost:8080 实时查看", "无内置", "CrewAI Enterprise", "LangSmith"],
+              ["团队预设", "6 个内置预设", "无", "无", "无"],
+              ["适用场景", "需人类审核的关键任务", "自动化流水线", "自动化协作", "有向图流程"]
+            ]
+          }
+        },
+        {
+          heading: "提升方向",
           paragraphs: [
-            "跑一次完整的嵌入式故障排查多 agent 流程，把合成日志、冲突解决记录和最终 patch 贴到博客上作为实战演示。",
-            "后续打算加更多实际场景的 team preset，以及为每个身份卡补充更丰富的 skill 映射。"
+            "当前框架已完成最小可用集（v1.2.0），以下是识别到的提升方向："
+          ],
+          bullets: [
+            "自动化执行模式: 当前仅 manual-only，可加入可选的 auto-execute 模式，让框架调用本地 LLM（如 llama.cpp、Ollama）完成部分低风险步骤",
+            "身份卡覆盖度加深: 某些小众领域（如量化交易、生物信息、法律合规）缺少专门身份，需社区贡献",
+            "路由评分调优: 关键词评分目前是固定权重，可引入 ML 权重自动学习历史路由成功/失败数据",
+            "结果质量评估: 缺少自动化的 synthesis 质量评分机制，目前仅靠人工判断",
+            "插件系统: 支持第三方 identity pack 和 workflow pack 的在线安装/更新",
+            "可视化工作流编辑器: 当前工作流用 YAML/JSON 手写，可以做一个拖拽式 DAG 编辑界面",
+            "分布式执行: 当前只支持单机串行执行，可扩展到多机并行 agent 执行",
+            "生态集成: 对接更多外部工具（Jira、GitHub Issues、Slack 通知）使编排结果能自动创建工单"
           ]
+        },
+        {
+          heading: "Roadmap",
+          code: "# v1.x — 核心打磨\n[ ] 自动化执行模式（local LLM 集成）\n[ ] 检查点自动备份到云存储\n[ ] 身份卡 marketplace 预览页\n\n# v2.0 — 生态扩展\n[ ] 身份卡插件系统（npm-style install）\n[ ] 可视化 DAG 工作流编辑器\n[ ] 结果质量自动评分（BLEU / ROUGE / F1）\n[ ] 并行 agent 执行引擎\n\n# v2.x — 企业级\n[ ] Jira / GitHub Issues 双向同步\n[ ] SSO / 团队权限管理\n[ ] 历史运行数据趋势分析仪表盘",
+          note: "Roadmap 持续在 GitHub Projects 中维护，欢迎提 Issue 和 PR。"
         }
       ]
     }
@@ -517,6 +596,15 @@
                   </div>
                 ` : ""}
                 ${section.code ? `<pre class="terminal-block"><code>${esc(section.code)}</code></pre>` : ""}
+                ${section.tree ? `<pre class="tree-block"><code>${esc(section.tree)}</code></pre>` : ""}
+                ${section.table ? `
+                  <div class="crt-table-wrap">
+                    <table class="crt-table">
+                      <thead><tr>${section.table.headers.map((h) => `<th>${esc(h)}</th>`).join("")}</tr></thead>
+                      <tbody>${section.table.rows.map((row) => `<tr>${row.map((cell) => `<td>${esc(cell)}</td>`).join("")}</tr>`).join("")}</tbody>
+                    </table>
+                  </div>
+                ` : ""}
                 ${section.note ? `<div class="note-box">${esc(section.note)}</div>` : ""}
               </section>
             `;

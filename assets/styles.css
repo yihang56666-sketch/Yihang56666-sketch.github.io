@@ -2451,6 +2451,69 @@ body::after {
   line-height: 1.5;
 }
 
+/* --- Tree Block --- */
+.tree-block {
+  position: relative;
+  background: #0a0e14;
+  border: 1px solid var(--line);
+  padding: 18px 20px;
+  overflow-x: auto;
+  margin: 1.2rem 0;
+}
+.tree-block code {
+  background: none;
+  color: #b3d4fc;
+  padding: 0;
+  font-size: 0.85rem;
+  line-height: 1.75;
+  white-space: pre;
+}
+.tree-block code .hl {
+  color: #ffa759;
+}
+.tree-block code .hl2 {
+  color: #00ff41;
+}
+
+/* --- CRT Table --- */
+.crt-table-wrap {
+  overflow-x: auto;
+  margin: 1.2rem 0;
+}
+.crt-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+}
+.crt-table th, .crt-table td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.crt-table th {
+  background: var(--bg-strong);
+  color: var(--primary);
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.crt-table tr:nth-child(even) td {
+  background: var(--bg);
+}
+.crt-table tr:hover td {
+  background: color-mix(in srgb, var(--primary) 6%, var(--bg));
+}
+.crt-table td:first-child {
+  color: var(--primary);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
 @media (max-width: 640px) {
   .project-detail-hero {
     padding: 40px 20px;
@@ -2461,5 +2524,11 @@ body::after {
   }
   .project-feature-grid {
     grid-template-columns: 1fr;
+  }
+  .crt-table {
+    font-size: 0.8rem;
+  }
+  .crt-table th, .crt-table td {
+    padding: 8px 10px;
   }
 }
