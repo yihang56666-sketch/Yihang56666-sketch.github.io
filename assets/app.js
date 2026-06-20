@@ -45,40 +45,60 @@
       stats: [
         { label: "领域身份", value: "26" },
         { label: "协作模式", value: "12" },
-        { label: "工作流", value: "7" },
-        { label: "代码量", value: "3k+" }
+        { label: "预置工作流", value: "7" },
+        { label: "代码量", value: "3.2k" }
       ],
       detail: [
         {
+          heading: "特性亮点",
+          bullets: [
+            "纯本地运行: 不依赖任何第三方 LLM API，所有路由和编排在本地完成",
+            "26 个领域身份: 前端/后端/嵌入式/安全/QA/架构/ML/DevOps 等专家身份卡",
+            "12 种协作模式: supervisor / handoff / SOP / group-chat / critic-loop / stateful-observer 等",
+            "7 套预制工作流: bugfix / feature-build / security-review / refactor / architecture-decision 等",
+            "6 个团队预设: small-team / frontend-team / embedded-team / full-review-team 等",
+            "检查点恢复: 崩溃后从最近检查点恢复，零进度丢失",
+            "智能缓存: 基于内容的缓存策略，实测节省 67% 重复 token"
+          ]
+        },
+        {
           heading: "运行模式",
           paragraphs: [
-            "这套框架的核心设计理念是「Codex-only」—— 不依赖 Anthropic、OpenAI 或任何第三方 LLM API。所有智能体路由、任务拆解和执行跟踪都在本地完成。",
-            "正常流程是：spawn-team.py 生成 dispatch-plan → magent run 准备执行包 → 当前 Codex 会话逐个回答每个 agent 的 prompt → magent sync 刷新状态 → merge-results.py 合成为最终文档。"
-          ],
-          bullets: [
-            "26 个领域专家身份卡（前端/后端/嵌入式/安全/QA/架构等）",
-            "6 种预定义团队预设（architecture-team / embedded-team / frontend-team 等）",
-            "7 套可复用的工作流（bugfix / feature-build / security-review / refactor 等）",
-            "12 种协作模式（supervisor / handoff / SOP / group-chat / critic-loop 等）",
-            "冲突检测、检查点恢复、智能缓存（67% token 节省）"
+            "框架的核心设计理念是「Codex-only」—— 不依赖 Anthropic、OpenAI 或任何第三方 LLM API。所有智能体路由、任务拆解和执行跟踪都在本地 .agents/ 目录下完成。",
+            "正常编排流程分六步：spawn-team.py 生成 dispatch-plan → execute-dispatch-plan.py 准备执行包 → 当前 Codex 会话逐个回答每个 agent 的 prompt → 将答案写入 *.output.md → magent sync 刷新状态 → merge-results.py 合成为最终 synthesis.md。"
           ]
         },
         {
           heading: "架构设计",
           paragraphs: [
-            "框架分为三层：身份层（identity bank）、编排层（orchestration engine）、执行层（manual runtime）。身份层定义了 150+ 专家身份（含 120+ 社区导入），编排层通过关键词评分 + 技能偏好 + 锚点打破平局来做路由决策，执行层生成人工可读的执行包和状态跟踪。",
-            "所有产物都落盘到 .agents/reports/runs/ 目录，dashboard 在 localhost:8080 实时查看各 agent 状态。"
+            "框架分为三层：身份层（identity bank）、编排层（orchestration engine）、执行层（manual runtime）。",
+            "身份层定义了 150+ 专家身份（含 28 个手工精调核心身份 + 120+ 社区导入身份），每个身份卡包含领域描述、关键词、关联 skill、执行权限和执行模式。",
+            "编排层通过关键词评分（2-6 分/匹配）、技能偏好（+5 分/匹配 skill）和锚点打破平局来做路由决策，并能自动检测任务类型推断最佳协作模式。",
+            "执行层生成人工可读的执行包（agent-prompts.md、handoff-contract.md、next-agent.md），所有产物落盘到 .agents/reports/runs/ 目录，dashboard 在 localhost:8080 实时查看各 agent 状态。"
           ]
         },
         {
-          heading: "CLI 命令",
-          code: "# 启动 dashboard\nmagent ui\n\n# 运行任务\nmagent run --task \"analyze auth module\" --scope \"src/auth tests/auth\"\n\n# 查看下一个待执行 agent\nmagent next latest\n\n# 同步执行状态\nmagent sync latest\n\n# 查看所有已注册 agent\nmagent agents",
-          note: "所有命令支持 magent.exe 独立执行（PyInstaller 打包，无需 Python 环境）"
+          heading: "路由算法",
+          paragraphs: [
+            "路由引擎 route_identity.py 使用多因子评分系统做身份匹配：关键词匹配（单次 2 分，多词组合 3 分）、领域重叠加分、skill 偏好匹配（+5 分/个）。路由还会自动附加 reviewer 身份（安全/认证/性能类任务加 code-reviewer，测试类任务加 QA）。",
+            "任务类型自动检测：扫描关键词判定 read-only vs worker 任务，推断最佳协作模式。平局时用领域锚点（domain anchor）打破——例如 rust 相关任务自动偏向 rust-engineer。"
+          ],
+          code: "# 路由示例：分析认证模块\n$ magent run --task \"analyze auth module security\" --scope \"src/auth tests/auth\"\n\n# 路由结果（dispatch-plan.json 摘要）\n{\n  \"task\": \"analyze auth module security\",\n  \"pattern\": \"critic-loop\",\n  \"identities\": [\n    \"security-engineer\",\n    \"backend-api-engineer\",\n    \"code-reviewer\",\n    \"qa-test-automation-engineer\"\n  ],\n  \"max_identities\": 4\n}"
         },
         {
-          heading: "下一步",
+          heading: "CLI 命令参考",
+          code: "# ── 启动本地仪表盘 ──\nmagent ui\n# 在浏览器打开 http://localhost:8080/dashboard-live.html\n\n# ── 运行新任务 ──\nmagent run --task \"你的任务描述\" --scope \"代码路径\"\n\n# ── 执行流程 ──\nmagent next latest       # 查看下一个待执行的 agent\n# 打开 agent-prompts.md 按顺序回答\nmagent sync latest      # 刷新执行状态\n\n# ── 状态管理 ──\nmagent status latest    # 查看运行状态概览\nmagent agents           # 列出所有可用 agent\nmagent list             # 列出所有运行记录\n\n# ── 结果合并 ──\npython .agents/scripts/merge-results.py .agents/reports/runs/<run-id>",
+          note: "所有命令都支持 magent.exe 独立执行（PyInstaller 打包），无需 Python 环境"
+        },
+        {
+          heading: "项目结构",
+          code: ".agents/\n├── magent.py              # CLI 入口（307 行）\n├── identities/            # 26 个身份卡（ai/design/engineering/operations/product/quality）\n├── presets/               # 6 个团队预设 JSON\n├── workflows/             # 7 个工作流定义（YAML + JSON）\n├── skills/                # 2 个 skill 包（identity-bank + orchestrator）\n│   ├── codex-agent-identity-bank/\n│   └── codex-multi-agent-orchestrator/\n├── scripts/               # 33 个辅助脚本\n│   ├── route_identity.py   # 核心路由算法（368 行）\n│   ├── spawn-team.py       # 运行文件夹生成器\n│   ├── manual_execution.py # 手动执行引擎\n│   └── merge-results.py    # 结果合并\n├── ui/                    # 本地仪表盘（dashboard.html）\n├── reports/runs/          # 运行产物存档\n└── identity-bank/         # 150+ 身份索引"
+        },
+        {
+          heading: "下一步计划",
           paragraphs: [
-            "跑一次完整的嵌入式故障排查多 agent 流程，把合成日志和冲突解决记录贴到博客。"
+            "跑一次完整的嵌入式故障排查多 agent 流程，把合成日志、冲突解决记录和最终 patch 贴到博客上作为实战演示。",
+            "后续打算加更多实际场景的 team preset，以及为每个身份卡补充更丰富的 skill 映射。"
           ]
         }
       ]
@@ -453,47 +473,62 @@
     if (!project) return renderNotFound();
 
     main.innerHTML = `
-      <article class="article-layout">
-        <aside class="article-meta-rail">
-          <h2>项目信息</h2>
-          <div class="meta-block"><span>状态</span><strong>${esc(project.status)}</strong></div>
-          <div class="meta-block"><span>更新</span><strong>${esc(project.updated)}</strong></div>
-          ${(project.stats || []).map((s) => `<div class="meta-block"><span>${esc(s.label)}</span><strong>${esc(s.value)}</strong></div>`).join("")}
-          <div class="tag-row">${tagChips(project.tags, true)}</div>
-          ${project.links?.github ? `<a class="tag-chip" href="${esc(project.links.github)}" target="_blank" rel="noreferrer">github</a>` : ""}
-        </aside>
-        <div>
-          <div class="article-main">
-            <header class="article-hero" style="--cover: ${project.cover}">
-              <p class="eyebrow">${esc(project.tags[0])}</p>
-              <h1 class="article-title">${esc(project.title)}</h1>
-              <p>${esc(project.desc)}</p>
-            </header>
-            <div class="article-body">
-              ${(project.detail || []).map((section) => {
-                const id = slugify(section.heading);
-                return `
-                  <section>
-                    <h2 id="${esc(id)}">${esc(section.heading)}</h2>
-                    ${(section.paragraphs || []).map((text) => `<p>${esc(text)}</p>`).join("")}
-                    ${section.bullets ? `<ul>${section.bullets.map((item) => `<li>${esc(item)}</li>`).join("")}</ul>` : ""}
-                    ${section.code ? `<pre class="terminal-block"><code>${esc(section.code)}</code></pre>` : ""}
-                    ${section.note ? `<div class="note-box">${esc(section.note)}</div>` : ""}
-                  </section>
-                `;
-              }).join("")}
-              <div class="license-box">
-                <strong>${esc(project.title)}</strong>
-                <span>此为 ${esc(site.author)} 的项目复盘记录。</span>
-                <a href="#/projects">← 返回项目列表</a>
-              </div>
+      <div class="project-detail">
+        <header class="project-detail-hero" style="--cover: ${project.cover}">
+          <div class="project-detail-hero-inner">
+            <p class="eyebrow">${esc(project.tags[0])}</p>
+            <h1 class="article-title">${esc(project.title)}</h1>
+            <p class="project-detail-desc">${esc(project.desc)}</p>
+            <div class="project-detail-actions">
+              ${project.links?.github ? `<a class="pill-button" href="${esc(project.links.github)}" target="_blank" rel="noreferrer"><i data-lucide="github"></i>GitHub</a>` : ""}
+              <span class="crt-badge" style="color:var(--primary);border-color:var(--primary)">${esc(project.status)}</span>
             </div>
+            <div class="tag-row" style="margin-top:14px">${tagChips(project.tags)}</div>
           </div>
-          <nav class="post-nav" aria-label="上一个">
-            <a href="#/projects"><small>返回</small><strong>项目列表</strong></a>
-          </nav>
+        </header>
+
+        ${project.stats?.length ? `
+          <section class="project-detail-stats">
+            ${project.stats.map((s) => `
+              <div class="crt-stat">
+                <div class="crt-stat-value">${esc(s.value)}</div>
+                <div class="crt-stat-label">${esc(s.label)}</div>
+              </div>
+            `).join("")}
+          </section>
+        ` : ""}
+
+        <div class="project-detail-body">
+          ${(project.detail || []).map((section) => {
+            const id = slugify(section.heading);
+            return `
+              <section class="project-detail-section">
+                <h2 id="${esc(id)}">${esc(section.heading)}</h2>
+                ${(section.paragraphs || []).map((text) => `<p>${esc(text)}</p>`).join("")}
+                ${section.bullets ? `
+                  <div class="project-feature-grid">
+                    ${section.bullets.map((item) => {
+                      const match = item.match(/^(.+?)(?::\s*)(.+)$/);
+                      if (match) {
+                        return `<div class="project-feature-card aug-frame" data-augmented-ui="tl-clip br-clip border"><strong>${esc(match[1])}</strong><span>${esc(match[2])}</span></div>`;
+                      }
+                      return `<div class="project-feature-card aug-frame" data-augmented-ui="tl-clip br-clip border"><span>${esc(item)}</span></div>`;
+                    }).join("")}
+                  </div>
+                ` : ""}
+                ${section.code ? `<pre class="terminal-block"><code>${esc(section.code)}</code></pre>` : ""}
+                ${section.note ? `<div class="note-box">${esc(section.note)}</div>` : ""}
+              </section>
+            `;
+          }).join("")}
+
+          <div class="license-box" style="margin-top:2.4rem">
+            <strong>${esc(project.title)}</strong>
+            <span>此为 ${esc(site.author)} 的项目复盘记录。</span>
+            <a href="#/projects" style="display:inline-flex;align-items:center;gap:6px;margin-top:10px">&larr; 返回项目列表</a>
+          </div>
         </div>
-      </article>
+      </div>
     `;
   }
 
