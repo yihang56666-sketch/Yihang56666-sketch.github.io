@@ -29,14 +29,34 @@
   };
 
   const posts = [];
-  const projects = [];
-  const siteUpdates = [];
+  const projects = [
+    {
+      title: "Codex 多智能体编排框架",
+      desc: "一个纯本地运行的 AI 多智能体协作系统，不依赖任何外部 LLM API。通过 26 个领域专家身份库、12 种协作模式和 7 种预定义工作流，将复杂任务自动拆解、路由到最适合的 specialist 智能体，并在 Codex 会话中以手动编排的方式逐个执行、同步、合并产出。",
+      tags: ["ai-agents", "orchestration", "codex", "python", "cli"],
+      post: null,
+      cover: covers.code,
+      status: "已发布 · v1.2.0",
+      updated: "06/25",
+      next: "跑一次完整的多智能体故障排查流程，把合成日志贴到这里"
+    }
+  ];
+
+  // ── site updates ──────────────────────────────────────
+  const siteUpdates = [
+    {
+      time: "06/25",
+      type: "project",
+      title: "Codex 多智能体编排框架",
+      body: "首个项目卡上架。26 个领域身份、12 种协作模式、纯本地运行、零 API 依赖。"
+    }
+  ];
   const archiveNotes = {};
 
   const pages = {
     home: { title: site.title, desc: site.description },
     archive: { title: "文章归档", desc: "旧内容已经清空，新的文章会按发布时间重新整理在这里。" },
-    projects: { title: "做过的东西", desc: "项目卡片已经清空，等新复盘写好后再放回来。" },
+    projects: { title: "做过的东西", desc: "折腾过的项目复盘和阶段记录。" },
     reading: { title: "阅读与学习", desc: "资料入口正在重新整理，之后会放新的学习记录。" },
     about: { title: "关于 beid", desc: "这个博客正在重新写内容，先保留站点外壳和夜城风格。" },
     tags: { title: "标签", desc: "新文章发布后会自动生成标签。" },
