@@ -105,6 +105,62 @@ body::after {
     repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.02) 0 1px, transparent 1px 4px);
 }
 
+.cursor-fx-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 10030;
+  overflow: hidden;
+  pointer-events: none;
+  contain: layout style paint;
+}
+
+.cursor-follower {
+  position: fixed;
+  top: var(--cursor-y, -80px);
+  left: var(--cursor-x, -80px);
+  width: 26px;
+  height: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.86) 0 2px, transparent 3px),
+    radial-gradient(circle, rgba(255, 143, 190, 0.24), transparent 62%);
+  box-shadow:
+    0 0 22px rgba(255, 255, 255, 0.42),
+    0 0 34px rgba(255, 143, 190, 0.28),
+    inset 0 0 14px rgba(255, 255, 255, 0.24);
+  opacity: 0;
+  translate: -50% -50%;
+  scale: 0.76;
+  transition:
+    opacity 160ms ease,
+    scale 220ms ease,
+    width 180ms ease,
+    height 180ms ease;
+}
+
+.cursor-fx-layer.is-active .cursor-follower {
+  opacity: 0.92;
+  scale: 1;
+  animation: cursor-follower-breathe 1.8s ease-in-out infinite;
+}
+
+.cursor-spark {
+  position: fixed;
+  z-index: 1;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 850;
+  line-height: 1;
+  opacity: 0;
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.95),
+    0 0 18px rgba(255, 143, 190, 0.76),
+    0 0 28px rgba(125, 220, 255, 0.36);
+  transform: translate(-50%, -50%) scale(0.52) rotate(0deg);
+  animation: cursor-spark-drift 760ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -5442,13 +5498,52 @@ html[data-view="home"] .icon-button {
 
 .maikire-barrage,
 .maikire-float-windows,
+.maikire-meteors,
 .maikire-pets,
+.maikire-live-stickers,
 .maikire-petals {
   position: absolute;
   inset: 0;
   z-index: 1;
   overflow: hidden;
   pointer-events: none;
+}
+
+.maikire-meteors {
+  z-index: 2;
+  mix-blend-mode: screen;
+}
+
+.maikire-meteors span {
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  width: 156px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.98), rgba(255, 185, 218, 0.64) 45%, transparent);
+  box-shadow:
+    0 0 14px rgba(255, 255, 255, 0.72),
+    0 0 28px rgba(255, 143, 190, 0.34);
+  opacity: 0;
+  transform-origin: left center;
+  animation: maikire-meteor-shower 14s linear infinite;
+  animation-delay: var(--d);
+}
+
+.maikire-meteors span::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -6px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    0 0 14px rgba(255, 255, 255, 0.95),
+    0 0 24px rgba(125, 220, 255, 0.52);
+  translate: 0 -50%;
 }
 
 .maikire-barrage span {
@@ -5568,6 +5663,51 @@ html[data-view="home"] .icon-button {
   right: 8%;
   bottom: 14%;
   animation-delay: -4.1s;
+}
+
+.live-sticker {
+  position: absolute;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 22%, rgba(255, 255, 255, 0.78), transparent 42%),
+    rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.96);
+  font-size: 1.05rem;
+  font-weight: 900;
+  box-shadow:
+    0 12px 30px rgba(15, 15, 35, 0.17),
+    0 0 24px rgba(255, 143, 190, 0.22);
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px);
+  animation: maikire-live-sticker 6.8s ease-in-out infinite;
+}
+
+.live-sticker-one {
+  top: 35%;
+  left: 28%;
+}
+
+.live-sticker-two {
+  top: 23%;
+  right: 31%;
+  animation-delay: -1.8s;
+}
+
+.live-sticker-three {
+  right: 18%;
+  bottom: 35%;
+  animation-delay: -3.4s;
+}
+
+.live-sticker-four {
+  bottom: 26%;
+  left: 23%;
+  animation-delay: -5.1s;
 }
 
 .maikire-petals span {
@@ -6090,6 +6230,68 @@ html[data-view="home"] .icon-button {
   }
 }
 
+@keyframes cursor-follower-breathe {
+  0%,
+  100% {
+    width: 26px;
+    height: 26px;
+    box-shadow:
+      0 0 22px rgba(255, 255, 255, 0.42),
+      0 0 34px rgba(255, 143, 190, 0.28),
+      inset 0 0 14px rgba(255, 255, 255, 0.24);
+  }
+
+  50% {
+    width: 34px;
+    height: 34px;
+    box-shadow:
+      0 0 30px rgba(255, 255, 255, 0.58),
+      0 0 46px rgba(125, 220, 255, 0.34),
+      inset 0 0 18px rgba(255, 255, 255, 0.32);
+  }
+}
+
+@keyframes cursor-spark-drift {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.52) rotate(0deg);
+  }
+
+  18% {
+    opacity: 0.96;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate(calc(-50% + var(--spark-x)), calc(-50% + var(--spark-y)))
+      scale(0.18)
+      rotate(var(--spark-rotate));
+  }
+}
+
+@keyframes maikire-meteor-shower {
+  0%,
+  58% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(-30deg) scale(var(--s));
+  }
+
+  62% {
+    opacity: 0.96;
+  }
+
+  76% {
+    opacity: 0.82;
+  }
+
+  88%,
+  100% {
+    opacity: 0;
+    transform: translate3d(-36vw, 42vh, 0) rotate(-30deg) scale(var(--s));
+  }
+}
+
 @keyframes maikire-window-float {
   0%,
   100% {
@@ -6109,6 +6311,21 @@ html[data-view="home"] .icon-button {
 
   50% {
     transform: translateY(-12px) rotate(2deg);
+  }
+}
+
+@keyframes maikire-live-sticker {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-8deg) scale(1);
+  }
+
+  42% {
+    transform: translate3d(10px, -18px, 0) rotate(9deg) scale(1.12);
+  }
+
+  68% {
+    transform: translate3d(-8px, -10px, 0) rotate(-3deg) scale(0.96);
   }
 }
 
@@ -6227,10 +6444,13 @@ html[data-view="home"] .icon-button {
   }
 
   .maikire-barrage span:nth-child(n + 4),
+  .maikire-meteors span:nth-child(n + 5),
   .float-window-two,
   .float-window-three,
   .pet-two,
   .pet-three,
+  .live-sticker-three,
+  .live-sticker-four,
   .maikire-petals span:nth-child(n + 7) {
     display: none;
   }
@@ -6248,6 +6468,22 @@ html[data-view="home"] .icon-button {
     bottom: 78px;
     left: auto;
     min-width: 88px;
+  }
+
+  .live-sticker {
+    width: 34px;
+    height: 34px;
+    font-size: 0.9rem;
+  }
+
+  .live-sticker-one {
+    top: 31%;
+    left: 16px;
+  }
+
+  .live-sticker-two {
+    top: 27%;
+    right: 18px;
   }
 
   .maikire-content {
@@ -6290,6 +6526,15 @@ html[data-view="home"] .icon-button {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .cursor-fx-layer {
+    display: none !important;
+  }
+
+  .cursor-fx-layer,
+  .cursor-follower,
+  .cursor-spark,
+  .maikire-meteors span,
+  .live-sticker,
   .maikire-barrage span,
   .maikire-float-window,
   .maikire-pet,

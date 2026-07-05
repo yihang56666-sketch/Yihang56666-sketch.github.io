@@ -13,6 +13,9 @@
   const nav = document.querySelector("[data-nav]");
   let revealObserver;
   let tocObserver;
+  let cursorFxLayer;
+  let cursorIdleTimer;
+  let lastCursorSpark = 0;
 
   const assetBase = new URL(".", document.currentScript?.src || location.href).href;
   const animePath = (file) => `${assetBase}images/anime/${file}`;
@@ -1115,6 +1118,14 @@
       <div class="maikire-home">
         <section class="maikire-hero" aria-labelledby="home-title">
           <div class="maikire-hero-shade" aria-hidden="true"></div>
+          <div class="maikire-meteors" aria-hidden="true">
+            <span style="--x: 9%; --y: 8%; --d: 0s; --s: 1;"></span>
+            <span style="--x: 28%; --y: 16%; --d: -2.8s; --s: 0.72;"></span>
+            <span style="--x: 47%; --y: 7%; --d: -5.6s; --s: 0.9;"></span>
+            <span style="--x: 66%; --y: 22%; --d: -8.4s; --s: 0.66;"></span>
+            <span style="--x: 82%; --y: 12%; --d: -11.2s; --s: 0.84;"></span>
+            <span style="--x: 93%; --y: 30%; --d: -14s; --s: 0.58;"></span>
+          </div>
           <div class="maikire-barrage" aria-hidden="true">
             <span style="--row: 12%; --delay: -1s; --duration: 24s;">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</span>
             <span style="--row: 24%; --delay: -12s; --duration: 30s;">(*´▽｀*)</span>
@@ -1152,6 +1163,12 @@
               <span>ʕ •ᴥ•ʔ</span>
               <small>mofu</small>
             </div>
+          </div>
+          <div class="maikire-live-stickers" aria-hidden="true">
+            <span class="live-sticker live-sticker-one">♡</span>
+            <span class="live-sticker live-sticker-two">✦</span>
+            <span class="live-sticker live-sticker-three">♪</span>
+            <span class="live-sticker live-sticker-four">✧</span>
           </div>
           <div class="maikire-petals" aria-hidden="true">
             <span></span><span></span><span></span><span></span><span></span>
@@ -2003,7 +2020,7 @@
   }
 
   function prepareHeroMotion() {
-    const hero = document.querySelector(".api-hero");
+    const hero = document.querySelector(".api-hero, .maikire-hero");
     if (!hero || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     hero.addEventListener("pointermove", (event) => {
@@ -2018,6 +2035,57 @@
       hero.style.removeProperty("--hero-x");
       hero.style.removeProperty("--hero-y");
     });
+  }
+
+  function initCursorFx() {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const finePointer = window.matchMedia("(pointer: fine)").matches;
+    if (reduceMotion || !finePointer) return;
+
+    cursorFxLayer = document.createElement("div");
+    cursorFxLayer.className = "cursor-fx-layer";
+    cursorFxLayer.setAttribute("aria-hidden", "true");
+
+    const cursorFollower = document.createElement("span");
+    cursorFollower.className = "cursor-follower";
+    cursorFxLayer.appendChild(cursorFollower);
+    document.body.appendChild(cursorFxLayer);
+
+    document.addEventListener("pointermove", handleCursorFx, { passive: true });
+    document.addEventListener("pointerleave", () => cursorFxLayer?.classList.remove("is-active"), { passive: true });
+  }
+
+  function handleCursorFx(event) {
+    if (!cursorFxLayer || event.pointerType === "touch") return;
+
+    root.style.setProperty("--cursor-x", `${event.clientX}px`);
+    root.style.setProperty("--cursor-y", `${event.clientY}px`);
+    cursorFxLayer.classList.add("is-active");
+
+    window.clearTimeout(cursorIdleTimer);
+    cursorIdleTimer = window.setTimeout(() => cursorFxLayer?.classList.remove("is-active"), 900);
+
+    const now = performance.now();
+    if (now - lastCursorSpark < 46) return;
+    lastCursorSpark = now;
+    createCursorSpark(event.clientX, event.clientY);
+  }
+
+  function createCursorSpark(x, y) {
+    if (!cursorFxLayer) return;
+    const spark = document.createElement("span");
+    spark.className = "cursor-spark";
+    spark.textContent = ["✦", "♡", "✧", "♪"][Math.floor(Math.random() * 4)];
+    spark.style.left = `${x}px`;
+    spark.style.top = `${y}px`;
+    spark.style.setProperty("--spark-x", `${(Math.random() - 0.5) * 42}px`);
+    spark.style.setProperty("--spark-y", `${-18 - Math.random() * 28}px`);
+    spark.style.setProperty("--spark-rotate", `${(Math.random() - 0.5) * 70}deg`);
+    cursorFxLayer.appendChild(spark);
+
+    const sparks = cursorFxLayer.querySelectorAll(".cursor-spark");
+    if (sparks.length > 26) sparks[0].remove();
+    window.setTimeout(() => spark.remove(), 760);
   }
 
   function updateScrollState() {
@@ -2129,5 +2197,6 @@
   window.addEventListener("scroll", updateScrollState, { passive: true });
 
   initTheme();
+  initCursorFx();
   render();
 })();
