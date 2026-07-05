@@ -2534,7 +2534,7 @@ body::after {
 }
 
 /* ====================================================
-   Hlool-inspired white anime blog redesign
+   Hlool-inspired anime blog redesign
    ==================================================== */
 
 :root {
@@ -2606,7 +2606,7 @@ body {
 }
 
 body::before {
-  content: "BLOG NOTE ARCHIVE READING PROJECT 2026-07-04 WHITE BLOG BEID JOURNAL INDEX TAGS CATEGORIES \A 文章 归档 项目札记 阅读缓存 手账 星标 草稿 时间线 学习 笔记 复盘 书架 链接 \A NOTEBOOK LOGBOOK TIMELINE DRAFTS ESSAYS STUDY CARDS POST LIST TAG CLOUD BLOGROLL \A 今天写一点 明天再整理 把项目讲清楚 把阅读留下来 把问题复盘成文章";
+  content: "BEID KIRAKIRA NYAN MOFU LUCKY STAR HEART MOON RIBBON CLOUD CANDY \A 小站 星星 贴纸 花瓣 朋友 铃铛 甜点 月亮 书架 链接 \A ૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა  (*´▽`*)  (｡•̀ᴗ-)✧  ฅ^•ﻌ•^ฅ  ʕ •ᴥ•ʔ \A welcome beid tiny room soft light happy day";
   position: fixed;
   inset: -24px;
   z-index: 0;
@@ -5442,6 +5442,7 @@ html[data-view="home"] .icon-button {
 
 .maikire-barrage,
 .maikire-float-windows,
+.maikire-pets,
 .maikire-petals {
   position: absolute;
   inset: 0;
@@ -5519,6 +5520,54 @@ html[data-view="home"] .icon-button {
   right: 13%;
   bottom: 25%;
   animation-delay: -4.5s;
+}
+
+.maikire-pet {
+  position: absolute;
+  display: grid;
+  justify-items: center;
+  min-width: 96px;
+  padding: 10px 12px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.5), transparent 42%),
+    rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 16px 34px rgba(15, 15, 35, 0.18);
+  backdrop-filter: blur(14px);
+  animation: maikire-pet-float 6.4s ease-in-out infinite;
+}
+
+.maikire-pet span {
+  font-family: "Space Mono", "Public Sans", sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.1;
+}
+
+.maikire-pet small {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pet-one {
+  left: 13%;
+  bottom: 17%;
+}
+
+.pet-two {
+  right: 24%;
+  top: 31%;
+  animation-delay: -2s;
+}
+
+.pet-three {
+  right: 8%;
+  bottom: 14%;
+  animation-delay: -4.1s;
 }
 
 .maikire-petals span {
@@ -6052,6 +6101,17 @@ html[data-view="home"] .icon-button {
   }
 }
 
+@keyframes maikire-pet-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(2deg);
+  }
+}
+
 @keyframes maikire-petal-fall {
   0% {
     transform: translate3d(0, -12vh, 0) rotate(0deg);
@@ -6169,6 +6229,8 @@ html[data-view="home"] .icon-button {
   .maikire-barrage span:nth-child(n + 4),
   .float-window-two,
   .float-window-three,
+  .pet-two,
+  .pet-three,
   .maikire-petals span:nth-child(n + 7) {
     display: none;
   }
@@ -6179,6 +6241,13 @@ html[data-view="home"] .icon-button {
     bottom: 142px;
     left: auto;
     width: 164px;
+  }
+
+  .pet-one {
+    right: 18px;
+    bottom: 78px;
+    left: auto;
+    min-width: 88px;
   }
 
   .maikire-content {
@@ -6223,6 +6292,7 @@ html[data-view="home"] .icon-button {
 @media (prefers-reduced-motion: reduce) {
   .maikire-barrage span,
   .maikire-float-window,
+  .maikire-pet,
   .maikire-petals span,
   .maikire-content-float span,
   .maikire-category-card::before,

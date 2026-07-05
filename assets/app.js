@@ -1,8 +1,8 @@
 (function () {
   const site = {
     name: "beid",
-    title: "beid 的白色二次元博客",
-    description: "一个白色二次元风格的个人博客，收纳文章、项目、阅读和阶段记录。",
+    title: "beid",
+    description: "beid 的个人博客。",
     author: "beid",
     origin: "https://yihang56666-sketch.github.io",
     github: "https://github.com/Yihang56666-sketch"
@@ -39,15 +39,15 @@
 
   const posts = [
     {
-      title: "白色二次元博客改版手记",
+      title: "博客换装手记",
       slug: "white-anime-blog-redesign",
       date: "2026-07-05",
       updated: "2026-07-05",
       category: "站点手记",
       tags: ["改版", "设计", "博客", "白发少女"],
       cover: covers.softHero,
-      summary: "记录这次切到白毛二次元博客的取舍：封面、动效、内容入口和移动端的阅读节奏。",
-      note: "重点不是把页面堆满，而是让第一屏像一本正在更新的个人杂志。",
+      summary: "这次给博客换上更轻盈的动漫封面：封面、动效、入口和移动端节奏。",
+      note: "重点不是把页面堆满，而是让第一屏更像一个好逛的小站。",
       legacyPaths: ["/posts/white-anime-blog-redesign/"],
       sections: [
         {
@@ -492,7 +492,7 @@
       time: "07/05",
       type: "redesign",
       title: "首页封面升级",
-      body: "白色动漫风格、白发少女动态封面、精选文章和专题入口已经合并到首页。"
+      body: "动漫封面、精选文章和专题入口已经合并到首页。"
     },
     {
       time: "07/04",
@@ -508,7 +508,7 @@
     }
   ];
   const archiveNotes = {
-    "2026-07": "7 月主要在打磨站点封面、首页结构和白色动漫博客的整体气质。",
+    "2026-07": "7 月主要在打磨站点封面、首页结构和整体气质。",
     "2026-06": "6 月把项目复盘和阅读缓存整理成更像长期栏目的一组入口。",
     "2026-05": "5 月关注标签粒度、静态站维护和轻量前端体验。",
     "2026-04": "4 月留下了一些界面调光和动效尺度的视觉实验。"
@@ -519,7 +519,7 @@
     archive: { title: "文章归档", desc: "按时间索引文章和手账，新的记录会自然进入时间线。" },
     projects: { title: "项目札记", desc: "项目复盘、工具实验和自动化系统，都以清爽卡片的方式陈列。" },
     reading: { title: "阅读缓存", desc: "书单、资料和学习路线会被整理成可检索的知识缓存。" },
-    about: { title: "关于 beid", desc: "这里是 beid 的个人博客，偏白色、轻二次元、清爽产品站风格。" },
+    about: { title: "关于 beid", desc: "这里是 beid 的个人博客。" },
     tags: { title: "标签索引", desc: "标签会串起文章、项目和学习记录。" },
     categories: { title: "分类目录", desc: "分类负责把不同主题整理到对应的内容模块。" },
     links: { title: "外部链接", desc: "站点、仓库和公开入口集中放在这里。" },
@@ -1116,27 +1116,41 @@
         <section class="maikire-hero" aria-labelledby="home-title">
           <div class="maikire-hero-shade" aria-hidden="true"></div>
           <div class="maikire-barrage" aria-hidden="true">
-            <span style="--row: 12%; --delay: -1s; --duration: 24s;">白毛控集合中</span>
-            <span style="--row: 24%; --delay: -12s; --duration: 30s;">今天也要写点东西</span>
-            <span style="--row: 37%; --delay: -6s; --duration: 28s;">forget-me-not</span>
-            <span style="--row: 52%; --delay: -18s; --duration: 32s;">阅读缓存 + 项目复盘</span>
-            <span style="--row: 68%; --delay: -9s; --duration: 26s;">欢迎来到 beid Letter</span>
+            <span style="--row: 12%; --delay: -1s; --duration: 24s;">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</span>
+            <span style="--row: 24%; --delay: -12s; --duration: 30s;">(*´▽｀*)</span>
+            <span style="--row: 37%; --delay: -6s; --duration: 28s;">(｡•̀ᴗ-)✧</span>
+            <span style="--row: 52%; --delay: -18s; --duration: 32s;">₍ᐢ.ˬ.ᐢ₎</span>
+            <span style="--row: 68%; --delay: -9s; --duration: 26s;">✧･ﾟ:* ✧･ﾟ:*</span>
           </div>
           <div class="maikire-float-windows" aria-hidden="true">
             <div class="maikire-float-window float-window-one">
-              <span>Now</span>
-              <strong>writing</strong>
-              <small>07/05 redesign</small>
+              <span>mood</span>
+              <strong>(*´▽｀*)</strong>
+              <small>kirakira</small>
             </div>
             <div class="maikire-float-window float-window-two">
-              <span>Theme</span>
-              <strong>white hair</strong>
-              <small>soft anime journal</small>
+              <span>hello</span>
+              <strong>ฅ^•ﻌ•^ฅ</strong>
+              <small>nyan</small>
             </div>
             <div class="maikire-float-window float-window-three">
-              <span>Next</span>
-              <strong>reading cache</strong>
-              <small>notes / projects / archive</small>
+              <span>spark</span>
+              <strong>(｡•̀ᴗ-)✧</strong>
+              <small>lucky</small>
+            </div>
+          </div>
+          <div class="maikire-pets" aria-hidden="true">
+            <div class="maikire-pet pet-one">
+              <span>ฅ^•ﻌ•^ฅ</span>
+              <small>nyan</small>
+            </div>
+            <div class="maikire-pet pet-two">
+              <span>૮₍• ﻌ •₎ა</span>
+              <small>wan</small>
+            </div>
+            <div class="maikire-pet pet-three">
+              <span>ʕ •ᴥ•ʔ</span>
+              <small>mofu</small>
             </div>
           </div>
           <div class="maikire-petals" aria-hidden="true">
@@ -1144,8 +1158,8 @@
             <span></span><span></span><span></span><span></span><span></span>
           </div>
           <div class="maikire-hero-title">
-            <h1 id="home-title">beid Letter</h1>
-            <p>forget-me-not</p>
+            <h1 id="home-title">beid</h1>
+            <p>૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</p>
           </div>
           <button class="maikire-down" type="button" data-action="scroll-blog-home" aria-label="进入博客主页">
             <i data-lucide="chevron-down"></i>
@@ -1158,9 +1172,9 @@
 
         <section class="maikire-content" id="blog-home" aria-label="博客主页">
           <div class="maikire-content-float" aria-hidden="true">
-            <span>new post</span>
-            <span>archive</span>
-            <span>reading</span>
+            <span>♡</span>
+            <span>✦</span>
+            <span>♪</span>
           </div>
           <div class="maikire-main">
             <section class="maikire-section" aria-label="精选分类">
@@ -1246,7 +1260,7 @@
       <section class="maikire-profile">
         <img src="${esc(covers.profile)}" alt="">
         <h2>beid</h2>
-        <p>White Blog</p>
+        <p>૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</p>
         <div class="maikire-profile-stats">
           <span><b>${posts.length}</b>文章</span>
           <span><b>${getAllCategories().length}</b>分类</span>
@@ -1524,11 +1538,11 @@
         </div>
         <div class="about-copy">
           <p class="eyebrow">profile</p>
-          <h2>一个偏白色、轻二次元、重视记录感的个人博客。</h2>
-          <p>这里会继续收纳项目复盘、工程记录、阅读笔记和阶段手账。视觉上保留大留白、干净线框、轻微动效和角色封面，让博客不像模板，也不抢走阅读本身。</p>
+          <h2>欢迎来 beid 的小站玩。</h2>
+          <p>这里放一些文章、项目和喜欢的东西。页面轻一点，可爱一点，打开时心情好一点。</p>
           <div class="intro-actions">
             <a class="pill-button primary" href="${site.github}" target="_blank" rel="noreferrer"><i data-lucide="code-2"></i>GitHub</a>
-            <a class="pill-button" href="#/reading"><i data-lucide="book-open"></i>阅读缓存</a>
+            <a class="pill-button" href="#/archive"><i data-lucide="book-open"></i>文章列表</a>
           </div>
         </div>
       </section>
@@ -1543,11 +1557,11 @@
         </article>
         <article class="plain-panel">
           <h2>视觉原则</h2>
-          <p>白底、清晰文字、少量强调色、白发少女封面动效和稳定的间距。所有动态都服务于气质，不打断阅读。</p>
+          <p>清晰文字、少量强调色、角色封面、可爱贴纸和稳定间距。所有动态都服务于气质，不打断阅读。</p>
         </article>
         <article class="plain-panel">
           <h2>站点规模</h2>
-          <p>${posts.length} 篇文章、${projects.length} 个项目、${readingItems.length} 条阅读、${getAllTags().length} 个标签，后续会继续补真实记录。</p>
+          <p>${posts.length} 篇文章、${projects.length} 个项目、${readingItems.length} 条阅读、${getAllTags().length} 个标签，内容会慢慢补齐。</p>
         </article>
       </section>
     `;
