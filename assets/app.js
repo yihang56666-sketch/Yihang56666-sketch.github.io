@@ -1253,7 +1253,7 @@
           <span><b>${getAllTags().length}</b>标签</span>
         </div>
         <div class="maikire-socials" aria-label="社交链接">
-          <a href="${site.github}" target="_blank" rel="noreferrer" aria-label="GitHub"><i data-lucide="github"></i></a>
+          <a href="${site.github}" target="_blank" rel="noreferrer" aria-label="GitHub"><i data-lucide="code-2"></i></a>
           <a href="#/reading" aria-label="阅读"><i data-lucide="book-heart"></i></a>
           <a href="#/links" aria-label="链接"><i data-lucide="mail"></i></a>
         </div>
@@ -1435,7 +1435,7 @@
               <b>${esc(project.updated)}</b>
             </div>
             <div class="project-detail-actions">
-              ${project.links?.github ? `<a class="pill-button" href="${esc(project.links.github)}" target="_blank" rel="noreferrer"><i data-lucide="github"></i>GitHub</a>` : ""}
+              ${project.links?.github ? `<a class="pill-button" href="${esc(project.links.github)}" target="_blank" rel="noreferrer"><i data-lucide="code-2"></i>GitHub</a>` : ""}
               <span class="crt-badge" style="color:var(--primary);border-color:var(--primary)">${esc(project.status)}</span>
             </div>
             <div class="tag-row" style="margin-top:14px">${tagChips(project.tags)}</div>
@@ -1527,7 +1527,7 @@
           <h2>一个偏白色、轻二次元、重视记录感的个人博客。</h2>
           <p>这里会继续收纳项目复盘、工程记录、阅读笔记和阶段手账。视觉上保留大留白、干净线框、轻微动效和角色封面，让博客不像模板，也不抢走阅读本身。</p>
           <div class="intro-actions">
-            <a class="pill-button primary" href="${site.github}" target="_blank" rel="noreferrer"><i data-lucide="github"></i>GitHub</a>
+            <a class="pill-button primary" href="${site.github}" target="_blank" rel="noreferrer"><i data-lucide="code-2"></i>GitHub</a>
             <a class="pill-button" href="#/reading"><i data-lucide="book-open"></i>阅读缓存</a>
           </div>
         </div>
