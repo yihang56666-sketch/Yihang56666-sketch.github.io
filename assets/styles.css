@@ -5389,7 +5389,7 @@ main {
 /* Maikire-inspired home */
 html[data-view="home"],
 html[data-view="home"] body {
-  background: #f7f7f7;
+  background: #f6f3f7;
 }
 
 html[data-view="home"] body::before,
@@ -5416,9 +5416,13 @@ html[data-view="home"] .top-bar {
   min-height: 68px;
   padding: 0 clamp(18px, 5vw, 70px);
   border: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.26), transparent);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(180deg, rgba(17, 18, 36, 0.38), rgba(17, 18, 36, 0.1) 70%, transparent);
   color: #fff;
-  box-shadow: none;
+  box-shadow: 0 12px 38px rgba(8, 9, 20, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 html[data-view="home"] .brand-mark {
@@ -5462,10 +5466,14 @@ html[data-view="home"] .icon-button {
 }
 
 .maikire-home {
+  position: relative;
   min-height: 100vh;
   max-width: 100vw;
   overflow-x: clip;
-  background: #f7f7f7;
+  background:
+    radial-gradient(circle at 14% 0%, rgba(255, 205, 226, 0.58), transparent 30rem),
+    radial-gradient(circle at 90% 14%, rgba(201, 213, 255, 0.5), transparent 30rem),
+    linear-gradient(180deg, #f7f4f8 0%, #f2eef4 48%, #f8f7f8 100%);
 }
 
 .maikire-hero {
@@ -5474,7 +5482,8 @@ html[data-view="home"] .icon-button {
   overflow: hidden;
   isolation: isolate;
   background:
-    linear-gradient(90deg, rgba(22, 20, 38, 0.72), rgba(22, 20, 38, 0.18) 48%, rgba(22, 20, 38, 0.42)),
+    radial-gradient(circle at 68% 36%, rgba(255, 255, 255, 0.16), transparent 21rem),
+    linear-gradient(90deg, rgba(15, 16, 34, 0.76), rgba(34, 27, 50, 0.2) 48%, rgba(23, 18, 39, 0.48)),
     url("images/anime/white-haired-letter-hero.png") center / cover no-repeat;
 }
 
@@ -5484,15 +5493,20 @@ html[data-view="home"] .icon-button {
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(circle at 72% 42%, rgba(255, 255, 255, 0.18), transparent 24%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(18, 16, 34, 0.36));
+    radial-gradient(circle at 74% 38%, rgba(255, 255, 255, 0.24), transparent 24%),
+    radial-gradient(circle at 18% 16%, rgba(131, 169, 255, 0.18), transparent 22rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(18, 16, 34, 0.42));
   pointer-events: none;
 }
 
 .maikire-hero-shade {
   position: absolute;
   inset: 0;
-  background: rgba(20, 18, 36, 0.16);
+  z-index: 0;
+  background:
+    linear-gradient(180deg, rgba(9, 10, 24, 0.04), rgba(9, 10, 24, 0.26)),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 5px);
+  opacity: 0.76;
   pointer-events: none;
 }
 
@@ -5554,15 +5568,20 @@ html[data-view="home"] .icon-button {
   align-items: center;
   min-height: 32px;
   padding: 0 16px;
-  border: 1px solid rgba(255, 255, 255, 0.34);
+  border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.17), rgba(255, 255, 255, 0.07)),
+    rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.78);
   font-size: 0.9rem;
   font-weight: 750;
   white-space: nowrap;
-  box-shadow: 0 10px 26px rgba(18, 16, 34, 0.18);
+  box-shadow:
+    0 14px 36px rgba(18, 16, 34, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   animation: maikire-barrage-drift var(--duration) linear infinite;
   animation-delay: var(--delay);
 }
@@ -5573,12 +5592,17 @@ html[data-view="home"] .icon-button {
   gap: 3px;
   width: 188px;
   padding: 14px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.36);
   border-radius: 8px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.07));
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.3), transparent 42%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.07));
   color: #fff;
-  box-shadow: 0 18px 44px rgba(10, 12, 24, 0.22);
+  box-shadow:
+    0 22px 52px rgba(10, 12, 24, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   animation: maikire-window-float 7s ease-in-out infinite;
 }
 
@@ -5623,14 +5647,18 @@ html[data-view="home"] .icon-button {
   justify-items: center;
   min-width: 96px;
   padding: 10px 12px 9px;
-  border: 1px solid rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.46);
   border-radius: 16px;
   background:
-    radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.5), transparent 42%),
+    radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.56), transparent 42%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.08)),
     rgba(255, 255, 255, 0.16);
   color: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 16px 34px rgba(15, 15, 35, 0.18);
+  box-shadow:
+    0 18px 40px rgba(15, 15, 35, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   animation: maikire-pet-float 6.4s ease-in-out infinite;
 }
 
@@ -5671,19 +5699,22 @@ html[data-view="home"] .icon-button {
   width: 42px;
   height: 42px;
   place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.56);
   border-radius: 50%;
   background:
-    radial-gradient(circle at 32% 22%, rgba(255, 255, 255, 0.78), transparent 42%),
+    radial-gradient(circle at 32% 22%, rgba(255, 255, 255, 0.82), transparent 42%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.08)),
     rgba(255, 255, 255, 0.15);
   color: rgba(255, 255, 255, 0.96);
   font-size: 1.05rem;
   font-weight: 900;
   box-shadow:
-    0 12px 30px rgba(15, 15, 35, 0.17),
-    0 0 24px rgba(255, 143, 190, 0.22);
+    0 14px 34px rgba(15, 15, 35, 0.18),
+    0 0 24px rgba(255, 143, 190, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34);
   text-shadow: 0 0 12px rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   animation: maikire-live-sticker 6.8s ease-in-out infinite;
 }
 
@@ -5813,7 +5844,8 @@ html[data-view="home"] .icon-button {
   bottom: -84px;
   height: 150px;
   border-radius: 50% 50% 0 0 / 68% 68% 0 0;
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(250, 248, 251, 0.96);
+  box-shadow: 0 -24px 56px rgba(255, 255, 255, 0.12);
 }
 
 .maikire-wave::before {
@@ -5855,8 +5887,10 @@ html[data-view="home"] .icon-button {
   inset: 24px -42px 0;
   z-index: -1;
   background:
-    linear-gradient(rgba(239, 101, 168, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(83, 118, 210, 0.045) 1px, transparent 1px);
+    radial-gradient(circle at 16% 12%, rgba(255, 255, 255, 0.9), transparent 20rem),
+    radial-gradient(circle at 86% 20%, rgba(210, 221, 255, 0.42), transparent 23rem),
+    linear-gradient(rgba(215, 151, 184, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(126, 145, 204, 0.035) 1px, transparent 1px);
   background-size: 42px 42px;
   mask-image: linear-gradient(180deg, transparent, #000 10%, #000 82%, transparent);
   pointer-events: none;
@@ -5878,13 +5912,17 @@ html[data-view="home"] .icon-button {
   min-height: 34px;
   align-items: center;
   padding: 0 14px;
-  border: 1px solid rgba(239, 101, 168, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.72);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.82);
-  color: #dc5f91;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.84), rgba(255, 247, 251, 0.66));
+  color: #cf5d8d;
   font-size: 0.78rem;
   font-weight: 850;
-  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+  box-shadow:
+    0 16px 36px rgba(112, 88, 125, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   animation: maikire-soft-float 6.8s ease-in-out infinite;
 }
 
@@ -5910,22 +5948,23 @@ html[data-view="home"] .icon-button {
   gap: 18px;
   align-items: center;
   margin-bottom: 26px;
-  color: #c7c7c7;
+  color: #b6adba;
   text-align: center;
 }
 
 .maikire-heading span {
   height: 1px;
-  background: #d9d9d9;
+  background: linear-gradient(90deg, transparent, rgba(170, 150, 176, 0.38), transparent);
 }
 
 .maikire-heading h2 {
   margin: 0;
-  color: #c8c8c8;
+  color: #b6adba;
   font-family: "Noto Serif SC", Georgia, serif;
   font-size: clamp(1.8rem, 3vw, 2.6rem);
   font-weight: 800;
   letter-spacing: 0;
+  text-shadow: 0 1px 0 #fff, 0 18px 38px rgba(161, 132, 168, 0.16);
 }
 
 .maikire-category-grid {
@@ -5941,16 +5980,20 @@ html[data-view="home"] .icon-button {
   align-content: center;
   justify-items: center;
   overflow: hidden;
-  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.64);
+  border-radius: 8px;
   color: #fff;
   text-align: center;
   text-decoration: none;
   background:
-    linear-gradient(180deg, rgba(4, 8, 16, 0.22), rgba(4, 8, 16, 0.36)),
+    linear-gradient(180deg, rgba(14, 15, 30, 0.16), rgba(14, 15, 30, 0.42)),
     var(--cover);
   background-position: center;
   background-size: cover;
-  box-shadow: 0 12px 34px rgba(15, 23, 42, 0.12);
+  box-shadow:
+    0 24px 62px rgba(65, 58, 78, 0.16),
+    0 2px 10px rgba(65, 58, 78, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
   transition: transform 220ms ease, box-shadow 220ms ease, filter 220ms ease;
 }
 
@@ -5959,9 +6002,22 @@ html[data-view="home"] .icon-button {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(105deg, transparent 18%, rgba(255, 255, 255, 0.28) 42%, transparent 58%);
+  z-index: 2;
+  background: linear-gradient(105deg, transparent 18%, rgba(255, 255, 255, 0.34) 42%, transparent 58%);
   opacity: 0;
   transform: translateX(-80%);
+  pointer-events: none;
+}
+
+.maikire-category-card::after,
+.maikire-post-cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(circle at 28% 18%, rgba(255, 255, 255, 0.22), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(18, 16, 34, 0.32));
   pointer-events: none;
 }
 
@@ -5970,9 +6026,17 @@ html[data-view="home"] .icon-button {
 }
 
 .maikire-category-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.18);
+  transform: translateY(-5px);
+  box-shadow:
+    0 32px 72px rgba(65, 58, 78, 0.2),
+    0 8px 22px rgba(65, 58, 78, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.58);
   filter: saturate(1.06);
+}
+
+.maikire-category-card > * {
+  position: relative;
+  z-index: 3;
 }
 
 .maikire-category-card span {
@@ -6007,7 +6071,13 @@ html[data-view="home"] .icon-button {
 
 .maikire-search {
   max-width: 340px;
-  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow:
+    0 14px 34px rgba(84, 72, 98, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .maikire-article-list {
@@ -6016,13 +6086,32 @@ html[data-view="home"] .icon-button {
 }
 
 .maikire-post-card {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(280px, 0.42fr) minmax(0, 0.58fr);
   min-height: 230px;
   overflow: hidden;
-  border-radius: 6px;
-  background: #fff;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(250, 246, 250, 0.9)),
+    rgba(255, 255, 255, 0.92);
+  box-shadow:
+    0 22px 56px rgba(86, 72, 100, 0.12),
+    0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.maikire-post-card:hover {
+  border-color: rgba(255, 255, 255, 0.94);
+  box-shadow:
+    0 30px 72px rgba(86, 72, 100, 0.16),
+    0 8px 20px rgba(86, 72, 100, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  transform: translateY(-3px);
 }
 
 .maikire-post-cover {
@@ -6031,10 +6120,11 @@ html[data-view="home"] .icon-button {
   min-height: 230px;
   overflow: hidden;
   background:
-    linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.12)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(16, 14, 31, 0.2)),
     var(--cover);
   background-position: center;
   background-size: cover;
+  filter: saturate(0.96) contrast(1.04);
 }
 
 .maikire-post-card:nth-child(2n) .maikire-post-cover::before {
@@ -6045,18 +6135,24 @@ html[data-view="home"] .icon-button {
   animation: maikire-card-shine 8.4s ease-in-out infinite;
 }
 
+.maikire-post-cover::after {
+  background:
+    radial-gradient(circle at 24% 18%, rgba(255, 255, 255, 0.18), transparent 30%),
+    linear-gradient(180deg, transparent, rgba(15, 13, 29, 0.18));
+}
+
 .maikire-post-body {
   display: grid;
   align-content: center;
   gap: 14px;
-  padding: 30px;
+  padding: 32px;
 }
 
 .maikire-post-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  color: #999;
+  color: #a09aa5;
   font-size: 0.88rem;
 }
 
@@ -6075,14 +6171,15 @@ html[data-view="home"] .icon-button {
 
 .maikire-post-card h3 {
   margin: 0;
-  color: #f05f86;
+  color: #dc5e86;
   font-size: 1.45rem;
   line-height: 1.25;
+  text-shadow: 0 1px 0 #fff;
 }
 
 .maikire-post-card p {
   margin: 0;
-  color: #777;
+  color: #77717d;
 }
 
 .maikire-post-foot {
@@ -6091,7 +6188,7 @@ html[data-view="home"] .icon-button {
   justify-content: space-between;
   gap: 16px;
   margin-top: 12px;
-  color: #9a9a9a;
+  color: #9c96a1;
 }
 
 .maikire-post-foot a {
@@ -6099,11 +6196,24 @@ html[data-view="home"] .icon-button {
   min-height: 44px;
   align-items: center;
   padding: 0 20px;
+  border: 1px solid rgba(255, 255, 255, 0.54);
   border-radius: 999px 999px 8px 999px;
-  background: linear-gradient(135deg, #ef65a8, #f38970);
+  background:
+    linear-gradient(135deg, rgba(255, 129, 181, 0.96), rgba(242, 127, 116, 0.96)),
+    #ef65a8;
   color: #fff;
   font-weight: 750;
-  box-shadow: 0 10px 22px rgba(239, 101, 168, 0.28);
+  box-shadow:
+    0 14px 30px rgba(239, 101, 168, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.38);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.maikire-post-foot a:hover {
+  box-shadow:
+    0 18px 38px rgba(239, 101, 168, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.46);
+  transform: translateY(-2px);
 }
 
 .maikire-sidebar {
@@ -6120,8 +6230,19 @@ html[data-view="home"] .icon-button {
   justify-items: center;
   gap: 14px;
   width: 100%;
-  color: #555;
+  padding: 24px 18px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(255, 248, 252, 0.72)),
+    rgba(255, 255, 255, 0.74);
+  color: #55515c;
   text-align: center;
+  box-shadow:
+    0 22px 56px rgba(86, 72, 100, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
 .maikire-profile img {
@@ -6132,19 +6253,21 @@ html[data-view="home"] .icon-button {
   border: 6px solid #fff;
   border-radius: 999px;
   background: #fff;
-  box-shadow: 0 10px 32px rgba(15, 23, 42, 0.12);
+  box-shadow:
+    0 18px 46px rgba(91, 70, 107, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.88);
   animation: maikire-avatar-breathe 5.2s ease-in-out infinite;
 }
 
 .maikire-profile h2 {
   margin: 6px 0 0;
-  color: #555;
+  color: #4e4a55;
   font-size: 1.3rem;
 }
 
 .maikire-profile p {
   margin: -8px 0 0;
-  color: #8a8a8a;
+  color: #8d8492;
 }
 
 .maikire-profile-stats {
@@ -6157,8 +6280,8 @@ html[data-view="home"] .icon-button {
   display: grid;
   gap: 2px;
   padding: 0 8px;
-  border-right: 1px solid #ddd;
-  color: #777;
+  border-right: 1px solid rgba(174, 158, 182, 0.28);
+  color: #7d7482;
   font-size: 0.86rem;
 }
 
@@ -6167,7 +6290,7 @@ html[data-view="home"] .icon-button {
 }
 
 .maikire-profile-stats b {
-  color: #666;
+  color: #5d5662;
   font-size: 1.55rem;
 }
 
@@ -6177,13 +6300,22 @@ html[data-view="home"] .icon-button {
 }
 
 .maikire-socials a {
-  color: #666;
+  color: #6a6370;
 }
 
 .maikire-side-nav {
   display: grid;
   gap: 8px;
   width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.54);
+  box-shadow:
+    0 18px 42px rgba(86, 72, 100, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .maikire-side-nav a {
@@ -6193,15 +6325,26 @@ html[data-view="home"] .icon-button {
   justify-content: center;
   gap: 10px;
   border-radius: 8px;
-  color: #999;
+  color: #8d8492;
   font-size: 1.12rem;
   font-weight: 760;
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.maikire-side-nav a:hover {
+  background: rgba(255, 255, 255, 0.66);
+  color: #5f5865;
+  transform: translateY(-1px);
 }
 
 .maikire-side-nav a.is-active {
-  background: linear-gradient(135deg, #ef65a8, #f38970);
+  background:
+    linear-gradient(135deg, rgba(255, 129, 181, 0.98), rgba(242, 127, 116, 0.98)),
+    #ef65a8;
   color: #fff;
-  box-shadow: 0 12px 26px rgba(239, 101, 168, 0.28);
+  box-shadow:
+    0 14px 30px rgba(239, 101, 168, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.36);
 }
 
 .maikire-side-nav svg {
