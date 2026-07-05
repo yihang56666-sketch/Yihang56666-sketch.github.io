@@ -11,8 +11,8 @@ Vanilla HTML/CSS/JS static SPA — **no build step, no framework**. Root directo
 | `index.html` | SPA shell, canonical entry |
 | `404.html` | GitHub Pages SPA fallback (hash routing) |
 | `assets/app.js` | **All JS** — SPA router, renderers, theme, animations (883 lines, single IIFE) |
-| `assets/styles.css` | **All CSS** — Cyberpunk/Edgerunners theme (2222 lines) |
-| `assets/images/edgerunners/` | Visual assets |
+| `assets/styles.css` | **All CSS** — soft anime blog theme, motion layers, responsive layouts |
+| `assets/images/anime/` | White-haired anime visual assets |
 
 ## Content model
 

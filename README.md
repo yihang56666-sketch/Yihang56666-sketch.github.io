@@ -4,7 +4,7 @@
 
 ## 站点目标
 
-- 保留博客外壳、夜城视觉、项目页、标签、分类和学习计划入口。
+- 保留博客外壳、项目页、标签、分类和学习计划入口，视觉改为柔和、动态的白毛二次元博客。
 - 版式参考现代文章博客：顶部导航、文章流、侧栏信息、文章目录、版权说明、上一篇/下一篇。
 - 当前内容数据已清空，方便重新写文章和项目复盘。
 - 将内容数据集中到 `assets/app.js`，减少静态页面之间的重复维护。
@@ -49,18 +49,17 @@ http://localhost:3000/archive/
 
 ## 视觉素材
 
-当前二次元 / 夜城风格素材集中在 `assets/images/edgerunners/`，主要来自 Cyberpunk: Edgerunners 官方公开页面资源。个人博客展示时可继续使用；如果后续要做商业化展示或公开分发模板，建议替换成自有授权图片。
+当前白毛二次元风格素材集中在 `assets/images/anime/`，用于首页主视觉、分类拼贴、个人侧栏和文章卡片封面。后续新增图片时优先放在该目录，并同步更新 `assets/app.js` 中的图片变量。
 
 ## 动效与开源库取舍
 
-当前动效主要使用原生 CSS、`IntersectionObserver`、`scroll` 进度和少量 DOM 增强实现。`augmented-ui` 通过 CDN 接入，只用于导航、项目卡、站点现场和文章提示等少量 HUD 面板。
+当前动效主要使用原生 CSS、`IntersectionObserver`、`scroll` 进度和少量 DOM 增强实现。页面包含浮窗、弹幕、漂浮纸片、花瓣、滚动渐入、路由入场、卡片 hover 和移动端导航动效。
 
-已实现的轻交互包括：滚动渐入、路由入场、顶部阅读进度、目录高亮、代码块复制、卡片指针光斑、封面 hover 微动效、HUD 状态条扫描线、文章实验日志终端块，以及 `/` 键快速回到首页搜索。
+已实现的轻交互包括：滚动渐入、路由入场、顶部阅读进度、目录高亮、代码块复制、卡片指针光斑、封面 hover 微动效、浮动玻璃面板、弹幕条和 `/` 键快速回到首页搜索。
 
 当前采用与调研过的开源方向：
 
 - [`augmented-ui`](https://github.com/propjockey/augmented-ui)：已小范围接入，用 `data-augmented-ui` 给关键面板加斜切边框；主题色和尺寸仍由 `assets/styles.css` 控制。
-- [`cyberpunk-css`](https://github.com/alddesign/cyberpunk-css)：可借鉴标题、警示条和装饰线，但整包风格太强，暂不直接覆盖当前博客。
 - [`Open Props`](https://github.com/argyleink/open-props)：适合学习 token 化的阴影、动画曲线和尺寸系统；当前变量已够用，先借鉴思路。
 - [`Lenis`](https://github.com/darkroomengineering/lenis)：适合整站平滑滚动，但个人博客长文阅读不宜过度接管滚动。
 - [`Anime.js`](https://github.com/juliangarnier/anime) / [`Motion One`](https://motion.dev/)：适合复杂编排动画；当前卡片、路由和滚动动效用 CSS 足够。
@@ -84,7 +83,7 @@ http://localhost:3000/archive/
 
 - `assets/app.js`
 - `assets/styles.css`
-- `assets/images/edgerunners/`
+- `assets/images/anime/`
 - `index.html`
 - `404.html`
 - `robots.txt`
