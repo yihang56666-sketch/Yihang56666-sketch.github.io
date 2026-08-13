@@ -102,8 +102,8 @@ test("home cover structure stays and uses distinct new art", async ({ page }) =>
 test("archive uses unique magazine rows", async ({ page }) => {
   await page.goto("/#/archive");
   const rows = page.locator(".magazine-row");
-  await expect(rows).toHaveCount(6);
-  await expect(page.locator(".magazine-cover [data-zoom]")).toHaveCount(6);
+  await expect(rows).toHaveCount(7);
+  await expect(page.locator(".magazine-cover [data-zoom]")).toHaveCount(7);
   const covers = await rows.evaluateAll((nodes) => nodes.map((node) => node.getAttribute("style")));
   expect(new Set(covers).size).toBe(covers.length);
   expect(covers.join(" ")).not.toContain("white-haired-");
@@ -111,7 +111,7 @@ test("archive uses unique magazine rows", async ({ page }) => {
 
 test("inner content pages use the magazine templates", async ({ page }) => {
   await page.goto("/#/projects");
-  await expect(page.locator(".magazine-project")).toHaveCount(1);
+  await expect(page.locator(".magazine-project")).toHaveCount(3);
   await expect(page.locator('a[href="https://github.com/yihang56666-sketch/magent"]').first()).toBeVisible();
 
   await page.goto("/#/reading");

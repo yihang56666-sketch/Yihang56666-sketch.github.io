@@ -74,10 +74,7 @@
         {
           heading: "Read the source",
           paragraphs: [
-            "The complete Skill, routing rubric, role catalog, dispatch contract, workflow patterns, examples, and contract tests are available in the GitHub repository."
-          ],
-          links: [
-            { label: "GitHub repository", href: "https://github.com/yihang56666-sketch/magent" }
+            "The complete Skill, routing rubric, role catalog, dispatch contract, workflow patterns, examples, and contract tests are available at github.com/yihang56666-sketch/magent."
           ]
         }
       ]
