@@ -22,22 +22,24 @@
   const animeImage = (file) => `url('${animePath(file)}')`;
 
   const covers = {
-    writing: animeImage("white-haired-writing.png"),
-    reading: animeImage("white-haired-reading.png"),
-    sketching: animeImage("white-haired-sketching.png"),
-    stargazing: animeImage("white-haired-stargazing.png"),
-    profile: animePath("white-haired-profile.png"),
-    collage: animeImage("white-haired-category-collage.png"),
-    circuits: animeImage("white-haired-writing.png"),
-    water: animeImage("white-haired-stargazing.png"),
-    code: animeImage("white-haired-sketching.png"),
-    robot: animeImage("white-haired-reading.png"),
-    notebook: animeImage("white-haired-sketching.png"),
-    music: animeImage("white-haired-stargazing.png"),
-    books: animeImage("white-haired-reading.png"),
-    hero: animeImage("white-haired-letter-hero.png"),
-    softHero: animeImage("white-haired-letter-hero.png"),
-    softCards: animeImage("white-haired-writing.png")
+    hero: animeImage("hero-letter-desk.png"),
+    profile: animePath("profile-host.png"),
+    catDesign: animeImage("category-editorial.png"),
+    catProjects: animeImage("category-workshop.png"),
+    catReading: animeImage("category-library.png"),
+    catLab: animeImage("category-night-light.png"),
+    postRedesign: animeImage("post-blog-redesign.png"),
+    postStories: animeImage("post-project-stories.png"),
+    postCache: animeImage("post-reading-cache.png"),
+    postTags: animeImage("post-tag-granularity.png"),
+    postChecklist: animeImage("post-spa-checklist.png"),
+    postNight: animeImage("post-night-lighting.png"),
+    projectMagent: animeImage("project-magent-hero.png"),
+    readingDesign: animeImage("reading-design-book.png"),
+    readingUi: animeImage("reading-refactoring-ui.png"),
+    readingNotes: animeImage("reading-smart-notes.png"),
+    readingA11y: animeImage("reading-a11y.png"),
+    about: animePath("about-host-garden.png")
   };
 
   const posts = [
@@ -48,7 +50,7 @@
       updated: "2026-07-05",
       category: "站点手记",
       tags: ["改版", "设计", "博客", "白发少女"],
-      cover: covers.softHero,
+      cover: covers.postRedesign,
       summary: "这次给博客换上更轻盈的动漫封面：封面、动效、入口和移动端节奏。",
       note: "重点不是把页面堆满，而是让第一屏更像一个好逛的小站。",
       legacyPaths: ["/posts/white-anime-blog-redesign/"],
@@ -89,7 +91,7 @@
       updated: "2026-07-02",
       category: "项目复盘",
       tags: ["项目", "复盘", "写作"],
-      cover: covers.sketching,
+      cover: covers.postStories,
       summary: "项目页不只是成果展示，也应该解释动机、约束、关键选择和踩坑后的判断。",
       note: "好的复盘像路线图，能让几个月后的自己快速回到现场。",
       sections: [
@@ -120,7 +122,7 @@
       updated: "2026-06-24",
       category: "阅读笔记",
       tags: ["阅读", "知识管理", "笔记"],
-      cover: covers.reading,
+      cover: covers.postCache,
       summary: "把书单、课程、长文和资料变成可复用的阅读缓存，而不是散落在收藏夹里的链接。",
       note: "阅读页的目标不是炫书单，是帮助自己重新进入一个主题。",
       sections: [
@@ -146,7 +148,7 @@
       updated: "2026-06-08",
       category: "知识管理",
       tags: ["标签", "归档", "知识管理"],
-      cover: covers.stargazing,
+      cover: covers.postTags,
       summary: "标签太细会失控，太粗会失去导航价值。个人博客更适合一组稳定的大标签加少量临时标签。",
       note: "标签不是装饰，它应该帮读者和未来的自己少走两步。",
       sections: [
@@ -172,7 +174,7 @@
       updated: "2026-05-20",
       category: "工程记录",
       tags: ["静态站", "GitHub Pages", "前端", "维护"],
-      cover: covers.writing,
+      cover: covers.postChecklist,
       summary: "没有框架和构建步骤也能做成熟博客，但需要固定一些维护习惯：路由、元信息、无障碍和移动端检查。",
       note: "越轻的架构，越要靠清单守住质量。",
       sections: [
@@ -201,7 +203,7 @@
       updated: "2026-05-01",
       category: "视觉实验",
       tags: ["动效", "视觉", "界面"],
-      cover: covers.stargazing,
+      cover: covers.postNight,
       summary: "浅色页面也可以有层次：用阴影、线框、微弱色块和缓慢动画，而不是把背景染成单一颜色。",
       note: "一切动态都应该让页面更轻，而不是让读者更累。",
       sections: [
@@ -230,7 +232,7 @@
       progress: "72%",
       desc: "用很低的门槛复习对比、重复、对齐和亲密性，适合给博客卡片和排版做体检。",
       tags: ["设计", "排版"],
-      cover: covers.reading
+      cover: covers.readingDesign
     },
     {
       title: "Refactoring UI",
@@ -239,7 +241,7 @@
       progress: "44%",
       desc: "关注细节层级、留白、字体和组件状态，适合配合这次白色博客改版慢慢消化。",
       tags: ["UI", "前端"],
-      cover: covers.sketching
+      cover: covers.readingUi
     },
     {
       title: "How to Take Smart Notes",
@@ -248,7 +250,7 @@
       progress: "58%",
       desc: "把零散阅读转成可连接的笔记，再从笔记长出文章、专题和复盘。",
       tags: ["阅读", "知识管理"],
-      cover: covers.writing
+      cover: covers.readingNotes
     },
     {
       title: "Web 可访问性清单",
@@ -257,30 +259,10 @@
       progress: "持续",
       desc: "检查标题层级、按钮标签、颜色对比、键盘导航和移动端触控区域。",
       tags: ["前端", "维护"],
-      cover: covers.stargazing
+      cover: covers.readingA11y
     }
   ];
 
-  const seriesList = [
-    {
-      title: "博客改版日志",
-      desc: "记录白色动漫博客从视觉到内容结构的每一轮调整。",
-      tag: "改版",
-      cover: covers.writing
-    },
-    {
-      title: "项目复盘方法",
-      desc: "把做过的工具、自动化和实验沉淀成可以重新阅读的故事。",
-      category: "项目复盘",
-      cover: covers.sketching
-    },
-    {
-      title: "阅读与知识库",
-      desc: "把书单、课程、资料和笔记整理成能继续生长的缓存。",
-      tag: "知识管理",
-      cover: covers.reading
-    }
-  ];
 
   const showcaseCategories = [
     {
@@ -288,63 +270,43 @@
       label: "站点手记",
       desc: "改版、封面、动效和长期维护。",
       href: "#/categories/站点手记",
-      cover: covers.writing
+      cover: covers.catDesign
     },
     {
       title: "Project Notes",
       label: "项目复盘",
       desc: "把做过的工具写成可回看的故事。",
       href: "#/categories/项目复盘",
-      cover: covers.sketching
+      cover: covers.catProjects
     },
     {
       title: "Reading Cache",
       label: "阅读笔记",
       desc: "书单、课程和资料的消化入口。",
       href: "#/reading",
-      cover: covers.reading
+      cover: covers.catReading
     },
     {
       title: "Interface Lab",
       label: "视觉实验",
       desc: "浅色层次、动漫图像和交互动效。",
       href: "#/categories/视觉实验",
-      cover: covers.stargazing
+      cover: covers.catLab
     }
   ];
 
-  const editorialNotes = [
-    {
-      title: "本期主线",
-      body: "把站点从“能看”推进到“值得停留”：封面负责气质，栏目负责秩序，文章负责长期价值。"
-    },
-    {
-      title: "正在打磨",
-      body: "首页信息密度、文章封面体系、归档路径和阅读缓存会优先保持一致，避免变成零散贴片。"
-    },
-    {
-      title: "下一篇候选",
-      body: "准备继续写静态博客的维护流程、封面图规则和项目复盘模板。"
-    }
-  ];
 
-  const deskLinks = [
-    { label: "封面故事", href: "#/posts/white-anime-blog-redesign", icon: "newspaper" },
-    { label: "项目复盘", href: "#/categories/项目复盘", icon: "folder-kanban" },
-    { label: "阅读缓存", href: "#/reading", icon: "library" },
-    { label: "标签索引", href: "#/tags", icon: "tags" }
-  ];
   const projects = [
     {
       title: "Codex 多智能体编排框架",
       slug: "codex-multi-agent",
       desc: "一个纯本地运行的 AI 多智能体协作系统，不依赖任何外部 LLM API。通过 26 个领域专家身份库、12 种协作模式和 7 种预定义工作流，将复杂任务自动拆解、路由到最适合的 specialist 智能体，并在 Codex 会话中以手动编排的方式逐个执行、同步、合并产出。",
       tags: ["ai-agents", "orchestration", "codex", "python", "cli"],
-      cover: covers.softCards,
+      cover: covers.projectMagent,
       status: "已发布 · v1.2.0",
       updated: "06/25",
       links: {
-        github: "https://github.com/yihang56666-sketch/yihang56666-sketch.github.io",
+        github: "https://github.com/yihang56666-sketch/magent",
         docs: null
       },
       stats: [
@@ -564,6 +526,12 @@
     return value;
   }
 
+  posts.forEach((post) => {
+    (post.legacyPaths || []).forEach((legacyPath) => {
+      legacyLookup.set(normalizePath(legacyPath), post.slug);
+    });
+  });
+
   function slugify(value) {
     return String(value)
       .toLowerCase()
@@ -626,6 +594,30 @@
     return archiveNotes[month] || `${items.length} 篇记录，继续往前翻会看到当时正在折腾的主题。`;
   }
 
+
+  function coverUrl(cover) {
+    return String(cover || "").replace(/^url\(['"]?/, "").replace(/['"]?\)$/, "");
+  }
+
+  function magazineFrame(cover, alt) {
+    const src = coverUrl(cover);
+    const image = `<img src="${esc(src)}" alt="${esc(alt)}" data-zoom>`;
+    if (prefersReducedMotion()) {
+      return `<div class="magazine-cover">${image}</div>`;
+    }
+    return `
+      <div class="atropos magazine-atropos" data-magazine-tilt>
+        <div class="atropos-scale">
+          <div class="atropos-rotate">
+            <div class="atropos-inner magazine-cover" data-atropos-offset="4">
+              ${image}
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
   function pageHeader(title, desc, eyebrow) {
     return `
       <section class="page-title">
@@ -653,459 +645,6 @@
     `;
   }
 
-  function renderHome() {
-    const query = state.query.trim().toLowerCase();
-    const filtered = posts.filter((post) => {
-      const haystack = `${post.title} ${post.summary} ${post.category} ${post.tags.join(" ")}`.toLowerCase();
-      return haystack.includes(query);
-    });
-    const featured = filtered.slice(0, 6);
-
-    main.innerHTML = `
-      <div class="home-grid">
-        <div>
-          <section class="intro-panel">
-            <div class="intro-copy">
-              <p class="eyebrow">white blog</p>
-              <h1>白色二次元个人博客。</h1>
-              <p>文章、项目、阅读和阶段记录会被整理成一个清爽、可检索的博客书架。</p>
-              <div class="intro-actions">
-                <a class="pill-button primary" href="#/archive"><i data-lucide="book-open"></i>打开归档</a>
-                <a class="pill-button" href="#/projects"><i data-lucide="cpu"></i>项目札记</a>
-                <a class="pill-button" href="#/about"><i data-lucide="user"></i>关于站点</a>
-              </div>
-            </div>
-            <aside class="focus-board">
-              <div>
-                <p class="eyebrow">now writing</p>
-                <h2>新内容槽位</h2>
-                <ul class="journal-list">
-                  <li><time>01</time><span>第一篇新文章。</span></li>
-                  <li><time>02</time><span>第一张项目复盘卡。</span></li>
-                  <li><time>03</time><span>第一条阶段手账。</span></li>
-                </ul>
-              </div>
-              <div class="soft-quote">
-                <span>站点状态</span>
-                <p>当前主题已切换到白色 anime 博客风格，后续内容会继续按模块填充。</p>
-              </div>
-            </aside>
-          </section>
-
-          ${
-            siteUpdates.length
-              ? `<section class="live-dispatch aug-frame" data-augmented-ui="tl-clip br-clip border" aria-label="站点更新">
-                  <div class="dispatch-head">
-                    <p class="eyebrow">live dispatch</p>
-                    <h2>站点现场</h2>
-                  </div>
-                  <div class="dispatch-track">
-                    ${siteUpdates
-                      .map(
-                        (update) => `
-                          <article class="dispatch-item">
-                            <span class="dispatch-dot" aria-hidden="true"></span>
-                            <div>
-                              <div class="dispatch-line">
-                                <time class="dispatch-time">${esc(update.time)}</time>
-                                <span class="dispatch-type">${esc(update.type)}</span>
-                              </div>
-                              <h3>${esc(update.title)}</h3>
-                              <p>${esc(update.body)}</p>
-                            </div>
-                          </article>
-                        `
-                      )
-                      .join("")}
-                  </div>
-                </section>`
-              : ""
-          }
-
-          <div class="section-heading section-heading-search">
-            <div>
-              <h2>最近写下的</h2>
-              <span>${query ? `搜索：${esc(state.query)} · 找到 ${filtered.length} 篇` : "当前没有公开文章"}</span>
-            </div>
-            <div class="section-actions">
-              <label class="search-box home-search">
-                <i data-lucide="search"></i>
-                <input type="search" placeholder="新内容发布后可搜索..." value="${esc(state.query)}" data-search>
-                <span class="kbd-hint">/</span>
-              </label>
-              <a class="pill-button" href="#/archive"><i data-lucide="archive"></i>归档</a>
-            </div>
-          </div>
-          <section class="post-list">
-            ${featured.length ? featured.map(postCard).join("") : '<div class="empty-state">文章书架暂时为空，新的记录会在这里上线。</div>'}
-          </section>
-        </div>
-
-        <aside class="side-stack">
-          <section class="side-panel">
-            <div class="author-line">
-              <span class="avatar avatar-image" aria-hidden="true"></span>
-              <div>
-                <h2>beid</h2>
-                <p>个人博客现在是一套白色知识控制台，先把内容入口全部整理清楚。</p>
-              </div>
-            </div>
-          </section>
-          <section class="side-panel side-note">
-            <h2>最近状态</h2>
-            <p>全站 UI 正在迁移到白色背景、清爽卡片、轻量动效和二次元视觉层。</p>
-            <ul class="mini-list">
-              <li><span>文章</span><strong>待添加</strong></li>
-              <li><span>项目</span><strong>待添加</strong></li>
-              <li><span>手账</span><strong>待添加</strong></li>
-            </ul>
-          </section>
-          <section class="side-panel">
-            <h2>分类</h2>
-            <div class="tag-cloud">${getAllCategories().length ? getAllCategories()
-              .map((category) => `<a class="tag-chip" href="#/categories/${encodeURIComponent(category)}">${esc(category)}</a>`)
-              .join("") : '<span class="tag-chip alt">待添加</span>'}</div>
-          </section>
-          <section class="side-panel">
-            <h2>标签</h2>
-            <div class="tag-cloud">${tagChips(getAllTags(), true)}</div>
-          </section>
-        </aside>
-      </div>
-    `;
-  }
-
-  function renderHomeV2() {
-    const query = state.query.trim().toLowerCase();
-    const filtered = posts.filter((post) => {
-      const haystack = `${post.title} ${post.summary} ${post.category} ${post.tags.join(" ")}`.toLowerCase();
-      return haystack.includes(query);
-    });
-    const leadPost = filtered[0] || posts[0];
-    const recentPosts = (query ? filtered : posts.slice(1)).slice(0, 5);
-    const secondaryPosts = posts.filter((post) => post.slug !== leadPost?.slug).slice(0, 2);
-    const blogUrl = `${site.origin}/#/`;
-    const latestDate = posts[0] ? formatDate(posts[0].date) : "整理中";
-
-    main.innerHTML = `
-      <div class="home-entry">
-        <section class="api-hero mature-hero" aria-labelledby="home-title">
-          <div class="api-hero-topline">
-            <span class="endpoint-dot" aria-hidden="true"></span>
-            <span>白色动漫博客 / 长文 / 项目 / 阅读</span>
-          </div>
-
-          <div class="endpoint-card blog-url-card" data-copy-value="${esc(blogUrl)}">
-            <span class="endpoint-url">${esc(blogUrl)}</span>
-            <button class="copy-endpoint" type="button" data-action="copy-endpoint">
-              <i data-lucide="copy"></i>
-              <span>复制</span>
-            </button>
-          </div>
-
-          <div class="api-hero-brand">
-            <h1 id="home-title">beid Blog</h1>
-            <span class="hero-mark" aria-hidden="true">b</span>
-          </div>
-
-          <div class="api-hero-copy">
-            <p>把文章、项目、阅读和阶段记录，整理成一本持续更新的个人杂志。</p>
-            <div class="intro-actions">
-              <a class="pill-button primary" href="#/" data-action="scroll-blog-home"><i data-lucide="panel-top-open"></i>进入博客主页</a>
-              <a class="pill-button" href="${leadPost ? postHref(leadPost) : "#/archive"}"><i data-lucide="book-open"></i>读封面故事</a>
-            </div>
-            <div class="hero-stats" aria-label="博客统计">
-              <span><b>${posts.length}</b> 篇文章</span>
-              <span><b>${getAllTags().length}</b> 个标签</span>
-              <span><b>${latestDate}</b> 最近更新</span>
-            </div>
-          </div>
-
-          <div class="anime-orbit anime-stage" aria-hidden="true">
-            <span class="orbit-ring"></span>
-            <span class="anime-echo echo-one"></span>
-            <span class="anime-echo echo-two"></span>
-            <span class="orbit-chip chip-one">cover story</span>
-            <span class="orbit-chip chip-two">soft motion</span>
-            <span class="orbit-chip chip-three">notes / reading / projects</span>
-            <div class="anime-card">
-              <img class="anime-girl" src="assets/images/anime/white-haired-letter-hero.png" alt="">
-              <span class="sparkline"></span>
-            </div>
-            <span class="mini-cover mini-cover-one" style="--cover: ${covers.notebook}"></span>
-            <span class="mini-cover mini-cover-two" style="--cover: ${covers.books}"></span>
-            <span class="mini-cover mini-cover-three" style="--cover: ${covers.water}"></span>
-          </div>
-        </section>
-
-        <section class="home-dashboard mature-dashboard" id="blog-home" aria-label="博客主页">
-          <section class="issue-strip" aria-label="本期导读">
-            <div>
-              <span>Vol. 07</span>
-              <strong>White Anime Journal</strong>
-            </div>
-            <p>本期围绕博客改版、项目复盘和阅读缓存，把站点做成一个更有层次的个人知识杂志。</p>
-            <a href="#/archive">查看完整时间线</a>
-          </section>
-          <div class="dashboard-main">
-            ${editorialBoard(leadPost, secondaryPosts)}
-
-            <div class="metric-row api-metrics mature-metrics">
-              <article class="metric">
-                <b>${posts.length}</b>
-                <span>文章</span>
-              </article>
-              <article class="metric">
-                <b>${projects.length}</b>
-                <span>项目</span>
-              </article>
-              <article class="metric">
-                <b>${siteUpdates.length}</b>
-                <span>更新</span>
-              </article>
-              <article class="metric">
-                <b>${readingItems.length}</b>
-                <span>阅读</span>
-              </article>
-            </div>
-
-            ${
-              siteUpdates.length
-                ? `<section class="live-dispatch" aria-label="站点更新">
-                    <div class="dispatch-head">
-                      <p class="eyebrow">updates</p>
-                      <h2>站点动态</h2>
-                    </div>
-                    <div class="dispatch-track">
-                      ${siteUpdates
-                        .map(
-                          (update) => `
-                            <article class="dispatch-item">
-                              <span class="dispatch-dot" aria-hidden="true"></span>
-                              <div>
-                                <div class="dispatch-line">
-                                  <time class="dispatch-time">${esc(update.time)}</time>
-                                  <span class="dispatch-type">${esc(update.type)}</span>
-                                </div>
-                                <h3>${esc(update.title)}</h3>
-                                <p>${esc(update.body)}</p>
-                              </div>
-                            </article>
-                          `
-                        )
-                        .join("")}
-                    </div>
-                  </section>`
-                : ""
-            }
-
-            <section class="month-brief" aria-label="月度摘要">
-              <div class="month-brief-copy">
-                <p class="eyebrow">monthly brief</p>
-                <h2>7 月编辑札记</h2>
-                <p>这一轮目标不是“再好看一点”，而是让博客像真的有人维护：有封面、有栏目、有归档、有阅读路径，也有下一步写作方向。</p>
-              </div>
-              <div class="month-brief-grid">
-                <article>
-                  <span>01</span>
-                  <strong>封面系统</strong>
-                  <p>白发少女舞台、封面卡和扫光动效统一成轻柔的视觉语言。</p>
-                </article>
-                <article>
-                  <span>02</span>
-                  <strong>内容分层</strong>
-                  <p>主编精选、专题书架、栏目墙和最近文章承担不同阅读任务。</p>
-                </article>
-                <article>
-                  <span>03</span>
-                  <strong>长期维护</strong>
-                  <p>文章、项目和阅读缓存继续走结构化数据，方便以后迁移。</p>
-                </article>
-              </div>
-            </section>
-
-            <section class="topic-lanes" aria-label="专题栏目">
-              <div class="section-heading">
-                <div>
-                  <p class="eyebrow">series</p>
-                  <h2>专题书架</h2>
-                </div>
-                <a class="pill-button" href="#/tags"><i data-lucide="tags"></i>标签索引</a>
-              </div>
-              <div class="topic-grid">
-                ${seriesList.map(seriesCard).join("")}
-              </div>
-            </section>
-
-            <section class="column-wall" aria-label="栏目墙">
-              <div class="section-heading">
-                <div>
-                  <p class="eyebrow">columns</p>
-                  <h2>栏目墙</h2>
-                </div>
-                <a class="pill-button" href="#/categories"><i data-lucide="layout-grid"></i>分类目录</a>
-              </div>
-              <div class="column-grid">
-                ${categoryDigestCards()}
-              </div>
-            </section>
-
-            <div class="section-heading section-heading-search">
-              <div>
-                <p class="eyebrow">records</p>
-                <h2>最近写下的</h2>
-                <span>${query ? `搜索：${esc(state.query)} · 找到 ${filtered.length} 篇` : `${posts.length} 篇文章 · ${getAllCategories().length} 个分类`}</span>
-              </div>
-              <div class="section-actions">
-                <label class="search-box home-search">
-                  <i data-lucide="search"></i>
-                  <input type="search" placeholder="搜索文章、项目或标签..." value="${esc(state.query)}" data-search>
-                  <span class="kbd-hint">/</span>
-                </label>
-                <a class="pill-button" href="#/archive"><i data-lucide="archive"></i>归档</a>
-              </div>
-            </div>
-
-            <section class="post-list">
-              ${recentPosts.length ? recentPosts.map(postCard).join("") : '<div class="empty-state">没有匹配的文章，可以换个关键词试试。</div>'}
-            </section>
-          </div>
-
-          <aside class="side-stack">
-            <section class="side-panel">
-              <div class="author-line">
-                <span class="avatar">b</span>
-                <div>
-                  <h2>beid</h2>
-                  <p>把项目、阅读、复盘和日常灵感收进一个清爽的白色动漫博客。</p>
-                </div>
-              </div>
-            </section>
-
-            <section class="side-panel side-note">
-              <h2>写作面板</h2>
-              <ul class="mini-list">
-                <li><span>本月</span><strong>${posts.filter((post) => post.date.startsWith("2026-07")).length} 篇新文</strong></li>
-                <li><span>专题</span><strong>${seriesList.length} 个系列</strong></li>
-                <li><span>书架</span><strong>${readingItems.length} 条阅读</strong></li>
-              </ul>
-            </section>
-
-            <section class="side-panel desk-index">
-              <p class="eyebrow">desk index</p>
-              <h2>本期索引</h2>
-              <div class="desk-link-list">
-                ${deskLinks
-                  .map(
-                    (item) => `
-                      <a class="desk-link" href="${esc(item.href)}">
-                        <i data-lucide="${esc(item.icon)}"></i>
-                        <span>${esc(item.label)}</span>
-                      </a>
-                    `
-                  )
-                  .join("")}
-              </div>
-            </section>
-
-            <section class="side-panel reading-preview">
-              <div class="section-heading">
-                <div>
-                  <p class="eyebrow">reading</p>
-                  <h2>阅读进行中</h2>
-                </div>
-                <a href="#/reading">全部</a>
-              </div>
-              ${readingItems.slice(0, 2).map((item) => readingCard(item, true)).join("")}
-            </section>
-
-            <section class="side-panel">
-              <h2>分类</h2>
-              <div class="tag-cloud">${getAllCategories().length ? getAllCategories()
-                .map((category) => `<a class="tag-chip" href="#/categories/${encodeURIComponent(category)}">${esc(category)}</a>`)
-                .join("") : '<span class="tag-chip alt">待添加</span>'}</div>
-            </section>
-
-            <section class="side-panel">
-              <h2>标签</h2>
-              <div class="tag-cloud">${tagChips(getAllTags(), true)}</div>
-            </section>
-
-            <section class="side-panel editor-note-panel">
-              <p class="eyebrow">editor notes</p>
-              <h2>编辑小记</h2>
-              ${editorialNotes
-                .map(
-                  (note) => `
-                    <article>
-                      <strong>${esc(note.title)}</strong>
-                      <p>${esc(note.body)}</p>
-                    </article>
-                  `
-                )
-                .join("")}
-            </section>
-          </aside>
-        </section>
-      </div>
-    `;
-  }
-
-  function editorialBoard(leadPost, secondaryPosts) {
-    if (!leadPost) return "";
-    return `
-      <section class="editorial-board" aria-label="主编精选">
-        <article class="editorial-lead" style="--cover: ${leadPost.cover}">
-          <a class="editorial-lead-cover" href="${postHref(leadPost)}" aria-label="阅读主编精选：${esc(leadPost.title)}"></a>
-          <div class="editorial-lead-copy">
-            <p class="eyebrow">editor's pick</p>
-            <h2><a href="${postHref(leadPost)}">${esc(leadPost.title)}</a></h2>
-            <p>${esc(leadPost.summary)}</p>
-            <div class="featured-meta">
-              <span>${formatDate(leadPost.date)}</span>
-              <span>${esc(leadPost.category)}</span>
-              <span>${readingTime(leadPost)} 分钟</span>
-            </div>
-            <div class="tag-row">${tagChips(leadPost.tags)}</div>
-          </div>
-        </article>
-        <div class="secondary-stories">
-          ${secondaryPosts
-            .map(
-              (post, index) => `
-                <article class="secondary-story" style="--cover: ${post.cover}">
-                  <a href="${postHref(post)}" aria-label="阅读：${esc(post.title)}"></a>
-                  <span>0${index + 1}</span>
-                  <p class="eyebrow">${esc(post.category)}</p>
-                  <h3>${esc(post.title)}</h3>
-                  <p>${esc(post.note || post.summary)}</p>
-                </article>
-              `
-            )
-            .join("")}
-        </div>
-      </section>
-    `;
-  }
-
-  function categoryDigestCards() {
-    return getAllCategories()
-      .map((category, index) => {
-        const items = posts.filter((post) => post.category === category);
-        const latest = items[0];
-        return `
-          <article class="column-card" style="--cover: ${latest?.cover || covers.hero}">
-            <a href="#/categories/${encodeURIComponent(category)}" aria-label="查看栏目：${esc(category)}"></a>
-            <span>${String(index + 1).padStart(2, "0")}</span>
-            <h3>${esc(category)}</h3>
-            <p>${esc(latest?.note || latest?.summary || "新的栏目记录会继续整理在这里。")}</p>
-            <b>${items.length} 篇</b>
-          </article>
-        `;
-      })
-      .join("");
-  }
-
   function renderHomeMaikire() {
     const query = state.query.trim().toLowerCase();
     const filtered = posts.filter((post) => {
@@ -1126,57 +665,41 @@
             <span style="--x: 82%; --y: 12%; --d: -11.2s; --s: 0.84;"></span>
             <span style="--x: 93%; --y: 30%; --d: -14s; --s: 0.58;"></span>
           </div>
-          <div class="maikire-barrage" aria-hidden="true">
-            <span style="--row: 12%; --delay: -1s; --duration: 24s;">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</span>
-            <span style="--row: 24%; --delay: -12s; --duration: 30s;">(*´▽｀*)</span>
-            <span style="--row: 37%; --delay: -6s; --duration: 28s;">(｡•̀ᴗ-)✧</span>
-            <span style="--row: 52%; --delay: -18s; --duration: 32s;">₍ᐢ.ˬ.ᐢ₎</span>
-            <span style="--row: 68%; --delay: -9s; --duration: 26s;">✧･ﾟ:* ✧･ﾟ:*</span>
-          </div>
           <div class="maikire-float-windows" aria-hidden="true">
             <div class="maikire-float-window float-window-one">
               <span>mood</span>
-              <strong>(*´▽｀*)</strong>
+              <strong><i data-lucide="sparkles"></i></strong>
               <small>kirakira</small>
             </div>
             <div class="maikire-float-window float-window-two">
               <span>hello</span>
-              <strong>ฅ^•ﻌ•^ฅ</strong>
+              <strong><i data-lucide="cat"></i></strong>
               <small>nyan</small>
             </div>
             <div class="maikire-float-window float-window-three">
               <span>spark</span>
-              <strong>(｡•̀ᴗ-)✧</strong>
+              <strong><i data-lucide="wand-sparkles"></i></strong>
               <small>lucky</small>
             </div>
           </div>
-          <div class="maikire-pets" aria-hidden="true">
-            <div class="maikire-pet pet-one">
-              <span>ฅ^•ﻌ•^ฅ</span>
-              <small>nyan</small>
-            </div>
-            <div class="maikire-pet pet-two">
-              <span>૮₍• ﻌ •₎ა</span>
-              <small>wan</small>
-            </div>
-            <div class="maikire-pet pet-three">
-              <span>ʕ •ᴥ•ʔ</span>
-              <small>mofu</small>
-            </div>
-          </div>
           <div class="maikire-live-stickers" aria-hidden="true">
-            <span class="live-sticker live-sticker-one">♡</span>
-            <span class="live-sticker live-sticker-two">✦</span>
-            <span class="live-sticker live-sticker-three">♪</span>
-            <span class="live-sticker live-sticker-four">✧</span>
+            <span class="live-sticker live-sticker-one"><i data-lucide="heart"></i></span>
+            <span class="live-sticker live-sticker-two"><i data-lucide="star"></i></span>
+            <span class="live-sticker live-sticker-three"><i data-lucide="music"></i></span>
+            <span class="live-sticker live-sticker-four"><i data-lucide="sparkle"></i></span>
           </div>
           <div class="maikire-petals" aria-hidden="true">
             <span></span><span></span><span></span><span></span><span></span>
             <span></span><span></span><span></span><span></span><span></span>
           </div>
           <div class="maikire-hero-title">
-            <h1 id="home-title">beid</h1>
-            <p>૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</p>
+            <p class="hero-kicker"><span class="hero-kicker-dot" aria-hidden="true"></span>personal blog · digital garden · est. 2024</p>
+            <h1 id="home-title" data-split-text>beid</h1>
+            <p class="hero-serif-line"><em>code, essays &amp; soft light</em> — 把写作、项目和灵感收进一间白色小屋。</p>
+            <div class="hero-cta-row">
+              <a class="pill-button primary" href="#/archive" data-magnetic><i data-lucide="feather"></i>开始阅读</a>
+              <a class="pill-button" href="#/projects" data-magnetic><i data-lucide="flask-conical"></i>看看项目</a>
+            </div>
           </div>
           <button class="maikire-down" type="button" data-action="scroll-blog-home" aria-label="进入博客主页">
             <i data-lucide="chevron-down"></i>
@@ -1292,41 +815,6 @@
     `;
   }
 
-  function featuredPostCard(post) {
-    if (!post) return "";
-    return `
-      <section class="featured-post" style="--cover: ${post.cover}" aria-label="封面故事">
-        <a class="featured-cover" href="${postHref(post)}" aria-label="阅读封面故事：${esc(post.title)}"></a>
-        <div class="featured-copy">
-          <p class="eyebrow">cover story</p>
-          <h2><a href="${postHref(post)}">${esc(post.title)}</a></h2>
-          <p>${esc(post.summary)}</p>
-          <div class="featured-meta">
-            <span>${formatDate(post.date)}</span>
-            <span>${esc(post.category)}</span>
-            <span>${readingTime(post)} 分钟</span>
-          </div>
-          <div class="tag-row">${tagChips(post.tags)}</div>
-        </div>
-      </section>
-    `;
-  }
-
-  function seriesCard(item) {
-    const count = item.tag
-      ? posts.filter((post) => post.tags.includes(item.tag)).length
-      : posts.filter((post) => post.category === item.category).length;
-    const href = item.tag ? `#/tags/${encodeURIComponent(item.tag)}` : `#/categories/${encodeURIComponent(item.category)}`;
-    return `
-      <article class="topic-card" style="--cover: ${item.cover}">
-        <a href="${href}" aria-label="打开专题：${esc(item.title)}"></a>
-        <span>${count} 篇</span>
-        <h3>${esc(item.title)}</h3>
-        <p>${esc(item.desc)}</p>
-      </article>
-    `;
-  }
-
   function readingCard(item, compact = false) {
     const progressValue = Number.parseFloat(item.progress);
     const progress = Number.isFinite(progressValue) ? `${Math.min(100, Math.max(0, progressValue))}%` : "100%";
@@ -1345,25 +833,6 @@
             <b>${esc(item.progress)}</b>
           </div>
           <div class="tag-row">${tagChips(item.tags)}</div>
-        </div>
-      </article>
-    `;
-  }
-
-  function postCard(post) {
-    return `
-      <article class="post-card">
-        <a class="post-visual" style="--cover: ${post.cover}" href="${postHref(post)}" aria-label="阅读：${esc(post.title)}"></a>
-        <div>
-          <div class="post-kicker">${formatDate(post.date)} · ${esc(post.category)}</div>
-          <h3><a href="${postHref(post)}">${esc(post.title)}</a></h3>
-          <p>${esc(post.summary)}</p>
-          <p class="post-note">${esc(post.note || "")}</p>
-          <div class="post-meta">
-            <span>${readingTime(post)} 分钟</span>
-            <a href="${postHref(post)}">阅读全文</a>
-          </div>
-          <div class="tag-row">${tagChips(post.tags)}</div>
         </div>
       </article>
     `;
@@ -1391,7 +860,7 @@
 
     main.innerHTML = `
       ${pageHeader(title, desc, eyebrow)}
-      <section class="archive-list">
+      <section class="magazine-list">
         ${list.length
           ? archiveGroups(list)
               .map(
@@ -1401,14 +870,16 @@
                     <p class="archive-month-note">${esc(archiveMonthNote(month, items))}</p>
                     ${items
                       .map(
-                        (post) => `
-                          <article class="archive-row">
-                            <time datetime="${esc(post.date)}">${post.date.slice(5).replace("-", "/")}</time>
-                            <div>
+                        (post, index) => `
+                          <article class="magazine-row ${index % 2 ? "is-flipped" : ""}" style="--cover: ${post.cover}">
+                            ${magazineFrame(post.cover, post.title)}
+                            <div class="magazine-copy">
+                              <time datetime="${esc(post.date)}">${post.date.slice(5).replace("-", "/")}</time>
+                              <p class="eyebrow">${esc(post.category)}</p>
                               <h3><a href="${postHref(post)}">${esc(post.title)}</a></h3>
                               <p>${esc(post.note || post.summary)}</p>
+                              <span>${readingTime(post)} 分钟</span>
                             </div>
-                            <span>${esc(post.category)} · ${readingTime(post)} 分钟</span>
                           </article>
                         `
                       )
@@ -1426,12 +897,12 @@
     main.innerHTML = `
       ${pageHeader(pages.projects.title, pages.projects.desc, "projects")}
       ${projects.length
-        ? `<section class="project-grid">${projects
+        ? `<section class="magazine-list">${projects
             .map(
-              (project) => `
-                <article class="project-card aug-frame" data-augmented-ui="tl-clip br-clip border" style="--cover: ${project.cover}">
-                  <a class="project-cover" href="#/projects/${project.slug}" aria-label="查看项目：${esc(project.title)}"></a>
-                  <div class="project-content">
+              (project, index) => `
+                <article class="magazine-project ${index % 2 ? "is-flipped" : ""}">
+                  ${magazineFrame(project.cover, project.title)}
+                  <div class="magazine-copy">
                     <p class="eyebrow">${esc(project.tags[0])}</p>
                     <h2><a href="#/projects/${project.slug}">${esc(project.title)}</a></h2>
                     <p>${esc(project.desc)}</p>
@@ -1441,6 +912,7 @@
                       <small>最近更新 ${esc(project.updated)}</small>
                     </div>
                     <div class="tag-row">${tagChips(project.tags)}</div>
+                    ${project.links?.github ? `<a class="pill-button" href="${esc(project.links.github)}" target="_blank" rel="noreferrer"><i data-lucide="code-2"></i>GitHub</a>` : ""}
                   </div>
                 </article>
               `
@@ -1539,8 +1011,25 @@
           </div>
           <a class="pill-button" href="#/archive"><i data-lucide="pen-line"></i>看相关文章</a>
         </div>
-        <div class="reading-grid reading-grid-pro">
-          ${readingItems.map((item) => readingCard(item)).join("")}
+        <div class="shelf-grid">
+          ${readingItems.map((item) => `
+            <article class="shelf-card">
+              ${magazineFrame(item.cover, item.title)}
+              <div class="magazine-copy">
+                <div class="reading-card-top">
+                  <span>${esc(item.topic)}</span>
+                  <strong>${esc(item.status)}</strong>
+                </div>
+                <h3>${esc(item.title)}</h3>
+                <p>${esc(item.desc)}</p>
+                <div class="reading-progress shelf-progress" style="--progress: ${Number.parseFloat(item.progress) || 100}%">
+                  <span></span>
+                  <b>${esc(item.progress)}</b>
+                </div>
+                <div class="tag-row">${tagChips(item.tags)}</div>
+              </div>
+            </article>
+          `).join("")}
         </div>
       </section>
     `;
@@ -1549,34 +1038,32 @@
   function renderAbout() {
     main.innerHTML = `
       ${pageHeader(pages.about.title, pages.about.desc, "about")}
-      <section class="about-profile">
-        <div class="about-anime" aria-hidden="true">
-          <img src="assets/images/anime/white-haired-letter-hero.png" alt="">
-        </div>
-        <div class="about-copy">
-          <p class="eyebrow">profile</p>
-          <h2>欢迎来 beid 的小站玩。</h2>
-          <p>这里放一些文章、项目和喜欢的东西。页面轻一点，可爱一点，打开时心情好一点。</p>
+      <section class="about-hero">
+        <img src="${esc(covers.about)}" alt="" data-zoom>
+        <div>
+          <p class="eyebrow">about</p>
+          <h1>关于 beid</h1>
+          <p>这里是 beid 的个人博客。页面轻一点，打开时心情好一点。</p>
           <div class="intro-actions">
             <a class="pill-button primary" href="${site.github}" target="_blank" rel="noreferrer"><i data-lucide="code-2"></i>GitHub</a>
             <a class="pill-button" href="#/archive"><i data-lucide="book-open"></i>文章列表</a>
           </div>
         </div>
       </section>
-      <section class="plain-grid about-grid">
-        <article class="plain-panel">
+      <section class="about-notes">
+        <article class="about-note-card">
           <h2>写什么</h2>
           <p>项目是做过的东西，文章是当时的判断，阅读是还在消化的材料。它们会互相链接，慢慢长成自己的资料库。</p>
         </article>
-        <article class="plain-panel">
+        <article class="about-note-card">
           <h2>怎么维护</h2>
           <p>目前依旧是无构建的静态 SPA，内容集中在 assets/app.js，样式集中在 assets/styles.css，方便直接部署到 GitHub Pages。</p>
         </article>
-        <article class="plain-panel">
+        <article class="about-note-card">
           <h2>视觉原则</h2>
-          <p>清晰文字、少量强调色、角色封面、可爱贴纸和稳定间距。所有动态都服务于气质，不打断阅读。</p>
+          <p>清晰文字、少量强调色、独立角色封面和稳定间距。所有动态都服务于气质，不打断阅读。</p>
         </article>
-        <article class="plain-panel">
+        <article class="about-note-card">
           <h2>站点规模</h2>
           <p>${posts.length} 篇文章、${projects.length} 个项目、${readingItems.length} 条阅读、${getAllTags().length} 个标签，内容会慢慢补齐。</p>
         </article>
@@ -1734,15 +1221,17 @@
 
         <div>
           <div class="article-main">
-            <header class="article-hero" style="--cover: ${post.cover}">
-              <p class="eyebrow">${esc(post.category)}</p>
-              <h1 class="article-title">${esc(post.title)}</h1>
-              <div class="inline-meta">
-                <span>${formatDate(post.date)}</span>
-                <span>${readingTime(post)} 分钟阅读</span>
-                <span>${post.tags.length} 个标签</span>
+            <header class="article-hero magazine-article-hero">
+              ${magazineFrame(post.cover, post.title)}
+              <div class="magazine-copy">
+                <p class="eyebrow">${esc(post.category)}</p>
+                <h1 class="article-title">${esc(post.title)}</h1>
+                <div class="inline-meta">
+                  <span>${formatDate(post.date)}</span>
+                  <span>${readingTime(post)} 分钟阅读</span>
+                </div>
+                <p class="article-note">${esc(post.note || "")}</p>
               </div>
-              <p class="article-note aug-frame" data-augmented-ui="tl-clip br-clip border">${esc(post.note || "")}</p>
             </header>
             ${renderLabLog(post)}
             <div class="article-body">
@@ -1755,8 +1244,8 @@
             </div>
           </div>
           <nav class="post-nav" aria-label="上一篇和下一篇">
-            ${older ? `<a href="${postHref(older)}"><small>上一篇</small><strong>${esc(older.title)}</strong></a>` : `<a href="#/archive"><small>返回</small><strong>文章归档</strong></a>`}
-            ${newer ? `<a href="${postHref(newer)}"><small>下一篇</small><strong>${esc(newer.title)}</strong></a>` : `<a href="#/projects"><small>继续看</small><strong>做过的东西</strong></a>`}
+            ${older ? `<a href="${postHref(older)}"><img src="${esc(coverUrl(older.cover))}" alt=""><small>上一篇</small><strong>${esc(older.title)}</strong></a>` : `<a href="#/archive"><small>返回</small><strong>文章归档</strong></a>`}
+            ${newer ? `<a href="${postHref(newer)}"><img src="${esc(coverUrl(newer.cover))}" alt=""><small>下一篇</small><strong>${esc(newer.title)}</strong></a>` : `<a href="#/projects"><small>继续看</small><strong>做过的东西</strong></a>`}
           </nav>
         </div>
 
@@ -1770,7 +1259,7 @@
 
   function renderNotFound() {
     main.innerHTML = `
-      ${pageHeader("页面没有找到", "这篇内容暂时不在书架上，可以回到首页或查看已有栏目。", "404")}
+      ${pageHeader("找不到这页", "这篇内容暂时不在书架上，可以回到首页或查看已有栏目。", "404")}
       <section class="plain-grid">
         <article class="plain-panel"><h2>最近文章</h2><p>文章书架暂时没有公开内容。</p></article>
         <article class="plain-panel"><h2>快速入口</h2><div class="tag-cloud"><a class="tag-chip" href="#/archive">归档</a><a class="tag-chip" href="#/tags">标签</a><a class="tag-chip" href="#/categories">分类</a></div></article>
@@ -1779,15 +1268,20 @@
   }
 
   function parseRoute() {
-    const hash = decodeURIComponent(location.hash.replace(/^#\/?/, ""));
+    let hash = location.hash.replace(/^#\/?/, "");
+    try {
+      hash = decodeURIComponent(hash);
+    } catch {
+      return { view: "notFound" };
+    }
     if (hash) {
       const parts = hash.split("/").filter(Boolean);
       if (!parts.length) return { view: "home" };
-      if (parts[0] === "posts") return { view: "post", slug: parts[1] };
-      if (parts[0] === "tags" && parts[1]) return { view: "tag", tag: parts[1] };
-      if (parts[0] === "categories" && parts[1]) return { view: "category", category: parts[1] };
-      if (parts[0] === "projects" && parts[1]) return { view: "project", slug: parts[1] };
-      return { view: parts[0] };
+        if (parts[0] === "posts" && parts[1]) return { view: "post", slug: parts[1] };
+        if (parts[0] === "tags" && parts[1]) return { view: "tag", tag: parts[1] };
+        if (parts[0] === "categories" && parts[1]) return { view: "category", category: parts[1] };
+        if (parts[0] === "projects" && parts[1]) return { view: "project", slug: parts[1] };
+        return pages[parts[0]] ? { view: parts[0] } : { view: "notFound" };
     }
 
     const path = normalizePath(location.pathname);
@@ -1807,33 +1301,39 @@
   }
 
   function setMeta(route) {
-    const post = route.view === "post" ? posts.find((item) => item.slug === route.slug) : null;
-    const project = route.view === "project" ? projects.find((item) => item.slug === route.slug) : null;
+      const post = route.view === "post" ? posts.find((item) => item.slug === route.slug) : null;
+      const project = route.view === "project" ? projects.find((item) => item.slug === route.slug) : null;
+      const notFound = route.view === "notFound" || (route.view === "post" && !post) || (route.view === "project" && !project);
     const routeMeta =
       route.view === "tag"
         ? { title: `标签：${route.tag} | ${site.name}`, desc: `查看 ${site.name} 中使用“${route.tag}”标签的文章。`, path: `tags/${encodeURIComponent(route.tag)}` }
         : route.view === "category"
           ? { title: `分类：${route.category} | ${site.name}`, desc: `查看 ${site.name} 中归入“${route.category}”分类的文章。`, path: `categories/${encodeURIComponent(route.category)}` }
           : null;
-    const page = routeMeta || pages[route.view] || pages.home;
+      const page = notFound ? { title: "找不到这页 | beid", desc: "这篇内容暂时不在书架上。" } : routeMeta || pages[route.view] || pages.home;
     const title = post ? `${post.title} | ${site.name}` : project ? `${project.title} | ${site.name}` : page.title;
     const desc = post ? post.summary : project ? project.desc : page.desc;
-    const canonical = post
-      ? `${site.origin}/#/posts/${post.slug}`
-      : project
-        ? `${site.origin}/#/projects/${project.slug}`
-      : `${site.origin}/#/${route.view === "home" ? "" : page.path || route.view}`;
+      const canonical = notFound
+        ? site.origin
+        : post
+        ? `${site.origin}/#/posts/${post.slug}`
+        : project
+          ? `${site.origin}/#/projects/${project.slug}`
+        : `${site.origin}/#/${route.view === "home" ? "" : page.path || route.view}`;
+      const socialImage = `${site.origin}/assets/images/anime/hero-letter-desk.png`;
 
     document.title = title;
     upsertMeta("description", desc);
     upsertMeta("author", site.author);
-    upsertMeta("robots", route.view === "notFound" ? "noindex,follow" : "index,follow");
+      upsertMeta("robots", notFound ? "noindex,follow" : "index,follow");
     upsertMetaProperty("og:type", post ? "article" : "website");
     upsertMetaProperty("og:title", title);
-    upsertMetaProperty("og:description", desc);
-    upsertMetaProperty("og:url", canonical);
-    upsertMetaProperty("og:site_name", site.name);
-    upsertLink("canonical", canonical);
+      upsertMetaProperty("og:description", desc);
+      upsertMetaProperty("og:url", canonical);
+      upsertMetaProperty("og:site_name", site.name);
+      upsertMetaProperty("og:image", socialImage);
+      upsertMeta("theme-color", root.classList.contains("dark") ? "#0f172a" : "#f6f3f7");
+      upsertLink("canonical", canonical);
     upsertJsonLd(post);
   }
 
@@ -1882,10 +1382,11 @@
           headline: post.title,
           description: post.summary,
           datePublished: post.date,
-          dateModified: post.updated,
-          author: { "@type": "Person", name: site.author },
-          mainEntityOfPage: `${site.origin}/#/posts/${post.slug}`,
-          keywords: post.tags.join(",")
+            dateModified: post.updated,
+            author: { "@type": "Person", name: site.author },
+            mainEntityOfPage: `${site.origin}/#/posts/${post.slug}`,
+            keywords: post.tags.join(","),
+            image: `${site.origin}/assets/images/anime/hero-letter-desk.png`
         }
       : {
           "@context": "https://schema.org",
@@ -1897,29 +1398,66 @@
     node.textContent = JSON.stringify(data);
   }
 
+
+  const motion = {
+    lenis: null,
+    tilts: [],
+    zoom: null
+  };
+
+  function prefersReducedMotion() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
+  function destroyMotionEnhancements() {
+    motion.tilts.splice(0).forEach((tilt) => tilt.destroy?.());
+    motion.zoom?.detach();
+    motion.zoom = null;
+  }
+
+  function initLenis() {
+    if (prefersReducedMotion() || !window.Lenis || motion.lenis) return;
+    motion.lenis = new window.Lenis({ autoRaf: true });
+    motion.lenis.on("scroll", updateScrollState);
+  }
+
+  function initMotionEnhancements() {
+    destroyMotionEnhancements();
+    if (prefersReducedMotion()) return;
+    initLenis();
+    document.querySelectorAll("[data-magazine-tilt]").forEach((node) => {
+      if (!window.Atropos) return;
+      try {
+        motion.tilts.push(window.Atropos(node, { activeOffset: 28, rotateXMax: 9, rotateYMax: 9 }));
+      } catch {
+        // Atropos is decorative; keep the page readable if the CDN module fails.
+      }
+    });
+    if (window.mediumZoom) {
+      motion.zoom = window.mediumZoom("[data-zoom]", {
+        background: "rgba(247, 248, 251, 0.92)",
+        margin: 24
+      });
+    }
+  }
+
   function afterRender(route) {
     root.dataset.view = route.view;
-    setActiveNav(route);
-    setMeta(route);
-    nav?.classList.remove("is-open");
+      setActiveNav(route);
+      setMeta(route);
+      syncNavState(false);
     prepareMotion();
     prepareRouteMotion();
     prepareArticleTools(route);
     updateScrollState();
     prepareHeroMotion();
+    initMotionEnhancements();
 
-    const search = document.querySelector("[data-search]");
-    if (search) {
-      search.addEventListener("input", (event) => {
-        state.query = event.target.value;
-        renderHomeMaikire();
-        afterRender({ view: "home" });
-      });
-    }
 
-    if (window.lucide) {
-      window.lucide.createIcons();
-    }
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+      syncThemeControl();
   }
 
   function prepareMotion() {
@@ -1931,7 +1469,7 @@
     }
 
     const targets = main?.querySelectorAll(
-      ".maikire-hero-title, .maikire-section, .maikire-category-card, .maikire-post-card, .maikire-profile, .maikire-side-nav, .issue-strip, .api-hero, .endpoint-card, .editorial-board, .editorial-lead, .secondary-story, .month-brief, .topic-card, .column-card, .reading-card, .index-card, .about-profile, .metric, .live-dispatch, .dispatch-item, .post-card, .side-panel, .desk-link, .page-title, .archive-group, .archive-row, .project-card, .reading-item, .plain-panel, .article-main, .article-meta-rail, .toc-panel, .terminal-log, .license-box, .post-nav"
+      ".maikire-hero-title, .maikire-section, .maikire-category-card, .maikire-post-card, .maikire-profile, .maikire-side-nav, .issue-strip, .api-hero, .endpoint-card, .editorial-board, .editorial-lead, .secondary-story, .month-brief, .topic-card, .column-card, .reading-card, .index-card, .about-profile, .metric, .live-dispatch, .dispatch-item, .post-card, .side-panel, .desk-link, .page-title, .archive-group, .archive-row, .project-card, .reading-item, .plain-panel, .article-main, .article-meta-rail, .toc-panel, .terminal-log, .license-box, .post-nav, .magazine-row, .magazine-project, .shelf-card, .about-hero, .about-note-card, .magazine-article-hero"
     );
 
     targets?.forEach((node, index) => {
@@ -2109,24 +1647,59 @@
     else renderNotFound();
 
     afterRender(route);
-    window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+    if (motion.lenis) motion.lenis.scrollTo(0, { immediate: true });
+    else window.scrollTo({ top: 0, behavior: "auto" });
+  }
+
+  function readThemePreference() {
+    try {
+      return localStorage.getItem("beid-theme");
+    } catch {
+      return null;
+    }
+  }
+
+  function writeThemePreference(value) {
+    try {
+      localStorage.setItem("beid-theme", value);
+    } catch {
+      // Theme preference is optional; the current session still updates.
+    }
+  }
+
+  function syncThemeControl() {
+    const button = document.querySelector("[data-action='toggle-theme']");
+    if (!button) return;
+    const dark = root.classList.contains("dark");
+    button.setAttribute("aria-pressed", String(dark));
+    button.setAttribute("aria-label", dark ? "切换到浅色主题" : "切换到深色主题");
+    const icon = button.querySelector("[data-lucide]");
+    if (icon) icon.setAttribute("data-lucide", dark ? "sun" : "moon");
+    window.lucide?.createIcons();
+  }
+
+  function syncNavState(open) {
+    const isOpen = Boolean(open);
+    nav?.classList.toggle("is-open", isOpen);
+    document.querySelector("[data-action='toggle-nav']")?.setAttribute("aria-expanded", String(isOpen));
   }
 
   function initTheme() {
-    const saved = localStorage.getItem("beid-theme");
-    if (saved === "dark") {
+    const saved = readThemePreference();
+    if (saved === "dark" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
       root.classList.add("dark");
     }
   }
 
   document.addEventListener("click", (event) => {
+    if (event.target.closest(".nav-links a")) syncNavState(false);
     const action = event.target.closest("[data-action]")?.dataset.action;
     if (!action) return;
 
     if (action === "toggle-theme") {
       root.classList.toggle("dark");
-      localStorage.setItem("beid-theme", root.classList.contains("dark") ? "dark" : "light");
-      if (window.lucide) window.lucide.createIcons();
+      writeThemePreference(root.classList.contains("dark") ? "dark" : "light");
+      syncThemeControl();
     }
 
     if (action === "copy-endpoint") {
@@ -2159,11 +1732,12 @@
     }
 
     if (action === "toggle-nav") {
-      nav?.classList.toggle("is-open");
+      syncNavState(!nav?.classList.contains("is-open"));
     }
 
     if (action === "back-top") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (motion.lenis) motion.lenis.scrollTo(0);
+      else window.scrollTo({ top: 0, behavior: "smooth" });
     }
   });
 
@@ -2192,6 +1766,22 @@
     focusSearch();
   });
 
+  document.addEventListener("input", (event) => {
+    if (!event.target.matches("[data-search]")) return;
+    state.query = event.target.value;
+    renderHomeMaikire();
+    afterRender({ view: "home" });
+    const next = document.querySelector("[data-search]");
+    if (next && next !== event.target) {
+      next.focus();
+      next.setSelectionRange(next.value.length, next.value.length);
+    }
+  });
+
+  window.addEventListener("motion-libs-ready", () => {
+    initLenis();
+    initMotionEnhancements();
+  });
   window.addEventListener("hashchange", render);
   window.addEventListener("popstate", render);
   window.addEventListener("scroll", updateScrollState, { passive: true });

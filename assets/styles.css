@@ -1,109 +1,3 @@
-:root {
-  color-scheme: dark;
-  --bg: #070a12;
-  --bg-strong: #101625;
-  --card: rgba(9, 13, 23, 0.72);
-  --card-solid: #111827;
-  --ink: #f6fbff;
-  --muted: #b5c2d4;
-  --soft: #7e8da5;
-  --line: rgba(0, 240, 255, 0.22);
-  --primary: #00f0ff;
-  --primary-soft: rgba(0, 240, 255, 0.12);
-  --accent: #ff2a6d;
-  --accent-soft: rgba(255, 42, 109, 0.14);
-  --gold: #ffd400;
-  --violet: #8c5cff;
-  --shadow: 0 24px 70px rgba(0, 0, 0, 0.44);
-  --shadow-soft: 0 12px 34px rgba(0, 0, 0, 0.32);
-  --radius: 8px;
-  --page: 1260px;
-  --reading: 780px;
-  --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "Microsoft YaHei", sans-serif;
-  --mono: "Space Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  --display: "Orbitron", sans-serif;
-  --hero-image: url("images/anime/white-haired-letter-hero.png");
-}
-
-:root.dark {
-  color-scheme: dark;
-  --bg: #04050a;
-  --bg-strong: #0b1020;
-  --card: rgba(5, 8, 15, 0.78);
-  --card-solid: #0d1322;
-  --ink: #f8fbff;
-  --muted: #c3cce0;
-  --soft: #8c98ad;
-  --line: rgba(255, 212, 0, 0.22);
-  --primary: #ffd400;
-  --primary-soft: rgba(255, 212, 0, 0.13);
-  --accent: #00f0ff;
-  --accent-soft: rgba(0, 240, 255, 0.12);
-  --gold: #ff2a6d;
-  --violet: #8c5cff;
-  --shadow: 0 24px 76px rgba(0, 0, 0, 0.5);
-  --shadow-soft: 0 12px 36px rgba(0, 0, 0, 0.34);
-  --hero-image: url("images/anime/white-haired-letter-hero.png");
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  min-width: 320px;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-  text-size-adjust: 100%;
-}
-
-body {
-  overflow-x: hidden;
-  min-height: 100vh;
-  margin: 0;
-  background:
-    radial-gradient(circle at 12% 6%, rgba(0, 240, 255, 0.2), transparent 25rem),
-    radial-gradient(circle at 92% 14%, rgba(255, 42, 109, 0.22), transparent 24rem),
-    radial-gradient(circle at 52% 100%, rgba(255, 212, 0, 0.12), transparent 28rem),
-    linear-gradient(180deg, rgba(7, 10, 18, 0.22), transparent 28rem),
-    var(--bg);
-  color: var(--ink);
-  font-family: var(--font);
-  line-height: 1.72;
-  letter-spacing: 0;
-  overflow-wrap: break-word;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  background-image: var(--hero-image);
-  background-position: center top;
-  background-size: cover;
-  opacity: 0.38;
-  filter: saturate(1.2) contrast(1.08);
-}
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background:
-    linear-gradient(90deg, rgba(7, 10, 18, 0.94), rgba(7, 10, 18, 0.68) 48%, rgba(7, 10, 18, 0.94)),
-    linear-gradient(180deg, rgba(7, 10, 18, 0.28), rgba(7, 10, 18, 0.92) 34%, var(--bg)),
-    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 4px);
-  pointer-events: none;
-}
-
-:root.dark body::after {
-  background:
-    linear-gradient(90deg, rgba(4, 5, 10, 0.96), rgba(4, 5, 10, 0.66) 48%, rgba(4, 5, 10, 0.96)),
-    linear-gradient(180deg, rgba(4, 5, 10, 0.24), rgba(4, 5, 10, 0.92) 34%, var(--bg)),
-    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.02) 0 1px, transparent 1px 4px);
-}
 
 .cursor-fx-layer {
   position: fixed;
@@ -429,7 +323,8 @@ main.is-route-ready {
   background:
     linear-gradient(90deg, rgba(6, 8, 16, 0.92), rgba(6, 8, 16, 0.68) 58%, rgba(6, 8, 16, 0.22)),
     linear-gradient(180deg, transparent, rgba(6, 8, 16, 0.82)),
-    url("images/anime/white-haired-letter-hero.png");
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 42%),
+    linear-gradient(180deg, #f7f8fb, #eef1f6);
   background-position: center;
   background-size: cover;
   color: #fff;
@@ -531,7 +426,8 @@ main.is-route-ready {
   bottom: -18px;
   width: 130px;
   height: 220px;
-  background: url("images/anime/white-haired-letter-hero.png") center / cover no-repeat;
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 42%),
+    linear-gradient(180deg, #f7f8fb, #eef1f6) center / cover no-repeat;
   opacity: 0.48;
   filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.45));
   pointer-events: none;
@@ -977,7 +873,8 @@ main.is-route-ready {
 .avatar-image {
   background:
     linear-gradient(180deg, rgba(0, 240, 255, 0.08), rgba(255, 42, 109, 0.16)),
-    url("images/anime/white-haired-letter-hero.png") center / cover no-repeat,
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 42%),
+    linear-gradient(180deg, #f7f8fb, #eef1f6) center / cover no-repeat,
     #070a12;
   border: 1px solid color-mix(in srgb, var(--gold) 46%, transparent);
   box-shadow:
@@ -992,7 +889,7 @@ main.is-route-ready {
   bottom: -34px;
   width: 120px;
   height: 150px;
-  background: url("images/anime/white-haired-category-collage.png") center / cover no-repeat;
+  background: url("images/anime/category-editorial.png") center / cover no-repeat;
   opacity: 0.26;
   pointer-events: none;
 }
@@ -3614,7 +3511,8 @@ main {
   z-index: -1;
   width: 190px;
   height: 245px;
-  background: url("images/anime/white-haired-letter-hero.png") center / cover no-repeat;
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 42%),
+    linear-gradient(180deg, #f7f8fb, #eef1f6) center / cover no-repeat;
   opacity: 0.18;
   filter: saturate(0.85) brightness(1.1);
   animation: anime-girl-breathe 5.2s ease-in-out infinite;
@@ -4230,7 +4128,8 @@ main {
 .anime-echo {
   width: 42%;
   aspect-ratio: 0.62;
-  background: url("images/anime/white-haired-letter-hero.png") center / cover no-repeat;
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 42%),
+    linear-gradient(180deg, #f7f8fb, #eef1f6) center / cover no-repeat;
   filter: saturate(0.85) brightness(1.12);
   opacity: 0.14;
   animation: anime-echo-drift 8s ease-in-out infinite;
@@ -5484,7 +5383,7 @@ html[data-view="home"] .icon-button {
   background:
     radial-gradient(circle at 68% 36%, rgba(255, 255, 255, 0.16), transparent 21rem),
     linear-gradient(90deg, rgba(15, 16, 34, 0.76), rgba(34, 27, 50, 0.2) 48%, rgba(23, 18, 39, 0.48)),
-    url("images/anime/white-haired-letter-hero.png") center / cover no-repeat;
+    url("images/anime/hero-letter-desk.png") center / cover no-repeat;
 }
 
 .maikire-hero::before {
@@ -6566,7 +6465,7 @@ html[data-view="home"] .icon-button {
     overflow-x: clip;
     background:
       linear-gradient(90deg, rgba(22, 20, 38, 0.68), rgba(22, 20, 38, 0.18)),
-      url("images/anime/white-haired-letter-hero.png") 62% center / cover no-repeat;
+      url("images/anime/hero-letter-desk.png") 62% center / cover no-repeat;
   }
 
   .maikire-wave::before,
@@ -6961,4 +6860,155 @@ html[data-view="home"] .icon-button {
   .project-detail-hero {
     margin: 0;
   }
+}
+
+/* Active maintenance layer: keep the final interaction contracts explicit. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  overflow-x: clip;
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  overflow-wrap: break-word;
+}
+
+.icon-button {
+  width: 44px;
+  height: 44px;
+}
+
+.nav-links a,
+.pill-button {
+  min-height: 44px;
+}
+
+.copy-code {
+  min-height: 40px;
+}
+
+@media (max-width: 780px) {
+  .article-layout,
+  .article-main,
+  .article-meta-rail,
+  .post-nav {
+    min-width: 0;
+  }
+
+  .article-body pre {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* Magazine inner pages + motion */
+:root {
+  --ease-out-5: cubic-bezier(0.19, 1, 0.22, 1);
+  --shadow-4: 0 18px 46px rgba(31, 41, 55, 0.08);
+}
+.magazine-list,
+.shelf-grid,
+.about-notes {
+  display: grid;
+  gap: 28px;
+}
+.magazine-row,
+.magazine-project,
+.about-hero {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.88fr) minmax(0, 1.2fr);
+  gap: 28px;
+  align-items: center;
+  border: 1px solid rgba(226, 232, 240, 0.92);
+  border-radius: 18px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow-4);
+}
+.magazine-row.is-flipped,
+.magazine-project.is-flipped {
+  grid-template-columns: minmax(0, 1.2fr) minmax(180px, 0.88fr);
+}
+.magazine-row.is-flipped .magazine-atropos { order: 2; }
+.magazine-cover,
+.magazine-cover img,
+.about-hero img,
+.shelf-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 14px;
+}
+.magazine-copy h2,
+.magazine-copy h3,
+.article-title {
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+.magazine-row,
+.magazine-project,
+.shelf-card,
+.about-note-card {
+  transition: transform 420ms var(--ease-out-5), box-shadow 420ms var(--ease-out-5);
+}
+.magazine-row:hover,
+.magazine-project:hover,
+.shelf-card:hover,
+.about-note-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 56px rgba(31, 41, 55, 0.12);
+}
+.shelf-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.shelf-card {
+  display: grid;
+  gap: 16px;
+  border: 1px solid rgba(226, 232, 240, 0.92);
+  border-radius: 18px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow-4);
+}
+.about-notes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.about-note-card {
+  border: 1px solid rgba(226, 232, 240, 0.92);
+  border-radius: 18px;
+  padding: 22px;
+  background: rgba(255, 255, 255, 0.94);
+}
+.magazine-article-hero {
+  display: grid;
+  grid-template-columns: minmax(160px, 0.7fr) minmax(0, 1.3fr);
+  gap: 24px;
+  align-items: center;
+  background: none;
+}
+.post-nav a { display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: center; }
+.post-nav img { width: 64px; height: 64px; object-fit: cover; border-radius: 10px; }
+@media (max-width: 768px) {
+  .magazine-row,
+  .magazine-row.is-flipped,
+  .magazine-project,
+  .magazine-project.is-flipped,
+  .about-hero,
+  .magazine-article-hero { grid-template-columns: 1fr; }
+  .shelf-grid, .about-notes { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .magazine-row, .magazine-project, .shelf-card, .about-note-card { transition: none; }
 }

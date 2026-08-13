@@ -34,9 +34,9 @@ test("mobile navigation exposes its state", async ({ page }) => {
 test("theme preference survives a reload", async ({ page }) => {
   await page.goto("/#/");
   await page.locator("[data-action='toggle-theme']").click();
-  const theme = await page.locator("html").getAttribute("class");
+  const dark = await page.locator("html").evaluate((el) => el.classList.contains("dark"));
   await page.reload();
-  expect(await page.locator("html").getAttribute("class")).toBe(theme);
+  expect(await page.locator("html").evaluate((el) => el.classList.contains("dark"))).toBe(dark);
 });
 
 test("invalid routes provide recovery", async ({ page }) => {

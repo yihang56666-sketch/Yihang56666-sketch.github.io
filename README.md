@@ -4,9 +4,9 @@
 
 ## 站点目标
 
-- 保留博客外壳、项目页、标签、分类和学习计划入口，视觉改为柔和、动态的白毛二次元博客。
+- 保留博客外壳、项目页、标签、分类和学习计划入口，视觉改为柔和、动态的二次元博客，封面角色不重复。
 - 版式参考现代文章博客：顶部导航、文章流、侧栏信息、文章目录、版权说明、上一篇/下一篇。
-- 当前内容数据已清空，方便重新写文章和项目复盘。
+- 文章、项目、阅读清单和站点更新都集中维护在 `assets/app.js`，页面本身只负责渲染和路由。
 - 将内容数据集中到 `assets/app.js`，减少静态页面之间的重复维护。
 
 ## 本地预览
@@ -69,6 +69,18 @@ http://localhost:3000/archive/
 - [`Swup`](https://github.com/swup/swup)：适合传统多页站转场；当前 hash 路由已经由 `assets/app.js` 接管。
 - [`terminal.css`](https://github.com/Gioni06/terminal.css/)：已借鉴“终端日志块”的信息结构，但没有整包引入，避免全局字体、表单和排版被覆盖。
 
+## 维护检查
+
+每次调整路由、交互或样式后，建议至少运行：
+
+```bash
+node --check assets/app.js
+npx playwright test --reporter=line
+git diff --check
+```
+
+浏览器回归覆盖首页、归档、文章、项目、阅读、关于和无效路由，并重点检查 390px、768px 和桌面宽度。首页只由 `renderHomeMaikire()` 渲染；新增事实性内容前先补充 `posts`、`projects` 或对应数据数组，再让页面自动生成统计、归档和元信息。
+
 ## SEO 与路由
 
 - `index.html` 提供基础 meta、Open Graph、canonical 和站点骨架。
@@ -89,3 +101,11 @@ http://localhost:3000/archive/
 - `robots.txt`
 - `sitemap.xml`
 - `README.md`
+
+
+## 封面与动效
+
+- 角色图一对一放在 `assets/images/anime/`，不要复用同一张图当封面和整页背景。
+- 首页封面结构保持不变；归档、项目、阅读、关于、文章使用杂志大图模板。
+- CDN：Lenis 1.3.4、Atropos 2.0.2、medium-zoom 1.1.0。开启“减少动态”时全部降级。
+- 来源记录见 `assets/images/anime/IMAGE-CREDITS.md`。
