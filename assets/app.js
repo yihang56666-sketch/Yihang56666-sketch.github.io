@@ -44,6 +44,45 @@
 
   const posts = [
     {
+      title: "Codex Native Subagent Orchestrator Skill",
+      slug: "codex-native-subagent-orchestrator-skill",
+      date: "2026-08-14",
+      updated: "2026-08-14",
+      category: "Project Notes",
+      tags: ["Codex", "AI agents", "Skills", "orchestration"],
+      cover: covers.projectMagent,
+      summary: "A general-purpose Codex Skill for deciding when to delegate, selecting bounded read-only roles, recovering from failures, and synthesizing native subagent results.",
+      note: "Native subagents provide the execution engine. This Skill provides the operating discipline around that engine.",
+      sections: [
+        {
+          heading: "What changed",
+          paragraphs: [
+            "The repository is now a GitHub-distributed Skill rather than a standalone agent runtime. It uses Codex native spawn_agent, so there is no custom CLI, model API dependency, dashboard, or telemetry layer.",
+            "The Skill keeps the main agent as the only writer, verifier, and user-facing owner. Delegated roles return evidence and recommendations in a bounded packet."
+          ]
+        },
+        {
+          heading: "Why it helps",
+          bullets: [
+            "Small tasks stay local instead of paying the coordination cost of unnecessary delegation.",
+            "Larger tasks get a 1-3 agent team with explicit roles, scope, evidence, and stop conditions.",
+            "Shared-worktree checks protect pre-existing changes and keep read-only delegation honest.",
+            "Timeouts and failed agents have bounded recovery instead of indefinite waiting.",
+            "The main agent verifies the repository state and synthesizes conflicting findings before completion."
+          ]
+        },
+        {
+          heading: "Read the source",
+          paragraphs: [
+            "The complete Skill, routing rubric, role catalog, dispatch contract, workflow patterns, examples, and contract tests are available in the GitHub repository."
+          ],
+          links: [
+            { label: "GitHub repository", href: "https://github.com/yihang56666-sketch/magent" }
+          ]
+        }
+      ]
+    },
+    {
       title: "博客换装手记",
       slug: "white-anime-blog-redesign",
       date: "2026-07-05",
@@ -297,6 +336,71 @@
 
 
   const projects = [
+    {
+      title: "RIXIA",
+      slug: "rixia",
+      desc: "一个本地优先的 Android 个人节律与效率应用，包含今日、任务、习惯、笔记、倒计时和专注计时，并支持保存自定义全屏背景。",
+      tags: ["Android", "Capacitor", "React", "效率"],
+      cover: covers.catProjects,
+      status: "已发布 · Android APK",
+      updated: "08/14",
+      links: {
+        github: "https://github.com/yihang56666-sketch/RIXIA",
+        download: "/downloads/RIXIA-0.1.0-debug.apk"
+      },
+      stats: [
+        { label: "本地数据", value: "100%" },
+        { label: "Android", value: "API 36" },
+        { label: "自定义背景", value: "支持" },
+        { label: "测试", value: "9" }
+      ],
+      detail: [
+        {
+          heading: "移动端工作台",
+          paragraphs: ["RIXIA 把一天的节律、待办、习惯和专注时间收进一个轻量的手机工作台，数据默认保存在设备本地。"]
+        },
+        {
+          heading: "可按自己的方式使用",
+          bullets: ["设置页可上传并持久化自定义全屏背景。", "Android 桌面图标使用彩色菱形品牌图标。", "项目源码和调试 APK 均公开在 GitHub。"]
+        }
+      ]
+    },
+    {
+      title: "Codex Native Subagent Orchestrator Skill",
+      slug: "codex-native-subagent-orchestrator-skill",
+      desc: "A general-purpose Skill that helps Codex decide when to delegate, generate temporary specialist roles, keep subagents read-only, recover from failures, and synthesize verified results using native spawn_agent.",
+      tags: ["codex", "skills", "subagents", "orchestration", "read-only"],
+      cover: covers.projectMagent,
+      status: "Published · GitHub",
+      updated: "08/14",
+      links: {
+        github: "https://github.com/yihang56666-sketch/magent",
+        docs: "#/posts/codex-native-subagent-orchestrator-skill"
+      },
+      stats: [
+        { label: "Default team", value: "1-3" },
+        { label: "Native engine", value: "spawn_agent" },
+        { label: "Write owner", value: "Main" },
+        { label: "Contract tests", value: "19" }
+      ],
+      detail: [
+        {
+          heading: "Core boundary",
+          paragraphs: [
+            "Codex native subagents execute delegated work. This Skill decides whether delegation is worth the coordination cost, assigns a bounded role, checks the shared worktree, and owns final verification and synthesis."
+          ]
+        },
+        {
+          heading: "Designed for reuse",
+          bullets: [
+            "Built-in roles cover exploration, implementation review, testing, security, and documentation.",
+            "Temporary specialists can be generated for domain-specific tasks.",
+            "The recovery contract handles missing, failed, or timed-out results without hanging the task.",
+            "The repository ships examples and dependency-free contract tests."
+          ]
+        }
+      ]
+    },
     {
       title: "Codex 多智能体编排框架",
       slug: "codex-multi-agent",
@@ -913,6 +1017,7 @@
                     </div>
                     <div class="tag-row">${tagChips(project.tags)}</div>
                     ${project.links?.github ? `<a class="pill-button" href="${esc(project.links.github)}" target="_blank" rel="noreferrer"><i data-lucide="code-2"></i>GitHub</a>` : ""}
+                    ${project.links?.download ? `<a class="pill-button primary" href="${esc(project.links.download)}" download><i data-lucide="download"></i>下载 APK</a>` : ""}
                   </div>
                 </article>
               `
@@ -939,6 +1044,7 @@
             </div>
             <div class="project-detail-actions">
               ${project.links?.github ? `<a class="pill-button" href="${esc(project.links.github)}" target="_blank" rel="noreferrer"><i data-lucide="code-2"></i>GitHub</a>` : ""}
+              ${project.links?.download ? `<a class="pill-button primary" href="${esc(project.links.download)}" download><i data-lucide="download"></i>下载 Android APK</a>` : ""}
               <span class="crt-badge" style="color:var(--primary);border-color:var(--primary)">${esc(project.status)}</span>
             </div>
             <div class="tag-row" style="margin-top:14px">${tagChips(project.tags)}</div>
