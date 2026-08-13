@@ -44,37 +44,37 @@
 
   const posts = [
     {
-      title: "Codex Native Subagent Orchestrator Skill",
+      title: "Codex 原生子智能体编排 Skill",
       slug: "codex-native-subagent-orchestrator-skill",
       date: "2026-08-14",
       updated: "2026-08-14",
-      category: "Project Notes",
-      tags: ["Codex", "AI agents", "Skills", "orchestration"],
+      category: "项目复盘",
+      tags: ["Codex", "子智能体", "Skill", "编排"],
       cover: covers.projectMagent,
-      summary: "A general-purpose Codex Skill for deciding when to delegate, selecting bounded read-only roles, recovering from failures, and synthesizing native subagent results.",
-      note: "Native subagents provide the execution engine. This Skill provides the operating discipline around that engine.",
+      summary: "一个通用的 Codex Skill，用来判断何时分派任务、选择边界清晰的只读角色、处理失败，并汇总原生子智能体的结果。",
+      note: "原生子智能体负责执行，Skill 负责围绕执行过程建立判断、边界和协作纪律。",
       sections: [
         {
-          heading: "What changed",
+          heading: "这次改了什么",
           paragraphs: [
-            "The repository is now a GitHub-distributed Skill rather than a standalone agent runtime. It uses Codex native spawn_agent, so there is no custom CLI, model API dependency, dashboard, or telemetry layer.",
-            "The Skill keeps the main agent as the only writer, verifier, and user-facing owner. Delegated roles return evidence and recommendations in a bounded packet."
+            "这个仓库现在是一个通过 GitHub 分发的 Skill，而不是独立运行的智能体框架。它直接使用 Codex 原生的 spawn_agent，因此不需要自定义 CLI、模型 API、仪表盘或遥测层。",
+            "Skill 规定主智能体是唯一的写入者、验证者和用户交互负责人。子智能体只在明确边界内返回证据和建议。"
           ]
         },
         {
-          heading: "Why it helps",
+          heading: "它能帮什么忙",
           bullets: [
-            "Small tasks stay local instead of paying the coordination cost of unnecessary delegation.",
-            "Larger tasks get a 1-3 agent team with explicit roles, scope, evidence, and stop conditions.",
-            "Shared-worktree checks protect pre-existing changes and keep read-only delegation honest.",
-            "Timeouts and failed agents have bounded recovery instead of indefinite waiting.",
-            "The main agent verifies the repository state and synthesizes conflicting findings before completion."
+            "小任务留在主智能体本地处理，避免不必要的分派和协调成本。",
+            "较大的任务会得到 1 到 3 个角色清晰的子智能体，并带有范围、证据和停止条件。",
+            "共享工作区检查可以保护已有修改，让只读约束不只是口头要求。",
+            "子智能体超时或失败时有明确的有限恢复路径，不会无限等待。",
+            "主智能体会在完成前检查仓库状态，并处理相互冲突的发现。"
           ]
         },
         {
-          heading: "Read the source",
+          heading: "查看源码",
           paragraphs: [
-            "The complete Skill, routing rubric, role catalog, dispatch contract, workflow patterns, examples, and contract tests are available at github.com/yihang56666-sketch/magent."
+            "完整的 Skill、路由规则、角色目录、分派契约、工作流模式、示例和契约测试，都可以在 github.com/yihang56666-sketch/magent 查看。"
           ]
         }
       ]
@@ -363,37 +363,37 @@
       ]
     },
     {
-      title: "Codex Native Subagent Orchestrator Skill",
+      title: "Codex 原生子智能体编排 Skill",
       slug: "codex-native-subagent-orchestrator-skill",
-      desc: "A general-purpose Skill that helps Codex decide when to delegate, generate temporary specialist roles, keep subagents read-only, recover from failures, and synthesize verified results using native spawn_agent.",
-      tags: ["codex", "skills", "subagents", "orchestration", "read-only"],
+      desc: "一个通用 Skill，帮助 Codex 判断何时分派任务、动态生成临时专家角色、保持子智能体只读、处理失败，并使用原生 spawn_agent 汇总经过验证的结果。",
+      tags: ["Codex", "Skill", "子智能体", "任务编排", "只读"],
       cover: covers.projectMagent,
-      status: "Published · GitHub",
+      status: "已发布 · GitHub",
       updated: "08/14",
       links: {
         github: "https://github.com/yihang56666-sketch/magent",
         docs: "#/posts/codex-native-subagent-orchestrator-skill"
       },
       stats: [
-        { label: "Default team", value: "1-3" },
-        { label: "Native engine", value: "spawn_agent" },
-        { label: "Write owner", value: "Main" },
-        { label: "Contract tests", value: "19" }
+        { label: "默认团队", value: "1-3" },
+        { label: "原生引擎", value: "spawn_agent" },
+        { label: "写入负责人", value: "主智能体" },
+        { label: "契约测试", value: "19" }
       ],
       detail: [
         {
-          heading: "Core boundary",
+          heading: "核心边界",
           paragraphs: [
-            "Codex native subagents execute delegated work. This Skill decides whether delegation is worth the coordination cost, assigns a bounded role, checks the shared worktree, and owns final verification and synthesis."
+            "Codex 原生子智能体负责执行分派的工作。这个 Skill 判断分派是否值得协调成本，分配边界清晰的角色，检查共享工作区，并负责最终验证与汇总。"
           ]
         },
         {
-          heading: "Designed for reuse",
+          heading: "面向复用设计",
           bullets: [
-            "Built-in roles cover exploration, implementation review, testing, security, and documentation.",
-            "Temporary specialists can be generated for domain-specific tasks.",
-            "The recovery contract handles missing, failed, or timed-out results without hanging the task.",
-            "The repository ships examples and dependency-free contract tests."
+            "内置角色覆盖探索、实现审查、测试、安全和文档工作。",
+            "遇到特殊领域任务时，可以动态生成临时专家。",
+            "恢复契约可以处理结果缺失、执行失败和超时，不会让任务卡住。",
+            "仓库同时提供示例和无外部依赖的契约测试。"
           ]
         }
       ]
