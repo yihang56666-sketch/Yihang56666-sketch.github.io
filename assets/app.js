@@ -336,8 +336,8 @@
     {
       title: "RIXIA",
       slug: "rixia",
-      desc: "一个本地优先的 Android 个人节律与效率应用，包含今日、任务、习惯、笔记、倒计时和专注计时，并支持保存自定义全屏背景。",
-      tags: ["Android", "Capacitor", "React", "效率"],
+      desc: "一个本地优先的 Android 个人节律与效率应用，包含今日、任务、习惯、笔记、倒计时、专注计时和考研学习计划，并支持保存自定义全屏背景。",
+      tags: ["Android", "Capacitor", "React", "考研"],
       cover: covers.catProjects,
       status: "已发布 · Android APK",
       updated: "08/14",
@@ -349,7 +349,7 @@
         { label: "本地数据", value: "100%" },
         { label: "Android", value: "API 36" },
         { label: "自定义背景", value: "支持" },
-        { label: "测试", value: "9" }
+        { label: "测试", value: "14" }
       ],
       detail: [
         {
@@ -358,7 +358,7 @@
         },
         {
           heading: "可按自己的方式使用",
-          bullets: ["设置页可上传并持久化自定义全屏背景。", "Android 桌面图标使用彩色菱形品牌图标。", "项目源码和调试 APK 均公开在 GitHub。"]
+          bullets: ["设置页可上传并持久化自定义全屏背景。", "新增考研区：按科目和小类安排起止日期，每日勾选自动累计学习进度。", "Android 桌面图标使用彩色菱形品牌图标。", "项目源码和调试 APK 均公开在 GitHub。"]
         }
       ]
     },
