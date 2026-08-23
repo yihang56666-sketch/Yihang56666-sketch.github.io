@@ -1,4 +1,7 @@
 (function () {
+  const RING_CIRCUMFERENCE = 2 * Math.PI * 21;
+  const SPARK_PALETTE = ["✦", "♡", "✧", "♪", "✿", "❀", "⋆", "✺"];
+
   const site = {
     name: "beid",
     title: "beid",
@@ -42,223 +45,7 @@
     about: animePath("about-host-garden.png")
   };
 
-  const posts = [
-    {
-      title: "Codex 原生子智能体编排 Skill",
-      slug: "codex-native-subagent-orchestrator-skill",
-      date: "2026-08-14",
-      updated: "2026-08-14",
-      category: "项目复盘",
-      tags: ["Codex", "子智能体", "Skill", "编排"],
-      cover: covers.projectMagent,
-      summary: "一个通用的 Codex Skill，用来判断何时分派任务、选择边界清晰的只读角色、处理失败，并汇总原生子智能体的结果。",
-      note: "原生子智能体负责执行，Skill 负责围绕执行过程建立判断、边界和协作纪律。",
-      sections: [
-        {
-          heading: "这次改了什么",
-          paragraphs: [
-            "这个仓库现在是一个通过 GitHub 分发的 Skill，而不是独立运行的智能体框架。它直接使用 Codex 原生的 spawn_agent，因此不需要自定义 CLI、模型 API、仪表盘或遥测层。",
-            "Skill 规定主智能体是唯一的写入者、验证者和用户交互负责人。子智能体只在明确边界内返回证据和建议。"
-          ]
-        },
-        {
-          heading: "它能帮什么忙",
-          bullets: [
-            "小任务留在主智能体本地处理，避免不必要的分派和协调成本。",
-            "较大的任务会得到 1 到 3 个角色清晰的子智能体，并带有范围、证据和停止条件。",
-            "共享工作区检查可以保护已有修改，让只读约束不只是口头要求。",
-            "子智能体超时或失败时有明确的有限恢复路径，不会无限等待。",
-            "主智能体会在完成前检查仓库状态，并处理相互冲突的发现。"
-          ]
-        },
-        {
-          heading: "查看源码",
-          paragraphs: [
-            "完整的 Skill、路由规则、角色目录、分派契约、工作流模式、示例和契约测试，都可以在 github.com/yihang56666-sketch/magent 查看。"
-          ]
-        }
-      ]
-    },
-    {
-      title: "博客换装手记",
-      slug: "white-anime-blog-redesign",
-      date: "2026-07-05",
-      updated: "2026-07-05",
-      category: "站点手记",
-      tags: ["改版", "设计", "博客", "白发少女"],
-      cover: covers.postRedesign,
-      summary: "这次给博客换上更轻盈的动漫封面：封面、动效、入口和移动端节奏。",
-      note: "重点不是把页面堆满，而是让第一屏更像一个好逛的小站。",
-      legacyPaths: ["/posts/white-anime-blog-redesign/"],
-      sections: [
-        {
-          heading: "封面先建立气质",
-          paragraphs: [
-            "首页第一屏承担的是站点封面，而不是功能列表。现在的方向是白底、大标题、轻网格、白发少女角色卡和少量漂浮标签，让访客一眼知道这里是个人博客，同时保留一点动漫感。",
-            "动态的尺度要克制：角色轻微呼吸、封面卡片漂浮、光扫过卡面即可。太多闪烁会抢走文字，太安静又不像一个活的站点。"
-          ]
-        },
-        {
-          heading: "内容入口要像博客",
-          paragraphs: [
-            "成熟博客至少需要精选文章、最近更新、归档、标签、分类、阅读清单和关于页。它们不一定复杂，但每个入口都要能解释自己为什么存在。",
-            "这次继续沿用 assets/app.js 里的数据模型，文章直接作为结构化对象维护，适合静态托管，也方便后面再迁移到 Markdown 或 CMS。"
-          ],
-          bullets: [
-            "首页负责展示封面故事、精选文章和专题。",
-            "归档负责按月份追踪写作节奏。",
-            "标签和分类负责把同一主题串起来。",
-            "阅读页负责存放正在消化的书、课程和资料。"
-          ]
-        },
-        {
-          heading: "下一轮可以继续补什么",
-          paragraphs: [
-            "如果后续内容越来越多，可以再加入全文搜索索引、文章系列页、RSS 摘要、图片封面生成流程和更完整的站点地图。现在先把视觉和信息架构做稳。"
-          ],
-          note: "成熟感来自稳定的结构，不来自一次性塞满所有功能。"
-        }
-      ]
-    },
-    {
-      title: "把项目复盘写成可读的故事",
-      slug: "project-notes-as-stories",
-      date: "2026-06-29",
-      updated: "2026-07-02",
-      category: "项目复盘",
-      tags: ["项目", "复盘", "写作"],
-      cover: covers.postStories,
-      summary: "项目页不只是成果展示，也应该解释动机、约束、关键选择和踩坑后的判断。",
-      note: "好的复盘像路线图，能让几个月后的自己快速回到现场。",
-      sections: [
-        {
-          heading: "先写问题，再写结果",
-          paragraphs: [
-            "项目复盘最容易写成清单，但真正有价值的是问题背景。为什么要做这个东西，原来的办法哪里不舒服，限制条件是什么，这些比最后做了几个功能更重要。",
-            "读者通常不是来背参数的，而是想理解你如何判断。把选择写清楚，项目就会从展示品变成经验。"
-          ]
-        },
-        {
-          heading: "保留中间态",
-          paragraphs: [
-            "成熟的博客不怕出现半成品记录。阶段性截图、命令片段、失败路线和后续计划，会让复盘更可信，也更像一个长期维护的工作台。"
-          ],
-          bullets: [
-            "每个项目保留状态、更新时间和下一步。",
-            "把复杂细节折进文章正文，不挤在卡片里。",
-            "让项目卡只回答：这是什么、为什么值得点开、现在到哪一步。"
-          ]
-        }
-      ]
-    },
-    {
-      title: "我的阅读缓存整理法",
-      slug: "reading-cache-method",
-      date: "2026-06-18",
-      updated: "2026-06-24",
-      category: "阅读笔记",
-      tags: ["阅读", "知识管理", "笔记"],
-      cover: covers.postCache,
-      summary: "把书单、课程、长文和资料变成可复用的阅读缓存，而不是散落在收藏夹里的链接。",
-      note: "阅读页的目标不是炫书单，是帮助自己重新进入一个主题。",
-      sections: [
-        {
-          heading: "每条阅读记录只保留四件事",
-          paragraphs: [
-            "标题、主题、进度和下一步足够支撑日常回看。太多字段会让维护成本升高，最后变成另一个没人整理的仓库。",
-            "读完以后再补核心观点、关联文章和实践动作。这样阅读笔记会自然长成站内内容，而不是停在打卡。"
-          ]
-        },
-        {
-          heading: "把资料连回文章",
-          paragraphs: [
-            "阅读缓存最好能和文章标签互相连接。比如设计系统相关资料，可以连接到博客改版日志；工程维护资料，可以连接到静态站清单。"
-          ]
-        }
-      ]
-    },
-    {
-      title: "个人知识库的标签粒度",
-      slug: "personal-tags-granularity",
-      date: "2026-05-30",
-      updated: "2026-06-08",
-      category: "知识管理",
-      tags: ["标签", "归档", "知识管理"],
-      cover: covers.postTags,
-      summary: "标签太细会失控，太粗会失去导航价值。个人博客更适合一组稳定的大标签加少量临时标签。",
-      note: "标签不是装饰，它应该帮读者和未来的自己少走两步。",
-      sections: [
-        {
-          heading: "先从主题而不是技术名词开始",
-          paragraphs: [
-            "博客标签应该优先服务阅读路径。比如「改版」「复盘」「阅读」比某个非常细的实现词更稳定，因为它们能解释内容的用途。",
-            "技术名词也可以存在，但更适合作为第二层线索。等文章数量变多，再决定哪些词值得升级为分类。"
-          ]
-        },
-        {
-          heading: "定期合并标签",
-          paragraphs: [
-            "每隔一段时间看一次标签云，合并只出现一次且语义接近的标签。这个动作会让归档越来越清楚，也能反过来提醒自己最近真正关注什么。"
-          ]
-        }
-      ]
-    },
-    {
-      title: "轻量 SPA 博客的维护清单",
-      slug: "static-spa-blog-checklist",
-      date: "2026-05-12",
-      updated: "2026-05-20",
-      category: "工程记录",
-      tags: ["静态站", "GitHub Pages", "前端", "维护"],
-      cover: covers.postChecklist,
-      summary: "没有框架和构建步骤也能做成熟博客，但需要固定一些维护习惯：路由、元信息、无障碍和移动端检查。",
-      note: "越轻的架构，越要靠清单守住质量。",
-      sections: [
-        {
-          heading: "静态站也需要产品意识",
-          paragraphs: [
-            "页面能打开只是第一步。标题、描述、文章结构、404 回退、移动端导航和图片加载，都决定了它是不是一个能长期使用的博客。",
-            "当前站点用 hash 路由保证 GitHub Pages 上的路径兼容，这让部署简单，也让内容迁移成本更低。"
-          ]
-        },
-        {
-          heading: "每次改版后的检查项",
-          bullets: [
-            "跑一次 JavaScript 语法检查。",
-            "打开首页、文章页、归档页和关于页。",
-            "截桌面与移动端图，确认文字没有重叠。",
-            "检查主题切换、复制按钮、移动导航和搜索框。"
-          ]
-        }
-      ]
-    },
-    {
-      title: "深夜界面调光记录",
-      slug: "late-night-interface-lighting",
-      date: "2026-04-27",
-      updated: "2026-05-01",
-      category: "视觉实验",
-      tags: ["动效", "视觉", "界面"],
-      cover: covers.postNight,
-      summary: "浅色页面也可以有层次：用阴影、线框、微弱色块和缓慢动画，而不是把背景染成单一颜色。",
-      note: "一切动态都应该让页面更轻，而不是让读者更累。",
-      sections: [
-        {
-          heading: "浅色不等于空",
-          paragraphs: [
-            "白色界面的成熟感来自对比关系：纯白、淡灰、墨色文字、少量强调色和稳定的间距。只要层级清楚，页面不需要很重的背景。",
-            "动漫角色可以作为视觉锚点，但最好用在封面、页头和少数装饰位置，不要变成每个模块都在抢镜。"
-          ]
-        },
-        {
-          heading: "动效保持同一种语气",
-          paragraphs: [
-            "漂浮、呼吸、扫光和轻微视差属于同一种柔和动效语言。统一之后，页面会显得更成熟，而不是像拼贴。"
-          ]
-        }
-      ]
-    }
-  ];
+  const posts = [];
 
   const readingItems = [
     {
@@ -299,7 +86,6 @@
     }
   ];
 
-
   const showcaseCategories = [
     {
       title: "Blog Design",
@@ -330,7 +116,6 @@
       cover: covers.catLab
     }
   ];
-
 
   const projects = [
     {
@@ -838,13 +623,14 @@
               <div class="maikire-list-tools">
                 <label class="search-box maikire-search">
                   <i data-lucide="search"></i>
-                  <input type="search" placeholder="搜索文章、标签、分类..." value="${esc(state.query)}" data-search>
-                  <span class="kbd-hint">/</span>
+                  <input type="search" placeholder="搜索文章、标签、分类..." value="${esc(state.query)}" data-search aria-label="搜索文章">
+                  <span class="kbd-hint" data-kbd-hint>/</span>
                 </label>
                 <a class="pill-button" href="#/archive"><i data-lucide="archive"></i>时间线</a>
               </div>
+              <div class="search-live" data-search-live aria-live="polite" aria-atomic="true"></div>
               <div class="maikire-article-list">
-                ${articleList.length ? articleList.map(maikireArticleCard).join("") : '<div class="empty-state">没有匹配的文章，可以换个关键词试试。</div>'}
+                ${articleList.length ? articleList.map(maikireArticleCard).join("") : '<div class="empty-state" data-empty-shelf><span class="empty-shelf-icon" aria-hidden="true">📖</span>没有匹配的文章，可以换个关键词试试。<span class="empty-shelf-hint">第一篇已经在路上了。</span></div>'}
               </div>
             </section>
           </div>
@@ -902,10 +688,10 @@
         <img src="${esc(covers.profile)}" alt="">
         <h2>beid</h2>
         <p>૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</p>
-        <div class="maikire-profile-stats">
-          <span><b>${posts.length}</b>文章</span>
-          <span><b>${getAllCategories().length}</b>分类</span>
-          <span><b>${getAllTags().length}</b>标签</span>
+        <div class="maikire-profile-stats" data-counter-group>
+          <span><b data-counter="${posts.length}">0</b>文章</span>
+          <span><b data-counter="${getAllCategories().length}">0</b>分类</span>
+          <span><b data-counter="${getAllTags().length}">0</b>标签</span>
         </div>
         <div class="maikire-socials" aria-label="社交链接">
           <a href="${site.github}" target="_blank" rel="noreferrer" aria-label="GitHub"><i data-lucide="code-2"></i></a>
@@ -989,7 +775,7 @@
                 `
               )
               .join("")
-          : '<div class="empty-state">暂无文章。新的日志写入后，会按时间顺序显示在这个书架。</div>'}
+          : '<div class="empty-state" data-empty-shelf><span class="empty-shelf-icon" aria-hidden="true">📖</span>暂无文章。新的日志写入后，会按时间顺序显示在这个书架。<span class="empty-shelf-hint">准备写下第一篇？</span></div>'}
       </section>
     `;
   }
@@ -1555,12 +1341,14 @@
     updateScrollState();
     prepareHeroMotion();
     initMotionEnhancements();
+    initCounters();
 
 
       if (window.lucide) {
         window.lucide.createIcons();
       }
       syncThemeControl();
+      syncKbdHint();
   }
 
   function prepareMotion() {
@@ -1716,7 +1504,7 @@
     if (!cursorFxLayer) return;
     const spark = document.createElement("span");
     spark.className = "cursor-spark";
-    spark.textContent = ["✦", "♡", "✧", "♪"][Math.floor(Math.random() * 4)];
+    spark.textContent = SPARK_PALETTE[Math.floor(Math.random() * SPARK_PALETTE.length)];
     spark.style.left = `${x}px`;
     spark.style.top = `${y}px`;
     spark.style.setProperty("--spark-x", `${(Math.random() - 0.5) * 42}px`);
@@ -1733,7 +1521,20 @@
     const limit = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
     const progress = Math.min(1, Math.max(0, window.scrollY / limit));
     root.style.setProperty("--scroll-progress", progress.toFixed(4));
+    const btn = document.querySelector("[data-action='back-top']");
+    if (btn && !btn.querySelector("svg.ring")) {
+      btn.innerHTML = `
+        <svg class="ring" viewBox="0 0 48 48" aria-hidden="true">
+          <circle class="ring-track" cx="24" cy="24" r="21"></circle>
+          <circle class="ring-progress" cx="24" cy="24" r="21"></circle>
+        </svg>
+        <i data-lucide="arrow-up"></i>
+      `;
+      window.lucide?.createIcons();
+    }
     document.querySelector(".back-top")?.classList.toggle("is-visible", window.scrollY > 520);
+    const ring = document.querySelector(".ring-progress");
+    if (ring) ring.style.strokeDashoffset = `${(1 - progress) * RING_CIRCUMFERENCE}`;
   }
 
   function render() {
@@ -1800,6 +1601,23 @@
     if (!action) return;
 
     if (action === "toggle-theme") {
+      const wasDark = root.classList.contains("dark");
+      root.classList.add("theme-transition");
+      const dropThemeTransition = () => root.classList.remove("theme-transition");
+      window.setTimeout(dropThemeTransition, 520);
+      const burst = document.createElement("span");
+      burst.className = "theme-burst";
+      const btn = event.target.closest("[data-action='toggle-theme']");
+      const rect = btn?.getBoundingClientRect();
+      if (rect) {
+        burst.style.left = `${rect.left + rect.width / 2}px`;
+        burst.style.top = `${rect.top + rect.height / 2}px`;
+      } else {
+        burst.style.left = `${window.innerWidth - 60}px`;
+        burst.style.top = "60px";
+      }
+      document.body.appendChild(burst);
+      window.setTimeout(() => burst.remove(), 720);
       root.classList.toggle("dark");
       writeThemePreference(root.classList.contains("dark") ? "dark" : "light");
       syncThemeControl();
@@ -1841,10 +1659,46 @@
     if (action === "back-top") {
       if (motion.lenis) motion.lenis.scrollTo(0);
       else window.scrollTo({ top: 0, behavior: "smooth" });
+      document.querySelector(".back-top")?.classList.add("is-leaping");
+      window.setTimeout(() => document.querySelector(".back-top")?.classList.remove("is-leaping"), 900);
     }
   });
 
   document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      const nav = document.querySelector("[data-nav]");
+      if (nav?.classList.contains("is-open")) {
+        syncNavState(false);
+        document.querySelector("[data-action='toggle-nav']")?.focus();
+        return;
+      }
+      const search = document.querySelector("[data-search]");
+      if (search && document.activeElement === search) {
+        search.value = "";
+        state.query = "";
+        renderHomeMaikire();
+        afterRender({ view: "home" });
+        search.blur();
+        return;
+      }
+    }
+
+    if ((event.key === "k" || event.key === "K") && (event.ctrlKey || event.metaKey)) {
+      event.preventDefault();
+      const focusSearch = () => {
+        const search = document.querySelector("[data-search]");
+        search?.focus();
+        search?.select();
+      };
+      if (!document.querySelector("[data-search]")) {
+        location.hash = "#/";
+        setTimeout(focusSearch, 80);
+        return;
+      }
+      focusSearch();
+      return;
+    }
+
     if (event.key !== "/" || event.ctrlKey || event.metaKey || event.altKey) return;
     const target = event.target;
     const isTyping =
@@ -1879,7 +1733,173 @@
       next.focus();
       next.setSelectionRange(next.value.length, next.value.length);
     }
+    const liveRegion = document.querySelector("[data-search-live]");
+    if (liveRegion) {
+      const cards = document.querySelectorAll(".maikire-post-card").length;
+      liveRegion.textContent = `搜索 ${state.query}，匹配 ${cards} 篇`;
+      liveRegion.classList.add("is-active");
+      window.clearTimeout(window.__searchPulseTimer);
+      window.__searchPulseTimer = window.setTimeout(() => {
+        liveRegion.classList.remove("is-active");
+      }, 1400);
+    }
   });
+
+  function initKonami() {
+    const seq = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
+    let pos = 0;
+    document.addEventListener("keydown", (event) => {
+      const key = event.key.length === 1 ? event.key.toLowerCase() : event.key;
+      if (key !== seq[pos]) {
+        pos = key === seq[0] ? 1 : 0;
+        return;
+      }
+      pos++;
+      if (pos === seq.length) {
+        pos = 0;
+        triggerKonamiBurst();
+      }
+    });
+  }
+
+  function triggerKonamiBurst() {
+    if (prefersReducedMotion()) return;
+    root.classList.add("is-party");
+    const symbols = SPARK_PALETTE.concat(SPARK_PALETTE);
+    for (let i = 0; i < 40; i++) {
+      const x = Math.random() * window.innerWidth;
+      const y = window.innerHeight + 20;
+      const spark = document.createElement("span");
+      spark.className = "cursor-spark konami-spark";
+      spark.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      spark.style.left = `${x}px`;
+      spark.style.top = `${y}px`;
+      spark.style.setProperty("--spark-x", `${(Math.random() - 0.5) * 120}px`);
+      spark.style.setProperty("--spark-y", `${-window.innerHeight * (0.6 + Math.random() * 0.4)}px`);
+      spark.style.setProperty("--spark-rotate", `${(Math.random() - 0.5) * 320}deg`);
+      spark.style.animationDuration = `${1.6 + Math.random() * 1.2}s`;
+      cursorFxLayer = cursorFxLayer || document.querySelector(".cursor-fx-layer");
+      if (!cursorFxLayer) return;
+      cursorFxLayer.appendChild(spark);
+      window.setTimeout(() => spark.remove(), 3200);
+    }
+    window.setTimeout(() => root.classList.remove("is-party"), 3600);
+  }
+
+  function initCounters() {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const counters = document.querySelectorAll("[data-counter]");
+    if (!counters.length) return;
+    if (reduceMotion) {
+      counters.forEach((el) => {
+        el.textContent = el.dataset.counter;
+      });
+      return;
+    }
+    const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+    const animate = (el) => {
+      const target = parseInt(el.dataset.counter, 10) || 0;
+      if (target === 0) { el.textContent = "0"; return; }
+      const duration = 900 + Math.min(target, 20) * 30;
+      const start = performance.now();
+      const step = (now) => {
+        const t = Math.min(1, (now - start) / duration);
+        el.textContent = String(Math.round(target * easeOut(t)));
+        if (t < 1) requestAnimationFrame(step);
+        else el.textContent = String(target);
+      };
+      requestAnimationFrame(step);
+    };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        animate(entry.target);
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.4 });
+    counters.forEach((el) => io.observe(el));
+  }
+
+  function syncKbdHint() {
+    const isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent || "");
+    document.querySelectorAll("[data-kbd-hint]").forEach((el) => {
+      el.textContent = isMac ? "⌘K" : "Ctrl K";
+    });
+  }
+
+  function initFooterClock() {
+    const node = document.querySelector("[data-footer-clock]");
+    if (!node) return;
+    const update = () => {
+      const d = new Date();
+      const pad = (n) => String(n).padStart(2, "0");
+      node.textContent = `${d.getFullYear()}.${pad(d.getMonth() + 1)}.${pad(d.getDate())} · ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    };
+    update();
+    window.setInterval(update, 30000);
+  }
+
+  function initMagnetic() {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const finePointer = window.matchMedia("(pointer: fine)").matches;
+    if (reduceMotion || !finePointer) return;
+    document.addEventListener("pointermove", (event) => {
+      const targets = document.querySelectorAll("[data-magnetic]");
+      if (!targets.length) return;
+      targets.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (event.clientX < rect.left - 80 || event.clientX > rect.right + 80 ||
+            event.clientY < rect.top - 80 || event.clientY > rect.bottom + 80) {
+          if (el.dataset.magneticActive === "1") {
+            el.dataset.magneticActive = "0";
+            el.style.transform = "";
+          }
+          return;
+        }
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = (event.clientX - cx) * 0.22;
+        const dy = (event.clientY - cy) * 0.28;
+        el.dataset.magneticActive = "1";
+        el.style.transform = `translate(${dx.toFixed(2)}px, ${dy.toFixed(2)}px)`;
+      });
+    }, { passive: true });
+    document.addEventListener("pointerleave", () => {
+      document.querySelectorAll("[data-magnetic]").forEach((el) => {
+        el.dataset.magneticActive = "0";
+        el.style.transform = "";
+      });
+    }, { passive: true });
+  }
+
+  function initReadingProgress() {
+    let bar = document.querySelector(".reading-progress");
+    if (!bar) {
+      bar = document.createElement("div");
+      bar.className = "reading-progress";
+      bar.setAttribute("aria-hidden", "true");
+      bar.innerHTML = "<span class='reading-progress-fill'></span>";
+      document.body.appendChild(bar);
+    }
+    const fill = bar.querySelector(".reading-progress-fill");
+    const update = () => {
+      const article = document.querySelector(".article-body");
+      if (!article) {
+        bar.classList.remove("is-visible");
+        return;
+      }
+      const rect = article.getBoundingClientRect();
+      const articleTopAbs = rect.top + window.scrollY;
+      const articleBottomAbs = articleTopAbs + rect.height;
+      const scrollableStart = articleTopAbs;
+      const scrollableEnd = Math.max(scrollableStart + 1, articleBottomAbs - window.innerHeight);
+      const progress = Math.min(1, Math.max(0, (window.scrollY - scrollableStart) / (scrollableEnd - scrollableStart)));
+      bar.classList.toggle("is-visible", window.scrollY > scrollableStart + 80);
+      fill.style.transform = `scaleX(${progress.toFixed(4)})`;
+    };
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("hashchange", () => requestAnimationFrame(update));
+  }
 
   window.addEventListener("motion-libs-ready", () => {
     initLenis();
@@ -1888,8 +1908,44 @@
   window.addEventListener("hashchange", render);
   window.addEventListener("popstate", render);
   window.addEventListener("scroll", updateScrollState, { passive: true });
+  window.addEventListener("visibilitychange", () => {
+    if (document.hidden) cursorFxLayer?.classList.remove("is-active");
+  });
+
+  function initGreeting() {
+    if (document.querySelector(".beid-greeting")) return;
+    const node = document.createElement("aside");
+    node.className = "beid-greeting";
+    node.setAttribute("aria-hidden", "true");
+    const hour = new Date().getHours();
+    const text = hour < 5 ? "夜深了，beid 还亮着一盏灯" : hour < 11 ? "早安，今天也是好天气" : hour < 14 ? "午安，喝口水再继续" : hour < 18 ? "下午好，慢慢翻一页" : hour < 22 ? "晚上好，欢迎来小站坐坐" : "夜安，星星和代码都在";
+    node.innerHTML = `<span class="greeting-dot"></span><span>${esc(text)}</span>`;
+    document.body.appendChild(node);
+    requestAnimationFrame(() => node.classList.add("is-active"));
+    let hideTimer;
+    const flash = () => {
+      node.classList.add("is-active");
+      window.clearTimeout(hideTimer);
+      hideTimer = window.setTimeout(() => node.classList.remove("is-active"), 2600);
+    };
+    setTimeout(flash, 1200);
+    document.addEventListener("scroll", () => {
+      if (window.scrollY < 60) {
+        node.classList.add("is-active");
+        window.clearTimeout(hideTimer);
+      }
+    }, { passive: true });
+    document.addEventListener("pointermove", (event) => {
+      if (event.clientY < 90 && !document.querySelector(".nav-links.is-open")) flash();
+    }, { passive: true });
+  }
 
   initTheme();
   initCursorFx();
+  initGreeting();
+  initKonami();
+  initMagnetic();
+  initReadingProgress();
+  initFooterClock();
   render();
 })();
