@@ -7327,7 +7327,10 @@ input:focus-visible {
 }
 
 /* === beid signature additions: reading progress + magnetic pills === */
-.reading-progress {
+/* 注意：.reading-progress 是阅读书架卡片里的网格进度条（见上文）；
+   这条是页面级滚动指示条，改名 .page-progress 避免同类冲突——
+   之前的同名 fixed/opacity:0 规则曾把书架卡片进度条拽到视口顶部并藏掉。 */
+.page-progress {
   position: fixed;
   top: 0;
   left: 0;
@@ -7339,11 +7342,11 @@ input:focus-visible {
   transition: opacity 320ms ease;
 }
 
-.reading-progress.is-visible {
+.page-progress.is-visible {
   opacity: 1;
 }
 
-.reading-progress-fill {
+.page-progress-fill {
   display: block;
   height: 100%;
   width: 100%;
@@ -7447,4 +7450,183 @@ html.theme-transition *::after {
   .copy-code { transition: none !important; transform: none !important; opacity: 1 !important; }
   .toc-panel a { transition: none !important; padding-left: 8px !important; }
   .toc-panel a::before { transition: none !important; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   2026-09 视觉打磨层（追加在文件末尾，便于回溯这一轮改动）
+   ════════════════════════════════════════════════════════════════ */
+
+/* ---- 全局细节：选区 / 焦点环 / 滚动条 ---- */
+::selection {
+  background: color-mix(in srgb, var(--gold) 40%, transparent);
+  color: var(--ink, #1f2937);
+}
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--primary) 35%, transparent) transparent;
+}
+*::-webkit-scrollbar { width: 9px; height: 9px; }
+*::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--primary) 45%, transparent), color-mix(in srgb, var(--gold) 45%, transparent));
+}
+*::-webkit-scrollbar-track { background: transparent; }
+
+/* ---- 首页 hero：文字可读性 + 浮窗质感 ---- */
+.maikire-hero-title::before {
+  content: "";
+  position: absolute;
+  inset: -12% -8%;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse 62% 54% at 50% 52%,
+    rgba(10, 14, 26, 0.52),
+    rgba(10, 14, 26, 0.18) 58%,
+    transparent 78%
+  );
+  filter: blur(2px);
+}
+.maikire-hero-title h1 {
+  text-shadow: 0 6px 30px rgba(4, 8, 18, 0.72), 0 1px 2px rgba(4, 8, 18, 0.85);
+}
+.maikire-hero-title p {
+  text-wrap: balance;
+  font-size: clamp(1.5rem, 3vw, 2.9rem);
+  font-weight: 800;
+  max-width: min(92vw, 1080px);
+  text-shadow: 0 4px 24px rgba(4, 8, 18, 0.75), 0 1px 2px rgba(4, 8, 18, 0.8);
+}
+.maikire-float-window {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(10px) saturate(1.25);
+  -webkit-backdrop-filter: blur(10px) saturate(1.25);
+  border-radius: 14px;
+  box-shadow: 0 10px 32px rgba(9, 14, 28, 0.24);
+}
+
+/* ---- 页头：大标题渐变墨色 + 眉题胶囊 + 控制台卡片贴合 ---- */
+.page-title h1 {
+  background: linear-gradient(105deg, var(--ink, #111318) 62%, var(--primary) 88%, var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.page-title .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 13px;
+  border: 1px solid color-mix(in srgb, var(--primary) 28%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--primary) 7%, transparent);
+  color: var(--primary);
+  letter-spacing: 0.16em;
+}
+.page-title .eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--gold);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--gold) 70%, transparent);
+}
+.page-title-console {
+  border: 1px solid rgba(226, 232, 240, 0.92);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-4);
+  padding: 12px 16px;
+}
+.page-title-console b {
+  display: block;
+  margin-top: 4px;
+  font-size: 1.4rem;
+  background: linear-gradient(100deg, var(--primary), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ---- 项目 / 归档杂志卡：封面比例、悬停景深、标题饰线 ---- */
+.magazine-project {
+  position: relative;
+  overflow: hidden;
+  padding: 18px;
+  border-radius: 20px;
+}
+.magazine-project::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--primary) 55%, transparent);
+  opacity: 0;
+  transition: opacity 420ms var(--ease-out);
+}
+.magazine-project:hover::before { opacity: 1; }
+.magazine-project .magazine-cover,
+.magazine-project .magazine-cover img {
+  aspect-ratio: 16 / 10;
+  border-radius: 14px;
+}
+.magazine-project .magazine-cover {
+  overflow: hidden;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+}
+.magazine-project .magazine-cover img {
+  transition: transform 620ms var(--ease-out-5);
+}
+.magazine-project:hover .magazine-cover img {
+  transform: scale(1.045);
+}
+.magazine-copy h2,
+.magazine-copy h3 {
+  position: relative;
+  padding-bottom: 10px;
+}
+.magazine-copy h2::after,
+.magazine-copy h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 44px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--gold), var(--primary));
+}
+.magazine-copy p {
+  line-height: 1.85;
+}
+
+/* ---- 阅读书架：进度条金色化 + 卡片顶部光带 ---- */
+.shelf-card {
+  position: relative;
+  overflow: hidden;
+}
+.shelf-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), transparent 70%);
+  opacity: 0.55;
+}
+.reading-progress span::after {
+  background: linear-gradient(90deg, var(--gold), var(--primary));
+}
+
+@media (max-width: 768px) {
+  .maikire-hero-title p { font-size: clamp(1.25rem, 5.4vw, 2rem); }
+  .page-title-console { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .magazine-project .magazine-cover img,
+  .magazine-project::before { transition: none !important; }
 }

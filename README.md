@@ -44,12 +44,11 @@ npx serve .
 | `assets/styles.css` | 全站主题、布局、响应式样式和动效 |
 | `assets/images/anime/` | 博客使用的图片资源 |
 
-文章、项目和站点更新都直接维护在 `assets/app.js` 中：
+文章和项目内容直接维护在 `assets/app.js` 中：
 
 - `posts`：博客文章。
 - `projects`：项目卡片。
-- `siteUpdates`：首页站点更新。
-- `archiveNotes`：归档页面的月份说明。
+- `archiveNotes`：归档页面的月份说明（站点更新近况直接看归档页）。
 
 修改完成后刷新本地页面即可查看效果，不需要运行构建命令。
 

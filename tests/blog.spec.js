@@ -76,6 +76,40 @@ test("search input keeps focus while typing and filters posts", async ({ page })
   await expect(page.locator("[data-search]")).toHaveValue("测试");
 });
 
+test("table of contents links scroll in place instead of hitting the 404 route", async ({ page }) => {
+  await page.goto("/#/posts/codex-native-subagent-orchestrator-skill");
+  const tocLink = page.locator(".toc-panel a[href^='#']").first();
+  await expect(tocLink).toBeVisible();
+  await tocLink.click();
+  // 回归：裸 #fragment 曾被 hashchange 当成路由解析成 notFound，整篇文章被 404 页替换。
+  await expect(page).toHaveURL(/posts\/codex-native-subagent-orchestrator-skill/);
+  await expect(page.locator("main")).not.toContainText("找不到");
+  await expect(page.locator(".article-main")).toBeVisible();
+});
+
+test("search ignores IME composition events and applies the filter on compositionend", async ({ page }) => {
+  await page.goto("/#/");
+  const search = page.locator("[data-search]");
+  await search.click();
+  // 模拟 CJK 输入法组合：input 事件携带 isComposing=true 时不得整体重渲染，
+  // 否则正在组词的输入框被销毁，中文搜索根本打不出字。
+  await page.evaluate(() => {
+    const input = document.querySelector("[data-search]");
+    input.__beidCompositionProbe = true;
+    input.value = "ceshi";
+    input.dispatchEvent(new InputEvent("input", { bubbles: true, composed: true, isComposing: true }));
+  });
+  expect(await page.evaluate(() => document.querySelector("[data-search]")?.__beidCompositionProbe === true)).toBe(true);
+
+  // 组合提交（compositionend）后过滤器生效。
+  await page.evaluate(() => {
+    const input = document.querySelector("[data-search]");
+    input.value = "测试";
+    input.dispatchEvent(new CompositionEvent("compositionend", { bubbles: true, data: "测试" }));
+  });
+  await expect(page.locator("[data-search-live]")).toContainText(/匹配 \d+ 篇/);
+});
+
 test("home cover structure stays and uses distinct new art", async ({ page }) => {
   await page.goto("/#/");
   await expect(page.locator(".maikire-hero")).toBeVisible();

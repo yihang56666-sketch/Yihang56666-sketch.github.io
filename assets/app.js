@@ -45,7 +45,91 @@
     about: animePath("about-host-garden.png")
   };
 
-  const posts = [];
+  const posts = [
+    {
+      title: "Codex 原生子智能体编排 Skill",
+      slug: "codex-native-subagent-orchestrator-skill",
+      date: "2026-08-14",
+      updated: "2026-08-14",
+      category: "项目复盘",
+      tags: ["Codex", "子智能体", "Skill", "编排"],
+      cover: covers.projectMagent,
+      summary: "一个通用的 Codex Skill，用来判断何时分派任务、选择边界清晰的只读角色、处理失败，并汇总原生子智能体的结果。",
+      note: "原生子智能体负责执行，Skill 负责围绕执行过程建立判断、边界和协作纪律。",
+      sections: [
+        {
+          heading: "这次改了什么",
+          paragraphs: [
+            "这个仓库现在是一个通过 GitHub 分发的 Skill，而不是独立运行的智能体框架。它直接使用 Codex 原生的 spawn_agent，因此不需要自定义 CLI、模型 API、仪表盘或遥测层。",
+            "Skill 规定主智能体是唯一的写入者、验证者和用户交互负责人。子智能体只在明确边界内返回证据和建议。"
+          ]
+        },
+        {
+          heading: "它能帮什么忙",
+          bullets: [
+            "小任务留在主智能体本地处理，避免不必要的分派和协调成本。",
+            "较大的任务会得到 1 到 3 个角色清晰的子智能体，并带有范围、证据和停止条件。",
+            "共享工作区检查可以保护已有修改，让只读约束不只是口头要求。"
+          ]
+        }
+      ]
+    },
+    {
+      title: "博客换装手记",
+      slug: "white-anime-blog-redesign",
+      date: "2026-07-05",
+      updated: "2026-07-05",
+      category: "站点手记",
+      tags: ["改版", "设计", "博客"],
+      cover: covers.postRedesign,
+      summary: "这次给博客换上更轻盈的动漫封面：封面、动效、入口和移动端节奏。",
+      note: "重点不是把页面堆满，而是让第一屏更像一个好逛的小站。",
+      legacyPaths: ["/posts/white-anime-blog-redesign/"],
+      sections: [
+        {
+          heading: "封面先建立气质",
+          paragraphs: [
+            "首页第一屏承担的是站点封面，而不是功能列表。现在的方向是白底、大标题、轻网格和少量漂浮标签，让访客一眼知道这里是个人博客，同时保留一点动漫感。"
+          ]
+        },
+        {
+          heading: "内容入口要像博客",
+          bullets: [
+            "首页负责展示封面故事、精选文章和专题。",
+            "归档负责按月份追踪写作节奏。",
+            "标签和分类负责把同一主题串起来。"
+          ]
+        }
+      ]
+    },
+    {
+      title: "轻量 SPA 博客的维护清单",
+      slug: "static-spa-blog-checklist",
+      date: "2026-05-12",
+      updated: "2026-05-20",
+      category: "工程记录",
+      tags: ["静态站", "GitHub Pages", "前端"],
+      cover: covers.postChecklist,
+      summary: "没有框架和构建步骤也能做成熟博客，但需要固定路由、元信息、无障碍和移动端检查。",
+      note: "越轻的架构，越要靠清单守住质量。",
+      sections: [
+        {
+          heading: "静态站也需要产品意识",
+          paragraphs: [
+            "页面能打开只是第一步。标题、描述、文章结构、404 回退、移动端导航和图片加载，都决定了它是不是一个能长期使用的博客。"
+          ]
+        },
+        {
+          heading: "每次改版后的检查项",
+          bullets: [
+            "打开首页、文章页、归档页和关于页。",
+            "截桌面与移动端图，确认文字没有重叠。",
+            "检查主题切换、移动导航和搜索框。"
+          ]
+        }
+      ]
+    }
+  ];
 
   const readingItems = [
     {
@@ -163,7 +247,7 @@
         { label: "默认团队", value: "1-3" },
         { label: "原生引擎", value: "spawn_agent" },
         { label: "写入负责人", value: "主智能体" },
-        { label: "契约测试", value: "19" }
+        { label: "契约测试", value: "20" }
       ],
       detail: [
         {
@@ -184,181 +268,67 @@
       ]
     },
     {
-      title: "Codex 多智能体编排框架",
+      title: "Codex 多智能体编排 · 从运行时到 Skill 的演进",
       slug: "codex-multi-agent",
-      desc: "一个纯本地运行的 AI 多智能体协作系统，不依赖任何外部 LLM API。通过 26 个领域专家身份库、12 种协作模式和 7 种预定义工作流，将复杂任务自动拆解、路由到最适合的 specialist 智能体，并在 Codex 会话中以手动编排的方式逐个执行、同步、合并产出。",
-      tags: ["ai-agents", "orchestration", "codex", "python", "cli"],
+      desc: "这个项目的第一版（v1.2.0）是一个纯本地的多智能体编排运行时：26 个领域专家身份、12 种协作模式、CLI + 本地仪表盘。真正用起来之后我发现，手工编排的价值不在执行引擎，而在分派判断、边界契约和结果核验——于是把整个项目重定位成上面那张纯方法论 Skill 卡，旧运行时归档。这张卡保留演进过程，作为设计决策的记录。",
+      tags: ["ai-agents", "orchestration", "codex", "python", "design-decision"],
       cover: covers.projectMagent,
-      status: "已发布 · v1.2.0",
-      updated: "06/25",
+      status: "已归档 · 演进为 Skill",
+      updated: "08/15",
       links: {
         github: "https://github.com/yihang56666-sketch/magent",
-        docs: null
+        docs: "#/posts/codex-native-subagent-orchestrator-skill"
       },
       stats: [
-        { label: "领域身份", value: "26" },
-        { label: "协作模式", value: "12" },
-        { label: "预置工作流", value: "7" },
-        { label: "代码量", value: "3.2k" }
+        { label: "v1 身份库", value: "26" },
+        { label: "v1 协作模式", value: "12" },
+        { label: "v2 形态", value: "纯 Skill" },
+        { label: "契约测试", value: "20" }
       ],
       detail: [
         {
-          heading: "特性亮点",
-          bullets: [
-            "纯本地运行: 不依赖任何第三方 LLM API，所有路由和编排在本地完成",
-            "26 个领域身份: 前端/后端/嵌入式/安全/QA/架构/ML/DevOps 等专家身份卡",
-            "12 种协作模式: supervisor / handoff / SOP / group-chat / critic-loop / stateful-observer 等",
-            "7 套预制工作流: bugfix / feature-build / security-review / refactor / architecture-decision 等",
-            "6 个团队预设: small-team / frontend-team / embedded-team / full-review-team 等",
-            "检查点恢复: 崩溃后从最近检查点恢复，零进度丢失",
-            "智能缓存: 基于内容的缓存策略，实测节省 67% 重复 token"
+          heading: "v1.2.0 是什么样",
+          paragraphs: [
+            "「Codex-only」设计：不依赖任何第三方 LLM API，路由和任务拆解在本地 .agents/ 目录完成，执行由当前 Codex 会话按 dispatch-plan 手动逐个回答，再由 merge-results.py 合成 synthesis.md。身份层（26 身份 + 120+ 社区导入）、编排层（route_identity.py 多因子评分路由）、执行层（spawn-team / sync / merge 脚本链）三层结构，配一个 localhost:8080 的实时仪表盘。"
           ]
         },
         {
-          heading: "运行模式",
+          heading: "为什么重定位",
           paragraphs: [
-            "框架的核心设计理念是「Codex-only」—— 不依赖 Anthropic、OpenAI 或任何第三方 LLM API。所有智能体路由、任务拆解和执行跟踪都在本地 .agents/ 目录下完成。",
-            "正常编排流程分六步：spawn-team.py 生成 dispatch-plan → execute-dispatch-plan.py 准备执行包 → 当前 Codex 会话逐个回答每个 agent 的 prompt → 将答案写入 *.output.md → magent sync 刷新状态 → merge-results.py 合成为最终 synthesis.md。"
+            "实际使用暴露了根本矛盾：执行环节本来就是 Codex 原生 spawn_agent 已经做好的事，v1 用 3000 行 Python 重新包了一层执行状态机，反而带来检查点、缓存、仪表盘这些需要持续维护的资产。真正被反复用到的是分派准则（什么时候不该分派）、角色契约（每个子智能体只回答一个可验证的问题）和结果核验（要求文件、行号、命令输出级证据）。",
+            "重定位结论：执行引擎交给原生 spawn_agent，Skill 只做决策、路由、安全与汇总层。v1.2.0 归档，文档里的 CLI / 仪表盘承诺同步移除，避免仓库宣传与实际内容不一致。"
           ]
         },
         {
-          heading: "架构设计",
-          paragraphs: [
-            "框架分为三层：身份层（identity bank）、编排层（orchestration engine）、执行层（manual runtime）。"
-          ]
-        },
-        {
-          heading: "架构树形图",
-          tree: `身份层 Identity Layer
-├── 身份索引 /identity-bank/
-│   ├── 28 个手工精调核心身份
-│   │   ├── 前端工程师 (frontend-engineer)
-│   │   ├── 后端架构师 (backend-api-engineer)
-│   │   ├── 嵌入式工程师 (embedded-engineer)
-│   │   ├── 安全工程师 (security-engineer)
-│   │   ├── QA 自动化工程师 (qa-test-automation-engineer)
-│   │   └── 23 个其它核心身份
-│   └── 120+ 社区导入身份
-├── 身份卡字段
-│   ├── 领域描述 (domain description)
-│   ├── 关键词 (keywords)
-│   ├── 关联 Skill
-│   ├── 执行权限 (read-only / worker)
-│   └── 执行模式 (auto / semi-auto / manual)
-│
-编排层 Orchestration Layer
-├── 路由引擎 route_identity.py
-│   ├── 多因子评分系统
-│   │   ├── 关键词匹配: 单次 2pt, 组合 3pt
-│   │   ├── 技能偏好: +5pt/skill
-│   │   └── 领域重叠: 叠加加分
-│   ├── 任务类型自动检测
-│   │   ├── read-only vs worker
-│   │   └── 推断最佳协作模式
-│   └── 平局裁决 (domain anchor)
-├── 协作模式引擎
-│   ├── supervisor / handoff / SOP
-│   └── group-chat / critic-loop / stateful-observer
-│
-执行层 Runtime Layer
-├── 执行包生成器
-│   ├── agent-prompts.md (各 agent prompt 汇总)
-│   ├── handoff-contract.md (交接合约)
-│   └── next-agent.md (当前待回答问题)
-├── 状态同步
-│   └── magent sync → .output.md 写入状态
-├── 产物存档
-│   └── .agents/reports/runs/<run-id>/
-│       ├── dispatch-plan.json
-│       ├── synthesis.md (最终合并报告)
-│       └── 各 agent 原始输出
-└── 本地仪表盘 localhost:8080
-    ├── dashboard-live.html (实时状态)
-    └── agent 详情面板`,
-          note: "箭头 ├── 表示横向展开的元素层级，leaf node 无子节点。最简部署只需 magent.py + route_identity.py 即可运行。"
-        },
-        {
-          heading: "路由算法",
-          paragraphs: [
-            "路由引擎 route_identity.py 使用多因子评分系统做身份匹配：关键词匹配（单次 2 分，多词组合 3 分）、领域重叠加分、skill 偏好匹配（+5 分/个）。路由还会自动附加 reviewer 身份（安全/认证/性能类任务加 code-reviewer，测试类任务加 QA）。",
-            "任务类型自动检测：扫描关键词判定 read-only vs worker 任务，推断最佳协作模式。平局时用领域锚点（domain anchor）打破——例如 rust 相关任务自动偏向 rust-engineer。"
-          ],
-          code: "# 路由示例：分析认证模块\n$ magent run --task \"analyze auth module security\" --scope \"src/auth tests/auth\"\n\n# 路由结果（dispatch-plan.json 摘要）\n{\n  \"task\": \"analyze auth module security\",\n  \"pattern\": \"critic-loop\",\n  \"identities\": [\n    \"security-engineer\",\n    \"backend-api-engineer\",\n    \"code-reviewer\",\n    \"qa-test-automation-engineer\"\n  ],\n  \"max_identities\": 4\n}"
-        },
-        {
-          heading: "CLI 命令参考",
-          code: "# ── 启动本地仪表盘 ──\nmagent ui\n# 在浏览器打开 http://localhost:8080/dashboard-live.html\n\n# ── 运行新任务 ──\nmagent run --task \"你的任务描述\" --scope \"代码路径\"\n\n# ── 执行流程 ──\nmagent next latest       # 查看下一个待执行的 agent\n# 打开 agent-prompts.md 按顺序回答\nmagent sync latest      # 刷新执行状态\n\n# ── 状态管理 ──\nmagent status latest    # 查看运行状态概览\nmagent agents           # 列出所有可用 agent\nmagent list             # 列出所有运行记录\n\n# ── 结果合并 ──\npython .agents/scripts/merge-results.py .agents/reports/runs/<run-id>",
-          note: "所有命令都支持 magent.exe 独立执行（PyInstaller 打包），无需 Python 环境"
-        },
-        {
-          heading: "项目结构",
-          code: ".agents/\n├── magent.py              # CLI 入口（307 行）\n├── identities/            # 26 个身份卡（ai/design/engineering/operations/product/quality）\n├── presets/               # 6 个团队预设 JSON\n├── workflows/             # 7 个工作流定义（YAML + JSON）\n├── skills/                # 2 个 skill 包（identity-bank + orchestrator）\n│   ├── codex-agent-identity-bank/\n│   └── codex-multi-agent-orchestrator/\n├── scripts/               # 33 个辅助脚本\n│   ├── route_identity.py   # 核心路由算法（368 行）\n│   ├── spawn-team.py       # 运行文件夹生成器\n│   ├── manual_execution.py # 手动执行引擎\n│   └── merge-results.py    # 结果合并\n├── ui/                    # 本地仪表盘（dashboard.html）\n├── reports/runs/          # 运行产物存档\n└── identity-bank/         # 150+ 身份索引"
-        },
-        {
-          heading: "与同类项目对比",
+          heading: "演进前后对比",
           table: {
-            headers: ["特性", "本框架", "AutoGen", "CrewAI", "LangGraph"],
+            headers: ["维度", "v1.2.0 运行时", "v2 纯 Skill"],
             rows: [
-              ["当前状态", "纯本地，manual-only", "混合 API", "混合 API", "混合 API"],
-              ["协作模式数量", "12 种", "3 种", "2 种", "1 种"],
-              ["领域身份系统", "26 个专属身份 + 120+ 社区", "无专业身份", "无专业身份", "无专业身份"],
-              ["执行方式", "手动编排（Codex 内）", "自动执行", "自动执行", "自动执行"],
-              ["LLM 依赖", "零依赖（纯本地）", "必选（API Key）", "必选（API Key）", "必选（API Key）"],
-              ["产物质控", "人肉 review 每一步", "自动输出", "自动输出", "自动输出"],
-              ["检查点恢复", "支持（断点续传）", "不支持", "有限支持", "不支持"],
-              ["仪表盘", "localhost:8080 实时查看", "无内置", "CrewAI Enterprise", "LangSmith"],
-              ["团队预设", "6 个内置预设", "无", "无", "无"],
-              ["适用场景", "需人类审核的关键任务", "自动化流水线", "自动化协作", "有向图流程"]
+              ["形态", "Python CLI + 脚本链 + 仪表盘", "SKILL.md 契约 + 参考文档 + 示例"],
+              ["执行", "手动编排（逐个回答 prompt）", "原生 spawn_agent 引擎"],
+              ["维护面", "3.2k 行代码 + 检查点/缓存", "文档契约 + 20 个无依赖契约测试"],
+              ["核心价值", "把多智能体跑起来", "判断值不值得分派、边界与核验"],
+              ["失败处理", "检查点恢复", "恢复契约：失败/超时/空结果的有限替补"]
             ]
           }
         },
         {
-          heading: "提升方向",
-          paragraphs: [
-            "当前框架已完成最小可用集（v1.2.0），以下是识别到的提升方向："
-          ],
+          heading: "带走的三条经验",
           bullets: [
-            "自动化执行模式: 当前仅 manual-only，可加入可选的 auto-execute 模式，让框架调用本地 LLM（如 llama.cpp、Ollama）完成部分低风险步骤",
-            "身份卡覆盖度加深: 某些小众领域（如量化交易、生物信息、法律合规）缺少专门身份，需社区贡献",
-            "路由评分调优: 关键词评分目前是固定权重，可引入 ML 权重自动学习历史路由成功/失败数据",
-            "结果质量评估: 缺少自动化的 synthesis 质量评分机制，目前仅靠人工判断",
-            "插件系统: 支持第三方 identity pack 和 workflow pack 的在线安装/更新",
-            "可视化工作流编辑器: 当前工作流用 YAML/JSON 手写，可以做一个拖拽式 DAG 编辑界面",
-            "分布式执行: 当前只支持单机串行执行，可扩展到多机并行 agent 执行",
-            "生态集成: 对接更多外部工具（Jira、GitHub Issues、Slack 通知）使编排结果能自动创建工单"
+            "先证伪「更多智能体一定更快」：分派和协调本身有成本，默认留在主智能体本地才是常见正解。",
+            "文档与实现的不一致会在使用时暴露：重定位时同步清理了所有旧产品承诺，并给仓库加上契约测试防回退。",
+            "归档不等于删除：保留演进记录（这张卡）比假装 v1 不存在更有说服力。"
           ]
-        },
-        {
-          heading: "Roadmap",
-          code: "# v1.x — 核心打磨\n[ ] 自动化执行模式（local LLM 集成）\n[ ] 检查点自动备份到云存储\n[ ] 身份卡 marketplace 预览页\n\n# v2.0 — 生态扩展\n[ ] 身份卡插件系统（npm-style install）\n[ ] 可视化 DAG 工作流编辑器\n[ ] 结果质量自动评分（BLEU / ROUGE / F1）\n[ ] 并行 agent 执行引擎\n\n# v2.x — 企业级\n[ ] Jira / GitHub Issues 双向同步\n[ ] SSO / 团队权限管理\n[ ] 历史运行数据趋势分析仪表盘",
-          note: "Roadmap 持续在 GitHub Projects 中维护，欢迎提 Issue 和 PR。"
         }
       ]
     }
   ];
 
-  // ── site updates ──────────────────────────────────────
-  const siteUpdates = [
-    {
-      time: "07/05",
-      type: "redesign",
-      title: "首页封面升级",
-      body: "动漫封面、精选文章和专题入口已经合并到首页。"
-    },
-    {
-      time: "07/04",
-      type: "writing",
-      title: "文章书架补齐",
-      body: "新增站点手记、项目复盘、阅读笔记、知识管理和工程记录等内容样例。"
-    },
-    {
-      time: "06/25",
-      type: "project",
-      title: "Codex 多智能体编排框架",
-      body: "首个项目卡上架。26 个领域身份、12 种协作模式、纯本地运行、零外部服务依赖。"
-    }
-  ];
+  // ── archive month notes ────────────────────────────────
+  // （旧版这里的 siteUpdates 数组从未被任何视图渲染，且 README 把它
+  // 错标成"首页站点更新"——已随本期重构移除，更新近况直接看归档。）
   const archiveNotes = {
+    "2026-08": "8 月发布了 Codex 原生子智能体 Skill，并把 BEID 平板播放器打磨到可长期自用。",
     "2026-07": "7 月主要在打磨站点封面、首页结构和整体气质。",
     "2026-06": "6 月把项目复盘和阅读缓存整理成更像长期栏目的一组入口。",
     "2026-05": "5 月关注标签粒度、静态站维护和轻量前端体验。",
@@ -702,46 +672,24 @@
     `;
   }
 
-  function readingCard(item, compact = false) {
-    const progressValue = Number.parseFloat(item.progress);
-    const progress = Number.isFinite(progressValue) ? `${Math.min(100, Math.max(0, progressValue))}%` : "100%";
-    return `
-      <article class="reading-card${compact ? " is-compact" : ""}" style="--cover: ${item.cover}; --progress: ${progress}">
-        <div class="reading-cover" aria-hidden="true"></div>
-        <div>
-          <div class="reading-card-top">
-            <span>${esc(item.topic)}</span>
-            <strong>${esc(item.status)}</strong>
-          </div>
-          <h3>${esc(item.title)}</h3>
-          <p>${esc(item.desc)}</p>
-          <div class="reading-progress" aria-label="阅读进度 ${esc(item.progress)}">
-            <span></span>
-            <b>${esc(item.progress)}</b>
-          </div>
-          <div class="tag-row">${tagChips(item.tags)}</div>
-        </div>
-      </article>
-    `;
-  }
-
   function renderArchive(filter) {
     let list = posts;
     let desc = pages.archive.desc;
     let title = pages.archive.title;
     let eyebrow = "archive";
 
+    // 空态文案按真实列表长度决定，别在非空列表上方喊"还没有新文章"。
     if (filter?.tag) {
       list = posts.filter((post) => post.tags.includes(filter.tag));
       title = `标签：${filter.tag}`;
-      desc = "这个标签下还没有新文章。";
+      desc = list.length ? `${list.length} 篇文章带有「${filter.tag}」标签。` : "这个标签下还没有新文章。";
       eyebrow = "tag";
     }
 
     if (filter?.category) {
       list = posts.filter((post) => post.category === filter.category);
       title = `分类：${filter.category}`;
-      desc = "这个分类下还没有新文章。";
+      desc = list.length ? `${list.length} 篇文章归入「${filter.category}」分类。` : "这个分类下还没有新文章。";
       eyebrow = "category";
     }
 
@@ -1208,7 +1156,9 @@
         ? `${site.origin}/#/posts/${post.slug}`
         : project
           ? `${site.origin}/#/projects/${project.slug}`
-        : `${site.origin}/#/${route.view === "home" ? "" : page.path || route.view}`;
+        : route.view === "home"
+          ? site.origin
+          : `${site.origin}/#/${page.path || route.view}`;
       const socialImage = `${site.origin}/assets/images/anime/hero-letter-desk.png`;
 
     document.title = title;
@@ -1664,6 +1614,22 @@
     }
   });
 
+  // 目录/文内锚点点击：裸 #fragment 会触发 hashchange → parseRoute → notFound
+  // （裸片段不是路由），把整篇文章替换成 404 页。这里拦截并原地平滑滚动，
+  // 不触碰路由 hash；滚动监听器随后会更新目录高亮。
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest(".toc-panel a[href^='#'], .article-main a[href^='#']");
+    if (!link) return;
+    const rawId = decodeURIComponent(link.getAttribute("href").slice(1));
+    if (!rawId) return;
+    const heading = document.getElementById(rawId);
+    if (!heading) return;
+    event.preventDefault();
+    if (motion.lenis) motion.lenis.scrollTo(heading);
+    else heading.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+    history.replaceState(null, "", location.hash || "#/");
+  });
+
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       const nav = document.querySelector("[data-nav]");
@@ -1723,13 +1689,15 @@
     focusSearch();
   });
 
-  document.addEventListener("input", (event) => {
-    if (!event.target.matches("[data-search]")) return;
-    state.query = event.target.value;
+  // 搜索过滤。CJK 输入法组合期间（isComposing）绝不能整体重渲染：
+  // renderHomeMaikire 会重建包括正在组词的输入框在内的整个视图，
+  // 拼音组合被打断 → 中文搜索基本不可用。组合结束后再过滤一次。
+  function applySearchFilter(input) {
+    state.query = input.value;
     renderHomeMaikire();
     afterRender({ view: "home" });
     const next = document.querySelector("[data-search]");
-    if (next && next !== event.target) {
+    if (next && next !== input) {
       next.focus();
       next.setSelectionRange(next.value.length, next.value.length);
     }
@@ -1743,6 +1711,17 @@
         liveRegion.classList.remove("is-active");
       }, 1400);
     }
+  }
+
+  document.addEventListener("input", (event) => {
+    if (!event.target.matches("[data-search]")) return;
+    if (event.isComposing) return;
+    applySearchFilter(event.target);
+  });
+
+  document.addEventListener("compositionend", (event) => {
+    if (!event.target.matches?.("[data-search]")) return;
+    applySearchFilter(event.target);
   });
 
   function initKonami() {
@@ -1873,15 +1852,17 @@
   }
 
   function initReadingProgress() {
-    let bar = document.querySelector(".reading-progress");
+    // .page-progress：页面级滚动指示条（.reading-progress 已被阅读书架
+    // 卡片占用，同名会让 fixed/opacity 规则把卡片进度条拽到视口顶部藏掉）。
+    let bar = document.querySelector(".page-progress");
     if (!bar) {
       bar = document.createElement("div");
-      bar.className = "reading-progress";
+      bar.className = "page-progress";
       bar.setAttribute("aria-hidden", "true");
-      bar.innerHTML = "<span class='reading-progress-fill'></span>";
+      bar.innerHTML = "<span class='page-progress-fill'></span>";
       document.body.appendChild(bar);
     }
-    const fill = bar.querySelector(".reading-progress-fill");
+    const fill = bar.querySelector(".page-progress-fill");
     const update = () => {
       const article = document.querySelector(".article-body");
       if (!article) {
