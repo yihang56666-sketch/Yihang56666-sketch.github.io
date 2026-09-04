@@ -232,6 +232,41 @@
       ]
     },
     {
+      title: "Hardware Butler 硬件 Agent",
+      slug: "hardware-butler",
+      desc: "一个安全优先的嵌入式开发助手，把一句话硬件需求编排成需求解析、芯片选型、CubeMX 配置、固件生成、构建、烧录、观测和目标验证的 9 阶段流水线。",
+      tags: ["Python", "嵌入式", "STM32", "LLM", "硬件 Agent"],
+      cover: covers.postStories,
+      status: "已发布 · GitHub",
+      updated: "09/04",
+      links: {
+        github: "https://github.com/yihang56666-sketch/hardware-butler"
+      },
+      stats: [
+        { label: "流水线路段", value: "9" },
+        { label: "CLI 子命令", value: "36+" },
+        { label: "厂商族", value: "11+" },
+        { label: "单元测试", value: "832" }
+      ],
+      detail: [
+        {
+          heading: "安全优先的自动化",
+          paragraphs: [
+            "默认走 mock 工作流；真实烧录必须同时满足环境变量、确认 token、目标值域检查和固件产物 hash 校验，普通输入路径无法绕过门控。"
+          ]
+        },
+        {
+          heading: "从一句话到固件",
+          bullets: [
+            "LLM 只负责把自然语言转成结构化意图，执行器、门控和验证器由确定性代码掌控。",
+            "覆盖 STM32、ESP32、MSP430、AVR、Nordic、RISC-V 等厂商族，GD32/CH32 映射到 STM32 兼容路径。",
+            "PyQt6 GUI 提供 12 个 tab，CLI 提供 36+ 子命令，行为验证支持 regex、频率测量和 QEMU 仿真分层。",
+            "ruff 与 mypy 全绿，832 个单元测试回归通过；真实板卡日流程有独立 runbook 记录。"
+          ]
+        }
+      ]
+    },
+    {
       title: "Codex 原生子智能体编排 Skill",
       slug: "codex-native-subagent-orchestrator-skill",
       desc: "一个通用 Skill，帮助 Codex 判断何时分派任务、动态生成临时专家角色、保持子智能体只读、处理失败，并使用原生 spawn_agent 汇总经过验证的结果。",

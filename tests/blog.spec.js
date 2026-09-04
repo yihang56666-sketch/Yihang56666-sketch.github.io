@@ -138,7 +138,7 @@ test("archive uses unique magazine rows", async ({ page }) => {
 
 test("inner content pages use the magazine templates", async ({ page }) => {
   await page.goto("/#/projects");
-  await expect(page.locator(".magazine-project")).toHaveCount(3);
+  await expect(page.locator(".magazine-project")).toHaveCount(4);
 
   await page.goto("/#/reading");
   await expect(page.locator(".shelf-card")).toHaveCount(4);
