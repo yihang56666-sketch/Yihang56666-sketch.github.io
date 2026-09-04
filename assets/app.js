@@ -245,7 +245,7 @@
       stats: [
         { label: "流水线路段", value: "9" },
         { label: "CLI 子命令", value: "36+" },
-        { label: "厂商族", value: "11+" },
+        { label: "厂商族", value: "14" },
         { label: "单元测试", value: "739" }
       ],
       detail: [
