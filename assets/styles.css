@@ -7630,3 +7630,98 @@ html.theme-transition *::after {
   .magazine-project .magazine-cover img,
   .magazine-project::before { transition: none !important; }
 }
+
+/* 2026-09 project-ledger layer */
+.maikire-heading {
+  color: color-mix(in srgb, var(--ink) 72%, var(--muted));
+}
+.maikire-heading h2 {
+  color: color-mix(in srgb, var(--ink) 88%, var(--primary));
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8), 0 18px 38px rgba(161, 132, 168, 0.1);
+}
+
+.page-title-index {
+  display: grid;
+  gap: 5px;
+  justify-items: end;
+  align-self: end;
+  padding-bottom: 6px;
+  color: var(--muted);
+  font-family: var(--mono);
+  text-align: right;
+}
+.page-title-index span {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.page-title-index b {
+  max-width: 300px;
+  overflow: hidden;
+  color: var(--primary);
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 16px;
+}
+.project-stat {
+  min-width: 0;
+  padding: 11px 10px;
+  border: 1px solid color-mix(in srgb, var(--line) 86%, transparent);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(248, 250, 253, 0.66));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+.project-stat b {
+  display: block;
+  overflow: hidden;
+  color: var(--primary);
+  font-size: clamp(1.08rem, 1.7vw, 1.32rem);
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.project-stat span {
+  display: block;
+  overflow: hidden;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 16px;
+}
+.project-actions .pill-button {
+  min-height: 38px;
+}
+.pill-button.ghost {
+  border: 1px solid color-mix(in srgb, var(--primary) 26%, var(--line));
+  background: rgba(255, 255, 255, 0.62);
+  color: var(--primary);
+}
+
+.magazine-copy > p {
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .page-title-index { display: none; }
+  .project-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .project-actions .pill-button { flex: 1 1 auto; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-actions .pill-button { transition: none; }
+}

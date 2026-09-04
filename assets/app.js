@@ -517,9 +517,9 @@
           <h1>${esc(title)}</h1>
           <p>${esc(desc)}</p>
         </div>
-        <div class="page-title-console" aria-hidden="true">
-          <span>Blog · ${esc(eyebrow || "home")}</span>
-          <b>Read</b>
+        <div class="page-title-index" aria-hidden="true">
+          <span>Blog</span>
+          <b>${esc(eyebrow || "home")}</b>
         </div>
       </section>
     `;
@@ -547,42 +547,6 @@
     main.innerHTML = `
       <div class="maikire-home">
         <section class="maikire-hero" aria-labelledby="home-title">
-          <div class="maikire-hero-shade" aria-hidden="true"></div>
-          <div class="maikire-meteors" aria-hidden="true">
-            <span style="--x: 9%; --y: 8%; --d: 0s; --s: 1;"></span>
-            <span style="--x: 28%; --y: 16%; --d: -2.8s; --s: 0.72;"></span>
-            <span style="--x: 47%; --y: 7%; --d: -5.6s; --s: 0.9;"></span>
-            <span style="--x: 66%; --y: 22%; --d: -8.4s; --s: 0.66;"></span>
-            <span style="--x: 82%; --y: 12%; --d: -11.2s; --s: 0.84;"></span>
-            <span style="--x: 93%; --y: 30%; --d: -14s; --s: 0.58;"></span>
-          </div>
-          <div class="maikire-float-windows" aria-hidden="true">
-            <div class="maikire-float-window float-window-one">
-              <span>mood</span>
-              <strong><i data-lucide="sparkles"></i></strong>
-              <small>kirakira</small>
-            </div>
-            <div class="maikire-float-window float-window-two">
-              <span>hello</span>
-              <strong><i data-lucide="cat"></i></strong>
-              <small>nyan</small>
-            </div>
-            <div class="maikire-float-window float-window-three">
-              <span>spark</span>
-              <strong><i data-lucide="wand-sparkles"></i></strong>
-              <small>lucky</small>
-            </div>
-          </div>
-          <div class="maikire-live-stickers" aria-hidden="true">
-            <span class="live-sticker live-sticker-one"><i data-lucide="heart"></i></span>
-            <span class="live-sticker live-sticker-two"><i data-lucide="star"></i></span>
-            <span class="live-sticker live-sticker-three"><i data-lucide="music"></i></span>
-            <span class="live-sticker live-sticker-four"><i data-lucide="sparkle"></i></span>
-          </div>
-          <div class="maikire-petals" aria-hidden="true">
-            <span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span>
-          </div>
           <div class="maikire-hero-title">
             <p class="hero-kicker"><span class="hero-kicker-dot" aria-hidden="true"></span>personal blog · digital garden · est. 2024</p>
             <h1 id="home-title" data-split-text>beid</h1>
@@ -595,18 +559,9 @@
           <button class="maikire-down" type="button" data-action="scroll-blog-home" aria-label="进入博客主页">
             <i data-lucide="chevron-down"></i>
           </button>
-          <div class="maikire-wave" aria-hidden="true">
-            <span></span>
-            <span></span>
-          </div>
         </section>
 
         <section class="maikire-content" id="blog-home" aria-label="博客主页">
-          <div class="maikire-content-float" aria-hidden="true">
-            <span>♡</span>
-            <span>✦</span>
-            <span>♪</span>
-          </div>
           <div class="maikire-main">
             <section class="maikire-section" aria-label="精选分类">
               <div class="maikire-heading">
@@ -781,9 +736,13 @@
                       <strong>${esc(project.next || "文档、复盘和运行记录可浏览")}</strong>
                       <small>最近更新 ${esc(project.updated)}</small>
                     </div>
+                    ${project.stats?.length ? `<div class="project-stats">${project.stats.map((stat) => `<div class="project-stat"><b>${esc(stat.value)}</b><span>${esc(stat.label)}</span></div>`).join("")}</div>` : ""}
                     <div class="tag-row">${tagChips(project.tags)}</div>
-                    ${project.links?.github ? `<a class="pill-button" href="${esc(project.links.github)}" target="_blank" rel="noreferrer"><i data-lucide="code-2"></i>GitHub</a>` : ""}
-                    ${project.links?.download ? `<a class="pill-button primary" href="${esc(project.links.download)}" download><i data-lucide="download"></i>下载 APK</a>` : ""}
+                    <div class="project-actions">
+                      <a class="pill-button ghost" href="#/projects/${project.slug}"><i data-lucide="book-open"></i>项目详情</a>
+                      ${project.links?.github ? `<a class="pill-button" href="${esc(project.links.github)}" target="_blank" rel="noreferrer"><i data-lucide="code-2"></i>GitHub</a>` : ""}
+                      ${project.links?.download ? `<a class="pill-button primary" href="${esc(project.links.download)}" download><i data-lucide="download"></i>下载 APK</a>` : ""}
+                    </div>
                   </div>
                 </article>
               `
