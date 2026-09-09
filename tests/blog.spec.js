@@ -156,3 +156,18 @@ test("motion libraries stay optional under reduced motion", async ({ page }) => 
   expect(await page.evaluate(() => document.documentElement.classList.contains("lenis"))).toBe(false);
   expect(await page.locator(".atropos-rotate").count()).toBe(0);
 });
+
+test("home stats counters reach their real values when scrolled into view", async ({ page }) => {
+  await page.goto("/#/");
+  await page.locator(".maikire-pulse").scrollIntoViewIfNeeded();
+  const cells = page.locator(".maikire-pulse b[data-counter]");
+  await expect
+    .poll(async () => {
+      const values = await cells.evaluateAll((nodes) =>
+        nodes.map((node) => ({ shown: node.textContent, target: node.dataset.counter }))
+      );
+      return values.every(({ shown, target }) => Number(shown) === Number(target));
+    }, { timeout: 5000 })
+    .toBe(true);
+  await expect(cells).toHaveCount(4);
+});

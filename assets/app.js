@@ -60,7 +60,7 @@
         {
           heading: "这次改了什么",
           paragraphs: [
-            "这个仓库现在是一个通过 GitHub 分发的 Skill，而不是独立运行的智能体框架。它直接使用 Codex 原生的 spawn_agent，因此不需要自定义 CLI、模型 API、仪表盘或遥测层。",
+            "这个仓库现在是一个通过 GitHub 分发的 Skill，而不是独立运行的智能体框架。它直接使用 Codex 当前会话实际暴露的原生线程工具（例如 create_thread），因此不需要自定义 CLI、模型 API、仪表盘或遥测层。",
             "Skill 规定主智能体是唯一的写入者、验证者和用户交互负责人。子智能体只在明确边界内返回证据和建议。"
           ]
         },
@@ -76,7 +76,7 @@
           heading: "和常见开源多智能体框架的区别",
           paragraphs: [
             "常见开源多智能体框架（LangGraph、AutoGen、CrewAI、OpenAI Agents SDK 等）解决的是通用执行层：创建 agent、路由任务、调用模型、管理状态、处理工具和通信。它们通常模型无关、自带运行时，适合构建新的多智能体应用或服务。",
-            "本 Skill 刻意不做执行层。它依赖 Codex 原生子智能体（spawn_agent）作为运行时，把自己的范围限制在分派判断、角色边界、工作区保护、结果审计和失败恢复。它和开源框架不在同一层，更接近“编排契约/操作手册”与“执行引擎”的关系。",
+            "本 Skill 刻意不做执行层。它依赖 Codex 当前会话实际暴露的原生线程工具（例如 create_thread）作为运行时，把自己的范围限制在分派判断、角色边界、工作区保护、结果审计和失败恢复。它和开源框架不在同一层，更接近“编排契约/操作手册”与“执行引擎”的关系。",
             "所以它不是某个框架的“更强替代品”。如果目标是把任务跑起来，应该选择通用框架；如果痛点是 Codex 任务分派失控、子智能体动了不该动的文件、或者结果无法验证，这个 Skill 的边界规则和核验契约才是优势所在。"
           ],
           bullets: [
@@ -90,7 +90,7 @@
             headers: ["维度", "通用多智能体框架", "本 Skill"],
             rows: [
               ["定位", "执行引擎 / 运行时", "Codex 原生子智能体上的编排规则层"],
-              ["运行依赖", "自带 agent 循环、工具与模型对接", "依赖 Codex 原生 spawn_agent"],
+              ["运行依赖", "自带 agent 循环、工具与模型对接", "依赖 Codex 原生线程工具"],
               ["模型兼容", "多数模型无关", "Codex / 支持原生子智能体的会话"],
               ["可迁移应用", "可服务化 / 嵌入产品", "为单次 Codex 任务提供纪律"],
               ["维护面", "运行时、依赖、版本与状态管理", "SKILL.md + 参考文档 + 无依赖契约测试"],
@@ -203,28 +203,32 @@
       label: "站点手记",
       desc: "改版、封面、动效和长期维护。",
       href: "#/categories/站点手记",
-      cover: covers.catDesign
+      cover: covers.catDesign,
+      accent: "#2bb3b0"
     },
     {
       title: "Project Notes",
       label: "项目复盘",
       desc: "把做过的工具写成可回看的故事。",
       href: "#/categories/项目复盘",
-      cover: covers.catProjects
+      cover: covers.catProjects,
+      accent: "#4f7dff"
     },
     {
       title: "Reading Cache",
       label: "阅读笔记",
       desc: "书单、课程和资料的消化入口。",
       href: "#/reading",
-      cover: covers.catReading
+      cover: covers.catReading,
+      accent: "#e2a13a"
     },
     {
       title: "Interface Lab",
       label: "视觉实验",
       desc: "浅色层次、动漫图像和交互动效。",
       href: "#/categories/视觉实验",
-      cover: covers.catLab
+      cover: covers.catLab,
+      accent: "#ef65a8"
     }
   ];
 
@@ -233,7 +237,7 @@
       title: "RIXIA",
       slug: "rixia",
       desc: "一个本地优先的 Android 个人节律与效率应用，包含今日、任务、习惯、笔记、倒计时、专注计时和考研学习计划，并支持保存自定义全屏背景。",
-      tags: ["Android", "Capacitor", "React", "考研"],
+      tags: ["Android", "Capacitor", "React", "Electron", "TypeScript", "考研"],
       cover: covers.catProjects,
       status: "已发布 · Android APK",
       updated: "08/14",
@@ -245,7 +249,7 @@
         { label: "本地数据", value: "100%" },
         { label: "Android", value: "API 36" },
         { label: "自定义背景", value: "支持" },
-        { label: "测试", value: "14" }
+        { label: "测试", value: "762" }
       ],
       detail: [
         {
@@ -271,9 +275,9 @@
       },
       stats: [
         { label: "流水线路段", value: "9" },
-        { label: "CLI 子命令", value: "36+" },
+        { label: "CLI 子命令", value: "35" },
         { label: "厂商族", value: "14" },
-        { label: "单元测试", value: "739" }
+        { label: "单元测试", value: "1017" }
       ],
       detail: [
         {
@@ -287,8 +291,8 @@
           bullets: [
             "LLM 只负责把自然语言转成结构化意图，执行器、门控和验证器由确定性代码掌控。",
             "覆盖 STM32、ESP32、MSP430、AVR、Nordic、RISC-V 等厂商族，GD32/CH32 映射到 STM32 兼容路径。",
-            "PyQt6 GUI 提供 12 个 tab，CLI 提供 36+ 子命令，行为验证支持 regex、频率测量和 QEMU 仿真分层。",
-            "ruff 与 mypy 全绿，739 个单元测试回归通过；真实板卡日流程有独立 runbook 记录。"
+            "PyQt6 GUI 提供 13 个 tab，CLI 提供 35 个扁平子命令，行为验证支持 regex、频率测量和 QEMU 仿真分层。",
+            "ruff 与 mypy 全绿，1017 个单元测试回归通过；真实板卡日流程有独立 runbook 记录。"
           ]
         }
       ]
@@ -296,7 +300,7 @@
     {
       title: "Codex 原生子智能体编排 Skill",
       slug: "codex-native-subagent-orchestrator-skill",
-      desc: "一个通用 Skill，帮助 Codex 判断何时分派任务、动态生成临时专家角色、保持子智能体只读、处理失败，并使用原生 spawn_agent 汇总经过验证的结果。",
+      desc: "一个通用 Skill，帮助 Codex 判断何时分派任务、动态生成临时专家角色、保持子智能体只读、处理失败，并使用原生线程工具（如 create_thread）汇总经过验证的结果。",
       tags: ["Codex", "Skill", "子智能体", "任务编排", "只读"],
       cover: covers.projectMagent,
       status: "已发布 · GitHub",
@@ -307,9 +311,9 @@
       },
       stats: [
         { label: "默认团队", value: "1-3" },
-        { label: "原生引擎", value: "spawn_agent" },
+        { label: "线程工具", value: "原生" },
         { label: "写入负责人", value: "主智能体" },
-        { label: "契约测试", value: "28" }
+        { label: "契约测试", value: "33" }
       ],
       detail: [
         {
@@ -321,14 +325,14 @@
         {
           heading: "和开源框架的定位差异",
           paragraphs: [
-            "通用多智能体框架解决的是“怎么把多个 agent 跑起来”：agent 循环、工具调用、状态管理和模型对接。这个 Skill 不重复这些能力，而是把这些能力留在 Codex 原生 spawn_agent，把自身收敛为分派判断、只读边界、工作区保护和结果核验。",
+            "通用多智能体框架解决的是“怎么把多个 agent 跑起来”：agent 循环、工具调用、状态管理和模型对接。这个 Skill 不重复这些能力，而是把这些能力留在 Codex 原生线程工具，把自身收敛为分派判断、只读边界、工作区保护和结果核验。",
             "它更适合作为 Codex 会话里的协作纪律，而不是替代通用框架。"
           ],
           table: {
             headers: ["维度", "通用框架", "本 Skill"],
             rows: [
               ["提供", "执行引擎", "编排规则与验收契约"],
-              ["依赖", "自带运行时 / 模型对接", "Codex 原生 spawn_agent"],
+              ["依赖", "自带运行时 / 模型对接", "Codex 原生线程工具"],
               ["写入权", "一般交给开发者配置", "固定交给主智能体"],
               ["验证", "依赖调试与测试", "要求文件、行号、命令输出级证据"]
             ]
@@ -340,7 +344,7 @@
             "内置角色覆盖探索、实现审查、测试、安全和文档工作。",
             "遇到特殊领域任务时，可以动态生成临时专家。",
             "恢复契约可以处理结果缺失、执行失败和超时，不会让任务卡住。",
-            "仓库同时提供示例、验收案例和无外部依赖的契约测试，当前 28 项全部通过。",
+            "仓库同时提供示例、验收案例和无外部依赖的契约测试，当前 33 项全部通过。",
             "和通用开源多智能体框架相比，它不是新的运行时，而是一层更薄的判断、边界、安全与核验规则。"
           ]
         }
@@ -362,7 +366,7 @@
         { label: "v1 身份库", value: "26" },
         { label: "v1 协作模式", value: "12" },
         { label: "v2 形态", value: "纯 Skill" },
-        { label: "契约测试", value: "28" }
+        { label: "契约测试", value: "33" }
       ],
       detail: [
         {
@@ -374,8 +378,8 @@
         {
           heading: "为什么重定位",
           paragraphs: [
-            "实际使用暴露了根本矛盾：执行环节本来就是 Codex 原生 spawn_agent 已经做好的事，v1 用 3000 行 Python 重新包了一层执行状态机，反而带来检查点、缓存、仪表盘这些需要持续维护的资产。真正被反复用到的是分派准则（什么时候不该分派）、角色契约（每个子智能体只回答一个可验证的问题）和结果核验（要求文件、行号、命令输出级证据）。",
-            "重定位结论：执行引擎交给原生 spawn_agent，Skill 只做决策、路由、安全与汇总层。v1.2.0 归档，文档里的 CLI / 仪表盘承诺同步移除，避免仓库宣传与实际内容不一致。"
+            "实际使用暴露了根本矛盾：执行环节本来就是 Codex 原生线程工具已经做好的事，v1 用 3000 行 Python 重新包了一层执行状态机，反而带来检查点、缓存、仪表盘这些需要持续维护的资产。真正被反复用到的是分派准则（什么时候不该分派）、角色契约（每个子智能体只回答一个可验证的问题）和结果核验（要求文件、行号、命令输出级证据）。",
+            "重定位结论：执行引擎交给原生线程工具，Skill 只做决策、路由、安全与汇总层。v1.2.0 归档，文档里的 CLI / 仪表盘承诺同步移除，避免仓库宣传与实际内容不一致。"
           ]
         },
         {
@@ -384,8 +388,8 @@
             headers: ["维度", "v1.2.0 运行时", "v2 纯 Skill"],
             rows: [
               ["形态", "Python CLI + 脚本链 + 仪表盘", "SKILL.md 契约 + 参考文档 + 示例"],
-              ["执行", "手动编排（逐个回答 prompt）", "原生 spawn_agent 引擎"],
-              ["维护面", "3.2k 行代码 + 检查点/缓存", "文档契约 + 28 个无依赖契约测试"],
+              ["执行", "手动编排（逐个回答 prompt）", "原生线程工具引擎"],
+              ["维护面", "3.2k 行代码 + 检查点/缓存", "文档契约 + 33 项无依赖结构契约测试"],
               ["核心价值", "把多智能体跑起来", "判断值不值得分派、边界与核验"],
               ["失败处理", "检查点恢复", "恢复契约：失败/超时/空结果的有限替补"]
             ]
@@ -605,6 +609,8 @@
           </button>
         </section>
 
+        ${maikirePulse()}
+
         <section class="maikire-content" id="blog-home" aria-label="博客主页">
           <div class="maikire-main">
             <section class="maikire-section" aria-label="精选分类">
@@ -617,6 +623,8 @@
                 ${showcaseCategories.map(showcaseCard).join("")}
               </div>
             </section>
+
+            ${maikireProjectsBand()}
 
             <section class="maikire-section" aria-label="文章列表">
               <div class="maikire-heading maikire-heading-list">
@@ -657,11 +665,64 @@
 
   function showcaseCard(item) {
     return `
-      <a class="maikire-category-card" href="${esc(item.href)}" style="--cover: ${item.cover}">
+      <a class="maikire-category-card" href="${esc(item.href)}" style="--cover: ${item.cover}; --accent: ${item.accent}">
         <span>${esc(item.label)}</span>
         <strong>${esc(item.title)}</strong>
         <p>${esc(item.desc)}</p>
       </a>
+    `;
+  }
+
+  function maikirePulse() {
+    const cells = [
+      { value: posts.length, label: "篇文章", icon: "feather" },
+      { value: projects.length, label: "个项目", icon: "flask-conical" },
+      { value: readingItems.length, label: "条阅读", icon: "book-heart" },
+      { value: getAllTags().length, label: "个标签", icon: "tags" }
+    ];
+    return `
+      <div class="maikire-pulse" aria-label="站点统计">
+        ${cells.map((cell) => `
+          <div class="maikire-pulse-cell">
+            <i data-lucide="${cell.icon}"></i>
+            <b data-counter="${cell.value}">0</b>
+            <span>${cell.label}</span>
+          </div>
+        `).join("")}
+        <p class="maikire-pulse-note"><i data-lucide="sparkles"></i>把写作、项目和灵感收进一间白色小屋</p>
+      </div>
+    `;
+  }
+
+  function maikireProjectsBand() {
+    const accents = ["#e2a13a", "#4f7dff", "#2bb3b0", "#ef65a8"];
+    return `
+      <section class="maikire-section maikire-projects-section" aria-labelledby="home-projects-title">
+        <div class="maikire-heading">
+          <span></span>
+          <h2 id="home-projects-title">项目速览</h2>
+          <span></span>
+        </div>
+        <div class="maikire-project-grid">
+          ${projects.slice(0, 4).map((project, index) => `
+            <article class="maikire-project-mini" style="--cover: ${project.cover}; --accent: ${accents[index % accents.length]}">
+              <a class="maikire-project-cover" href="#/projects/${esc(project.slug)}" aria-label="项目详情：${esc(project.title)}"></a>
+              <div class="maikire-project-body">
+                <span>${esc(project.tags[0])}</span>
+                <h3><a href="#/projects/${esc(project.slug)}">${esc(project.title)}</a></h3>
+                <p>${esc(project.desc)}</p>
+                <div class="maikire-project-meta">
+                  <strong>${esc(project.status)}</strong>
+                  <small>${esc(project.stats[0].value)} ${esc(project.stats[0].label)}</small>
+                </div>
+              </div>
+            </article>
+          `).join("")}
+        </div>
+        <div class="maikire-projects-more">
+          <a class="pill-button ghost" href="#/projects"><i data-lucide="book-open"></i>全部项目与复盘</a>
+        </div>
+      </section>
     `;
   }
 
@@ -1356,7 +1417,7 @@
     }
 
     const targets = main?.querySelectorAll(
-      ".maikire-hero-title, .maikire-section, .maikire-category-card, .maikire-post-card, .maikire-profile, .maikire-side-nav, .issue-strip, .api-hero, .endpoint-card, .editorial-board, .editorial-lead, .secondary-story, .month-brief, .topic-card, .column-card, .reading-card, .index-card, .about-profile, .metric, .live-dispatch, .dispatch-item, .post-card, .side-panel, .desk-link, .page-title, .archive-group, .archive-row, .project-card, .reading-item, .plain-panel, .article-main, .article-meta-rail, .toc-panel, .terminal-log, .license-box, .post-nav, .magazine-row, .magazine-project, .shelf-card, .about-hero, .about-note-card, .magazine-article-hero"
+      ".maikire-hero-title, .maikire-pulse, .maikire-section, .maikire-category-card, .maikire-project-mini, .maikire-post-card, .maikire-profile, .maikire-side-nav, .issue-strip, .api-hero, .endpoint-card, .editorial-board, .editorial-lead, .secondary-story, .month-brief, .topic-card, .column-card, .reading-card, .index-card, .about-profile, .metric, .live-dispatch, .dispatch-item, .post-card, .side-panel, .desk-link, .page-title, .archive-group, .archive-row, .project-card, .reading-item, .plain-panel, .article-main, .article-meta-rail, .toc-panel, .terminal-log, .license-box, .post-nav, .magazine-row, .magazine-project, .shelf-card, .about-hero, .about-note-card, .magazine-article-hero"
     );
 
     targets?.forEach((node, index) => {
