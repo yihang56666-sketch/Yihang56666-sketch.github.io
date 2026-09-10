@@ -199,20 +199,28 @@
 
   const showcaseCategories = [
     {
-      title: "Blog Design",
-      label: "站点手记",
-      desc: "改版、封面、动效和长期维护。",
-      href: "#/categories/站点手记",
-      cover: covers.catDesign,
-      accent: "#2bb3b0"
-    },
-    {
       title: "Project Notes",
       label: "项目复盘",
       desc: "把做过的工具写成可回看的故事。",
       href: "#/categories/项目复盘",
       cover: covers.catProjects,
-      accent: "#4f7dff"
+      accent: "#8b7fd4"
+    },
+    {
+      title: "Interface Lab",
+      label: "视觉实验",
+      desc: "浅色层次、主题系统和交互动效。",
+      href: "#/categories/视觉实验",
+      cover: covers.catLab,
+      accent: "#c46b9e"
+    },
+    {
+      title: "Blog Design",
+      label: "站点手记",
+      desc: "改版、封面、动效和长期维护。",
+      href: "#/categories/站点手记",
+      cover: covers.catDesign,
+      accent: "#6b8cae"
     },
     {
       title: "Reading Cache",
@@ -220,45 +228,41 @@
       desc: "书单、课程和资料的消化入口。",
       href: "#/reading",
       cover: covers.catReading,
-      accent: "#e2a13a"
-    },
-    {
-      title: "Interface Lab",
-      label: "视觉实验",
-      desc: "浅色层次、动漫图像和交互动效。",
-      href: "#/categories/视觉实验",
-      cover: covers.catLab,
-      accent: "#ef65a8"
+      accent: "#d4a017"
     }
   ];
 
   const projects = [
     {
-      title: "RIXIA",
+      title: "BEID / RIXIA",
       slug: "rixia",
-      desc: "一个本地优先的 Android 个人节律与效率应用，包含今日、任务、习惯、笔记、倒计时、专注计时和考研学习计划，并支持保存自定义全屏背景。",
-      tags: ["Android", "Capacitor", "React", "Electron", "TypeScript", "考研"],
+      desc: "本地优先个人节奏与学习工作台：任务、习惯、日记、专注、考研规划，以及 B 站搜索、DASH 播放与时间点笔记；Web / Electron / Android 一套源码。",
+      tags: ["React", "TypeScript", "Electron", "Capacitor", "DASH/MSE", "考研"],
       cover: covers.catProjects,
-      status: "已发布 · Android APK",
-      updated: "08/14",
+      status: "已开源 · 多端可构建",
+      updated: "09/30",
       links: {
-        github: "https://github.com/yihang56666-sketch/RIXIA",
-        download: "/downloads/RIXIA-0.1.0-debug.apk"
+        github: "https://github.com/yihang56666-sketch/RIXIA"
       },
       stats: [
         { label: "本地数据", value: "100%" },
-        { label: "Android", value: "API 36" },
-        { label: "自定义背景", value: "支持" },
-        { label: "测试", value: "762" }
+        { label: "Vitest", value: "762" },
+        { label: "Node边界", value: "32" },
+        { label: "多端", value: "Web/Electron/Android" }
       ],
       detail: [
         {
-          heading: "移动端工作台",
-          paragraphs: ["RIXIA 把一天的节律、待办、习惯和专注时间收进一个轻量的手机工作台，数据默认保存在设备本地。"]
+          heading: "本地优先学习台",
+          paragraphs: ["把任务、习惯、考研规划和 B 站看课收进同一套 Zustand 领域模型；个人数据默认只落本机，schema 有 v1/v2/v3 迁移与 companion 备份。"]
         },
         {
-          heading: "可按自己的方式使用",
-          bullets: ["设置页可上传并持久化自定义全屏背景。", "新增考研区：按科目和小类安排起止日期，每日勾选自动累计学习进度。", "Android 桌面图标使用彩色菱形品牌图标。", "项目源码和调试 APK 均公开在 GitHub。"]
+          heading: "可深挖的技术点",
+          bullets: [
+            "自研 DASH/MSE 播放管线：sidx 索引 seek、背压与缓冲淘汰、CDN 备用源。",
+            "锚定计时：endsAt 时间戳为唯一真源，后台节流不漂移。",
+            "习惯频率模型：daily / weekly-N / interval-N 参与 due / streak / strength。",
+            "修复过真实缺陷：BV 直链误判、逾期任务导航、跨午夜 UTC 日、专注钳制不一致。"
+          ]
         }
       ]
     },
@@ -603,12 +607,12 @@
       <div class="maikire-home">
         <section class="maikire-hero" aria-labelledby="home-title">
           <div class="maikire-hero-title">
-            <p class="hero-kicker"><span class="hero-kicker-dot" aria-hidden="true"></span>personal blog · digital garden · est. 2024</p>
+            <p class="hero-kicker"><span class="hero-kicker-dot" aria-hidden="true"></span>embedded · client · agent · 2026</p>
             <h1 id="home-title" data-split-text>beid</h1>
-            <p class="hero-serif-line"><em>code, essays &amp; soft light</em> — 把写作、项目和灵感收进一间白色小屋。</p>
+            <p class="hero-serif-line"><em>engineer the boring parts</em> — 把嵌入式工作流、本地客户端和智能体协作做成可演示、可回归、能讲清边界的工程作品。</p>
             <div class="hero-cta-row">
-              <a class="pill-button primary" href="#/archive" data-magnetic><i data-lucide="feather"></i>开始阅读</a>
-              <a class="pill-button" href="#/projects" data-magnetic><i data-lucide="flask-conical"></i>看看项目</a>
+              <a class="pill-button primary" href="#/projects" data-magnetic><i data-lucide="flask-conical"></i>看项目作品集</a>
+              <a class="pill-button" href="#/archive" data-magnetic><i data-lucide="feather"></i>工程笔记</a>
             </div>
           </div>
           <button class="maikire-down" type="button" data-action="scroll-blog-home" aria-label="进入博客主页">
@@ -620,6 +624,37 @@
 
         <section class="maikire-content" id="blog-home" aria-label="博客主页">
           <div class="maikire-main">
+            <section class="maikire-section maikire-projects-section" aria-labelledby="home-projects-title">
+              <div class="maikire-heading">
+                <span></span>
+                <h2 id="home-projects-title">项目作品集</h2>
+                <span></span>
+              </div>
+              <div class="maikire-project-grid">
+                ${projects.slice(0, 4).map((project, index) => {
+                  const accents = ["#8b7fd4", "#c46b9e", "#d4a017", "#6b8cae"];
+                  const keyStat = project.stats?.[0];
+                  return `
+                    <article class="maikire-project-mini" style="--cover: ${project.cover}; --accent: ${accents[index % accents.length]}">
+                      <a class="maikire-project-cover" href="#/projects/${esc(project.slug)}" aria-label="项目详情：${esc(project.title)}"></a>
+                      <div class="maikire-project-body">
+                        <span>${esc(project.tags[0])}</span>
+                        <h3><a href="#/projects/${esc(project.slug)}">${esc(project.title)}</a></h3>
+                        <p>${esc(project.desc)}</p>
+                        <div class="maikire-project-meta">
+                          <strong>${esc(project.status)}</strong>
+                          ${keyStat ? `<small>${esc(keyStat.value)} ${esc(keyStat.label)}</small>` : ""}
+                        </div>
+                      </div>
+                    </article>
+                  `;
+                }).join("")}
+              </div>
+              <div class="maikire-projects-more">
+                <a class="pill-button ghost" href="#/projects"><i data-lucide="book-open"></i>全部项目与复盘</a>
+              </div>
+            </section>
+
             <section class="maikire-section" aria-label="精选分类">
               <div class="maikire-heading">
                 <span></span>
@@ -630,8 +665,6 @@
                 ${showcaseCategories.map(showcaseCard).join("")}
               </div>
             </section>
-
-            ${maikireProjectsBand()}
 
             <section class="maikire-section" aria-label="文章列表">
               <div class="maikire-heading maikire-heading-list">
@@ -682,10 +715,10 @@
 
   function maikirePulse() {
     const cells = [
-      { value: posts.length, label: "篇文章", icon: "feather" },
-      { value: projects.length, label: "个项目", icon: "flask-conical" },
-      { value: readingItems.length, label: "条阅读", icon: "book-heart" },
-      { value: getAllTags().length, label: "个标签", icon: "tags" }
+      { value: 1017, label: "硬件单测", icon: "cpu" },
+      { value: 794, label: "客户端测试", icon: "monitor-smartphone" },
+      { value: projects.length, label: "工程作品", icon: "flask-conical" },
+      { value: 16, label: "博客回归", icon: "shield-check" }
     ];
     return `
       <div class="maikire-pulse" aria-label="站点统计">
@@ -696,7 +729,7 @@
             <span>${cell.label}</span>
           </div>
         `).join("")}
-        <p class="maikire-pulse-note"><i data-lucide="sparkles"></i>把写作、项目和灵感收进一间白色小屋</p>
+        <p class="maikire-pulse-note"><i data-lucide="sparkles"></i>默认安全 · 默认可回归 · 不吞错误</p>
       </div>
     `;
   }
