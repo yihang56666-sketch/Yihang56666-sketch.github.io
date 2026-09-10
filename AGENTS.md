@@ -8,26 +8,29 @@ Vanilla HTML/CSS/JS static SPA — **no build step, no framework**. Root directo
 
 | File | Role |
 |---|---|
-| `index.html` | SPA shell, canonical entry |
+| `index.html` | SPA shell, canonical entry (local vendor deps) |
 | `404.html` | GitHub Pages SPA fallback (hash routing) |
-| `assets/app.js` | **All JS** — SPA router, renderers, theme, animations (883 lines, single IIFE) |
-| `assets/styles.css` | **All CSS** — soft anime blog theme, motion layers, responsive layouts |
-| `assets/images/anime/` | White-haired anime visual assets |
+| `assets/app.js` | **All JS** — SPA router, renderers, theme, animations (~2000 lines, single IIFE) |
+| `assets/styles.css` | **All CSS** — blog theme, motion layers, responsive layouts |
+| `assets/images/anime/` | Cover / hero visual assets |
+| `assets/vendor/` | Localized Lenis / Atropos / medium-zoom / Lucide / fonts |
+| `tests/blog.spec.js` | Playwright E2E (15 cases) |
+| `playwright.config.js` | Playwright config |
+| `atom.xml` | Static Atom feed |
 
 ## Content model
 
-Posts, projects, site updates, and archive notes live as **JS data arrays/objects** in `assets/app.js` (lines 31-35):
+Posts, projects, and archive notes live as **JS data arrays/objects** in `assets/app.js`:
 
 - `posts[]` — article data (`slug`, `title`, `date`, `category`, `tags`, `cover`, `sections`, `legacyPaths`)
-- `projects[]` — project cards
-- `siteUpdates[]` — homepage "site updates" entries
+- `projects[]` — project cards (`slug`, `title`, `desc`, `tags`, `stats`, `detail`, `links`)
 - `archiveNotes` — per-month archival prose
 
 Editing content = editing `assets/app.js`. No markdown, no CMS, no separate content files.
 
 ## Routing
 
-Hash-based SPA (`#/archive`, `#/projects`, `#/posts/my-post`, etc.). The `render()` function (line 810) handles route dispatch. Legacy paths use `legacyLookup` Map + `404.html` for GitHub Pages fallback.
+Hash-based SPA (`#/archive`, `#/projects`, `#/posts/my-post`, etc.). Legacy paths use `legacyLookup` Map + `404.html` for GitHub Pages fallback.
 
 ## Local preview
 
@@ -36,12 +39,18 @@ npx serve .
 # then http://localhost:3000
 ```
 
-`npm test` not configured — Playwright (`@playwright/test` ^1.60) is a devDependency but no `playwright.config.js` or test files exist. Create them if adding tests.
+## Tests
+
+```bash
+npm install
+npx playwright test
+```
+
+`package.json` / `package-lock.json` are tracked so clone-and-test works.
 
 ## Gotchas
 
-- `package.json` and `package-lock.json` are **listed in `.gitignore`** (lines 5-6). They're currently tracked but changes may not be committed. Be explicit about intent if modifying them.
-- `output/`, `.playwright-cli/`, `repo-main.zip`, `old-atom.xml` are gitignored.
-- External deps: `augmented-ui` and `lucide` loaded via CDN (unpkg) — no bundling.
-- CSS uses `data-augmented-ui` attribute for HUD-style borders on nav panels.
-- Dark/light theme toggling via `.dark` class on `<html>`, swapping CSS custom properties.
+- External motion libs are **localized** under `assets/vendor/` (no CDN required for core paths).
+- Dark/light theme via `.dark` on `<html>`, CSS custom properties swap.
+- `downloads/*.apk` is gitignored; link APK via GitHub Releases instead of committing binaries.
+- Keep `app.js` project stats in sync with real test counts (Hardware Butler = 1017).

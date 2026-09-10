@@ -1,0 +1,11 @@
+{
+  "name": "beid-blog",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "serve": "npx serve ."
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0"
+  }
+}

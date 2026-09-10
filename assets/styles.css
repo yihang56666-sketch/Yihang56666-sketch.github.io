@@ -2639,47 +2639,47 @@ body::after {
 
 :root {
   color-scheme: light;
-  --bg: #f7f8fb;
+  --bg: #f7f4f8;
   --bg-strong: #ffffff;
-  --card: rgba(255, 255, 255, 0.86);
+  --card: rgba(255, 255, 255, 0.88);
   --card-solid: #ffffff;
-  --ink: #111318;
-  --muted: #5f6877;
-  --soft: #8791a1;
-  --line: rgba(15, 23, 42, 0.11);
-  --primary: #2563eb;
-  --primary-soft: rgba(37, 99, 235, 0.08);
-  --accent: #111318;
-  --accent-soft: rgba(17, 19, 24, 0.07);
-  --gold: #0ea5e9;
-  --violet: #7c3aed;
-  --shadow: 0 20px 54px rgba(15, 23, 42, 0.08);
-  --shadow-soft: 0 8px 24px rgba(15, 23, 42, 0.07);
-  --radius: 8px;
+  --ink: #17141d;
+  --muted: #6b6478;
+  --soft: #948ca3;
+  --line: rgba(23, 20, 29, 0.11);
+  --primary: #8b7fd4;
+  --primary-soft: rgba(139, 127, 212, 0.12);
+  --accent: #c46b9e;
+  --accent-soft: rgba(196, 107, 158, 0.1);
+  --gold: #d4a017;
+  --violet: #8b7fd4;
+  --shadow: 0 20px 54px rgba(40, 28, 60, 0.09);
+  --shadow-soft: 0 8px 24px rgba(40, 28, 60, 0.07);
+  --radius: 10px;
   --page: 1216px;
   --reading: 780px;
   --font: "Public Sans", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "Microsoft YaHei", sans-serif;
-  --display: "Public Sans", Inter, ui-sans-serif, system-ui, sans-serif;
+  --display: "Instrument Serif", "Noto Serif SC", "Source Han Serif SC", Georgia, "Times New Roman", serif;
   --mono: "Space Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
 :root.dark {
   color-scheme: dark;
-  --bg: #0f172a;
-  --bg-strong: #111827;
-  --card: rgba(17, 24, 39, 0.88);
-  --card-solid: #111827;
-  --ink: #f8fafc;
-  --muted: #b7c2d2;
-  --soft: #8794a8;
-  --line: rgba(148, 163, 184, 0.24);
-  --primary: #60a5fa;
-  --primary-soft: rgba(96, 165, 250, 0.12);
-  --accent: #f8fafc;
-  --accent-soft: rgba(248, 250, 252, 0.08);
-  --gold: #38bdf8;
-  --shadow: 0 20px 58px rgba(0, 0, 0, 0.28);
-  --shadow-soft: 0 10px 26px rgba(0, 0, 0, 0.22);
+  --bg: #14101c;
+  --bg-strong: #1a1524;
+  --card: rgba(26, 21, 36, 0.9);
+  --card-solid: #1a1524;
+  --ink: #f6f1fb;
+  --muted: #c4b9d4;
+  --soft: #9a8fb0;
+  --line: rgba(196, 185, 212, 0.18);
+  --primary: #b3a4f0;
+  --primary-soft: rgba(179, 164, 240, 0.14);
+  --accent: #e58bb8;
+  --accent-soft: rgba(229, 139, 184, 0.12);
+  --gold: #e6c15a;
+  --shadow: 0 20px 58px rgba(0, 0, 0, 0.34);
+  --shadow-soft: 0 10px 26px rgba(0, 0, 0, 0.24);
 }
 
 html {
@@ -2690,9 +2690,9 @@ body {
   position: relative;
   overflow-x: hidden;
   background:
-    linear-gradient(135deg, rgba(37, 99, 235, 0.055), transparent 34%),
-    linear-gradient(225deg, rgba(14, 165, 233, 0.045), transparent 42%),
-    linear-gradient(180deg, var(--bg), #ffffff 42%, var(--bg));
+    linear-gradient(135deg, rgba(139, 127, 212, 0.07), transparent 34%),
+    linear-gradient(225deg, rgba(196, 107, 158, 0.05), transparent 42%),
+    linear-gradient(180deg, var(--bg), var(--bg-strong) 42%, var(--bg));
   color: var(--ink);
   font-family: var(--font);
   line-height: 1.62;
@@ -5435,7 +5435,12 @@ main {
 /* Maikire-inspired home */
 html[data-view="home"],
 html[data-view="home"] body {
-  background: #f6f3f7;
+  background: #f0e9f2;
+}
+
+html[data-view="home"].dark,
+html[data-view="home"].dark body {
+  background: #1a1424;
 }
 
 html[data-view="home"] body::before,
@@ -5464,7 +5469,7 @@ html[data-view="home"] .top-bar {
   border: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   background:
-    linear-gradient(180deg, rgba(17, 18, 36, 0.38), rgba(17, 18, 36, 0.1) 70%, transparent);
+    linear-gradient(180deg, rgba(17, 18, 36, 0.42), rgba(17, 18, 36, 0.12) 70%, transparent);
   color: #fff;
   box-shadow: 0 12px 38px rgba(8, 9, 20, 0.08);
   backdrop-filter: blur(12px);
@@ -5509,6 +5514,100 @@ html[data-view="home"] .nav-tools .icon-button:first-child,
 html[data-view="home"] .icon-button {
   border-color: transparent;
   background: transparent;
+}
+
+/* Inner pages: shared display type */
+.page-header h1,
+.magazine-list h2,
+.project-detail-hero-inner h1,
+.plain-panel h2,
+.index-grid h2 {
+  font-family: var(--display);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.page-header {
+  margin-bottom: 12px;
+}
+
+.page-header .page-title {
+  font-family: var(--display);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.magazine-list {
+  gap: 18px;
+}
+
+.magazine-row {
+  border-radius: var(--radius);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.magazine-row:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--primary) 35%, var(--line));
+  box-shadow: var(--shadow-soft);
+}
+
+.project-card,
+.maikire-project-card {
+  border-radius: var(--radius);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.project-card:hover,
+.maikire-project-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+  box-shadow: var(--shadow);
+}
+
+.tag-chip {
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--primary) 28%, var(--line));
+  background: var(--primary-soft);
+  color: var(--primary);
+  padding: 4px 10px;
+  font-size: 0.86rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pill-button {
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--primary), color-mix(in srgb, var(--accent) 70%, var(--primary)));
+  color: #fff;
+  border: 0;
+  padding: 10px 18px;
+  font-weight: 650;
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--primary) 28%, transparent);
+  transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
+}
+
+.pill-button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--primary) 36%, transparent);
+}
+
+.pill-button.ghost {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid color-mix(in srgb, var(--primary) 35%, var(--line));
+  box-shadow: none;
+}
+
+.site-footer {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.92rem;
 }
 
 .maikire-home {

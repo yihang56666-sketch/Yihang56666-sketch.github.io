@@ -2,10 +2,10 @@
 repo-main.zip
 old-atom.xml
 node_modules/
-package.json
-package-lock.json
 output/
 test-results/
 .claude/
+docs/private/
+downloads/*.apk
 
 .worktrees/

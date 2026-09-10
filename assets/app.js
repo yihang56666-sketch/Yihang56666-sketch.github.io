@@ -5,7 +5,7 @@
   const site = {
     name: "beid",
     title: "beid",
-    description: "beid 的个人博客。",
+    description: "beid 的工程博客：嵌入式工作流、本地优先客户端与 AI 协作协议的项目复盘。",
     author: "beid",
     origin: "https://yihang56666-sketch.github.io",
     github: "https://github.com/Yihang56666-sketch"
@@ -277,7 +277,7 @@
         { label: "流水线路段", value: "9" },
         { label: "CLI 子命令", value: "35" },
         { label: "厂商族", value: "14" },
-        { label: "单元测试", value: "924" }
+        { label: "单元测试", value: "1017" }
       ],
       detail: [
         {
@@ -484,10 +484,17 @@
     return date.replace(/-/g, "/");
   }
 
-  function readingTime(post) {
-    const text = [post.summary, ...(post.sections || []).flatMap((section) => [section.heading, ...(section.paragraphs || []), ...(section.bullets || [])])]
+  function postText(post) {
+    return [post.summary, ...(post.sections || []).flatMap((section) => [section.heading, ...(section.paragraphs || []), ...(section.bullets || [])])]
       .join("");
-    return Math.max(1, Math.ceil(text.length / 480));
+  }
+
+  function charCount(post) {
+    return postText(post).replace(/\s+/g, "").length;
+  }
+
+  function readingTime(post) {
+    return Math.max(1, Math.ceil(postText(post).length / 480));
   }
 
   function getAllTags() {
@@ -733,7 +740,7 @@
         <div class="maikire-post-body">
           <div class="maikire-post-meta">
             <span><i data-lucide="calendar-days"></i>${formatDate(post.date)}</span>
-            <span><i data-lucide="pen-line"></i>${Math.max(0.5, (readingTime(post) * 1.1).toFixed(1))}k 字</span>
+            <span><i data-lucide="pen-line"></i>${charCount(post)} 字</span>
             <span><i data-lucide="clock"></i>${readingTime(post)} 分钟</span>
           </div>
           <h3><a href="${postHref(post)}">${esc(post.title)}</a></h3>
@@ -979,29 +986,29 @@
         <div>
           <p class="eyebrow">about</p>
           <h1>关于 beid</h1>
-          <p>这里是 beid 的个人博客。页面轻一点，打开时心情好一点。</p>
+          <p>嵌入式 / 客户端 / AI 应用方向的工程笔记站。这里陈列的是可复现的项目、调试记录和设计取舍，而不是装饰性封面。</p>
           <div class="intro-actions">
             <a class="pill-button primary" href="${site.github}" target="_blank" rel="noreferrer"><i data-lucide="code-2"></i>GitHub</a>
-            <a class="pill-button" href="#/archive"><i data-lucide="book-open"></i>文章列表</a>
+            <a class="pill-button" href="#/projects"><i data-lucide="flask-conical"></i>看项目</a>
           </div>
         </div>
       </section>
       <section class="about-notes">
         <article class="about-note-card">
-          <h2>写什么</h2>
-          <p>项目是做过的东西，文章是当时的判断，阅读是还在消化的材料。它们会互相链接，慢慢长成自己的资料库。</p>
+          <h2>技术方向</h2>
+          <p>TypeScript / React / Vite 跨端客户端，Python 工具链与嵌入式工作流编排，原生 HTML/CSS/JS 静态站与自动化测试。</p>
+        </article>
+        <article class="about-note-card">
+          <h2>工程习惯</h2>
+          <p>默认安全、默认可回滚、不吞错误。能用测试固定的行为不靠口头记忆；不能演示的部分主动说明验证范围。</p>
         </article>
         <article class="about-note-card">
           <h2>怎么维护</h2>
-          <p>目前依旧是无构建的静态 SPA，内容集中在 assets/app.js，样式集中在 assets/styles.css，方便直接部署到 GitHub Pages。</p>
-        </article>
-        <article class="about-note-card">
-          <h2>视觉原则</h2>
-          <p>清晰文字、少量强调色、独立角色封面和稳定间距。所有动态都服务于气质，不打断阅读。</p>
+          <p>无构建静态 SPA：内容在 assets/app.js，样式在 styles.css，根目录直接部署 GitHub Pages，Playwright 锁关键路径。</p>
         </article>
         <article class="about-note-card">
           <h2>站点规模</h2>
-          <p>${posts.length} 篇文章、${projects.length} 个项目、${readingItems.length} 条阅读、${getAllTags().length} 个标签，内容会慢慢补齐。</p>
+          <p>${posts.length} 篇文章、${projects.length} 个项目、${readingItems.length} 条阅读、${getAllTags().length} 个标签。</p>
         </article>
       </section>
     `;
@@ -1024,17 +1031,33 @@
       main.innerHTML = `
         ${pageHeader(pages.links.title, pages.links.desc, "links")}
         <section class="plain-grid">
-          <article class="plain-panel"><h2>GitHub</h2><p><a class="tag-chip" href="${site.github}" target="_blank" rel="noreferrer">Yihang56666-sketch</a></p></article>
-          <article class="plain-panel"><h2>Sitemap</h2><p><a class="tag-chip" href="/sitemap.xml">sitemap.xml</a></p></article>
+          <article class="plain-panel">
+            <h2>GitHub</h2>
+            <p>全部开源项目源码与发布记录。</p>
+            <p><a class="tag-chip" href="${site.github}" target="_blank" rel="noreferrer">Yihang56666-sketch</a></p>
+          </article>
+          <article class="plain-panel">
+            <h2>项目仓库</h2>
+            <p>
+              <a class="tag-chip" href="https://github.com/yihang56666-sketch/hardware-butler" target="_blank" rel="noreferrer">Hardware Butler</a>
+              <a class="tag-chip" href="https://github.com/yihang56666-sketch/RIXIA" target="_blank" rel="noreferrer">BEID / RIXIA</a>
+              <a class="tag-chip" href="https://github.com/yihang56666-sketch/magent" target="_blank" rel="noreferrer">magent</a>
+            </p>
+          </article>
+          <article class="plain-panel">
+            <h2>订阅与地图</h2>
+            <p>
+              <a class="tag-chip" href="atom.xml">Atom Feed</a>
+              <a class="tag-chip" href="/sitemap.xml">sitemap.xml</a>
+            </p>
+          </article>
         </section>
       `;
       return;
     }
     if (key === "kaoyan") {
-      main.innerHTML = `
-        ${pageHeader(pages.kaoyan.title, pages.kaoyan.desc, "kaoyan")}
-        ${emptyPanel("任务面板待接入", "这里会继续整理新的阶段计划、学习路径和复习资料。")}
-      `;
+      location.replace("#/projects");
+      return;
     }
   }
 
