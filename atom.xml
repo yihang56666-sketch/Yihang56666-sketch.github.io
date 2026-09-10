@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>beid</title>
-  <subtitle>beid 的个人博客。工程复盘、项目笔记与阅读缓存。</subtitle>
+  <subtitle>beid 的工程博客：项目复盘、站点手记与工程记录。</subtitle>
   <link href="https://yihang56666-sketch.github.io/" rel="alternate" type="text/html"/>
   <link href="https://yihang56666-sketch.github.io/atom.xml" rel="self" type="application/atom+xml"/>
   <updated>2026-09-07T00:00:00Z</updated>
@@ -10,24 +10,24 @@
     <name>beid</name>
   </author>
   <entry>
-    <title>把工程博客从装饰站改成作品集入口</title>
-    <link href="https://yihang56666-sketch.github.io/#/posts/blog-redesign"/>
-    <id>https://yihang56666-sketch.github.io/#/posts/blog-redesign</id>
+    <title>Codex 原生子智能体编排 Skill</title>
+    <link href="https://yihang56666-sketch.github.io/#/posts/codex-native-subagent-orchestrator-skill"/>
+    <id>https://yihang56666-sketch.github.io/#/posts/codex-native-subagent-orchestrator-skill</id>
     <updated>2026-09-07T00:00:00Z</updated>
-    <summary>首页直接展示工程方向和真实项目；内页统一视觉语言，减少假数据与空壳路由。</summary>
+    <summary>判断何时分派任务、选择只读角色、处理失败，并汇总原生子智能体结果。</summary>
   </entry>
   <entry>
-    <title>本地优先学习台的播放器修复记录</title>
-    <link href="https://yihang56666-sketch.github.io/#/posts/project-stories"/>
-    <id>https://yihang56666-sketch.github.io/#/posts/project-stories</id>
-    <updated>2026-08-12T00:00:00Z</updated>
-    <summary>直链 BV 误判、逾期任务导航、跨午夜日期与存储失败提示的根因与回归。</summary>
+    <title>White Anime Blog Redesign</title>
+    <link href="https://yihang56666-sketch.github.io/#/posts/white-anime-blog-redesign"/>
+    <id>https://yihang56666-sketch.github.io/#/posts/white-anime-blog-redesign</id>
+    <updated>2026-07-05T00:00:00Z</updated>
+    <summary>站点视觉改版与封面体系记录。</summary>
   </entry>
   <entry>
-    <title>标签粒度：少而准比多而乱更好用</title>
-    <link href="https://yihang56666-sketch.github.io/#/posts/tag-granularity"/>
-    <id>https://yihang56666-sketch.github.io/#/posts/tag-granularity</id>
-    <updated>2026-05-18T00:00:00Z</updated>
-    <summary>标签系统真正服务的是检索路径，不是分类数量。</summary>
+    <title>Static SPA Blog Checklist</title>
+    <link href="https://yihang56666-sketch.github.io/#/posts/static-spa-blog-checklist"/>
+    <id>https://yihang56666-sketch.github.io/#/posts/static-spa-blog-checklist</id>
+    <updated>2026-05-20T00:00:00Z</updated>
+    <summary>无构建静态 SPA 的路由、元数据与回归检查清单。</summary>
   </entry>
 </feed>

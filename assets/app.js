@@ -207,10 +207,10 @@
       accent: "#8b7fd4"
     },
     {
-      title: "Interface Lab",
-      label: "视觉实验",
-      desc: "浅色层次、主题系统和交互动效。",
-      href: "#/categories/视觉实验",
+      title: "Engineering Log",
+      label: "工程记录",
+      desc: "调试、边界条件和回归记录。",
+      href: "#/categories/工程记录",
       cover: covers.catLab,
       accent: "#c46b9e"
     },
@@ -296,7 +296,7 @@
             "LLM 只负责把自然语言转成结构化意图，执行器、门控和验证器由确定性代码掌控。",
             "覆盖 STM32、ESP32、MSP430、AVR、Nordic、RISC-V 等厂商族，GD32/CH32 映射到 STM32 兼容路径。",
             "PyQt6 GUI 提供 13 个 tab，CLI 提供 35 个扁平子命令，行为验证支持 regex、频率测量和 QEMU 仿真分层。",
-            "ruff 与 mypy 全绿，924 个单元测试回归通过；真实板卡日流程有独立 runbook 记录。"
+            "ruff 与 mypy 全绿，1017 个单元测试回归通过；真实板卡日流程有独立 runbook 记录。"
           ]
         }
       ]
@@ -715,10 +715,10 @@
 
   function maikirePulse() {
     const cells = [
-      { value: 1017, label: "硬件单测", icon: "cpu" },
-      { value: 794, label: "客户端测试", icon: "monitor-smartphone" },
-      { value: projects.length, label: "工程作品", icon: "flask-conical" },
-      { value: 16, label: "博客回归", icon: "shield-check" }
+      { value: projects.length, label: "工程项目", icon: "flask-conical" },
+      { value: posts.length, label: "工程文章", icon: "feather" },
+      { value: 16, label: "博客 E2E", icon: "shield-check" },
+      { value: getAllTags().length, label: "标签", icon: "tags" }
     ];
     return `
       <div class="maikire-pulse" aria-label="站点统计">
@@ -729,7 +729,7 @@
             <span>${cell.label}</span>
           </div>
         `).join("")}
-        <p class="maikire-pulse-note"><i data-lucide="sparkles"></i>默认安全 · 默认可回归 · 不吞错误</p>
+        <p class="maikire-pulse-note"><i data-lucide="sparkles"></i>项目详情页含各仓实测数字（以仓库最新回归为准）</p>
       </div>
     `;
   }

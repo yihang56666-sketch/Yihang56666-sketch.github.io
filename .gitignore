@@ -8,4 +8,11 @@ test-results/
 docs/private/
 downloads/*.apk
 
+# Interview prep materials must not ship with GitHub Pages
+docs/*双选会*
+docs/*HR*
+docs/*简历*
+docs/PROJECT_PORTFOLIO_AUDIT.md
+docs/beid-dual-selection-resume*
+
 .worktrees/
