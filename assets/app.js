@@ -263,6 +263,18 @@
             "习惯频率模型：daily / weekly-N / interval-N 参与 due / streak / strength。",
             "修复过真实缺陷：BV 直链误判、逾期任务导航、跨午夜 UTC 日、专注钳制不一致。"
           ]
+        },
+        {
+          heading: "现场可跑",
+          code: "npm install\nnpm run dev\nnpm test          # 762 Vitest + 32 Node\nnpm run typecheck && npm run build"
+        },
+        {
+          heading: "诚实边界",
+          bullets: [
+            "扫码登录、真机播放与 Windows 安装包需现场设备与网络验收。",
+            "纯 Web 生产环境受 B 站 CORS/防盗链限制；开发走 Vite 代理，Electron 有本地反代。",
+            "登录 Cookie 存本机 localStorage，能解释 XSS 威胁模型，不假装企业级密钥管理。"
+          ]
         }
       ]
     },
@@ -297,6 +309,22 @@
             "覆盖 STM32、ESP32、MSP430、AVR、Nordic、RISC-V 等厂商族，GD32/CH32 映射到 STM32 兼容路径。",
             "PyQt6 GUI 提供 13 个 tab，CLI 提供 35 个扁平子命令，行为验证支持 regex、频率测量和 QEMU 仿真分层。",
             "ruff 与 mypy 全绿，1017 个单元测试回归通过；真实板卡日流程有独立 runbook 记录。"
+          ]
+        },
+        {
+          heading: "仓库分层",
+          tree: "hardware-butler/\n  tools/            # CLI + 9 阶段状态机 + 安全门控 + LLM + 14 厂商 adapter\n  embeddedskills/   # 构建/烧录/串口/CAN 后端（独立仓，可用 plugins 镜像）\n  nextboard/        # 方案选型与 BOM 风险\n  gui/              # PyQt6 13 tab\n  plugins/          # Codex 插件镜像\n  tests/fixtures/   # 无板可跑的 CubeMX fixture"
+        },
+        {
+          heading: "现场可跑（mock）",
+          code: "python tools/hardware_butler.py guide --root tests/fixtures/cubemx-basic\npython tools/hardware_butler.py workflow-run --root tests/fixtures/cubemx-basic --intent develop-feature --goal \"LED blink on PD12\" --feature led-blink --pin PD12 --function gpio-output --json"
+        },
+        {
+          heading: "诚实边界",
+          bullets: [
+            "真实板卡烧录未在本材料宣称完成；有 runbook 与多层门控设计。",
+            "确认 token 是参数完整性绑定，不是密码学级人工授权（SECURITY.md 已披露）。",
+            "embeddedskills 作为独立仓维护，父仓 clone 后可能没有根目录，可用 plugins 镜像。"
           ]
         }
       ]
@@ -350,6 +378,31 @@
             "恢复契约可以处理结果缺失、执行失败和超时，不会让任务卡住。",
             "仓库同时提供示例、验收案例和无外部依赖的契约测试，当前 33 项全部通过。",
             "和通用开源多智能体框架相比，它不是新的运行时，而是一层更薄的判断、边界、安全与核验规则。"
+          ]
+        },
+        {
+          heading: "五个失败模式 → 五条不变量",
+          table: {
+            headers: ["失败模式", "协议不变量"],
+            rows: [
+              ["复杂度触发委派", "授权门：加载 Skill ≠ 分派许可"],
+              ["主智能体空等", "立即阻塞工作 keep-local"],
+              ["M 文件二次修改不可见", "内容指纹基线，而非只看 git status"],
+              ["wait 超时被当成失败", "pending 与 terminal 分离"],
+              ["完成代理占满并发槽", "显式 close / archive"]
+            ]
+          }
+        },
+        {
+          heading: "现场可跑",
+          code: "python -X utf8 -B -m unittest discover -s tests -v   # 33 项契约测试"
+        },
+        {
+          heading: "诚实边界",
+          bullets: [
+            "不是自研多智能体运行时；不承诺并行一定提速。",
+            "只读靠指令与事后审计，强保证需宿主权限隔离，不虚构沙箱。",
+            "契约测试验证协议结构，不证明模型必然遵循指令。"
           ]
         }
       ]
