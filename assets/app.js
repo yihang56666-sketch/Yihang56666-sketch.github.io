@@ -246,7 +246,7 @@
       },
       stats: [
         { label: "本地数据", value: "100%" },
-        { label: "Vitest", value: "763" },
+        { label: "Vitest", value: "768" },
         { label: "Node边界", value: "32" },
         { label: "多端", value: "Web/Electron/Android" }
       ],
@@ -261,12 +261,12 @@
             "自研 DASH/MSE 播放管线：sidx 索引 seek、背压与缓冲淘汰、CDN 备用源。",
             "锚定计时：endsAt 时间戳为唯一真源，后台节流不漂移。",
             "习惯频率模型：daily / weekly-N / interval-N 参与 due / streak / strength。",
-            "修复过真实缺陷：BV 直链误判、逾期任务导航、跨午夜 UTC 日、专注钳制不一致。"
+            "修复过真实缺陷：BV 直链误判、逾期任务导航、跨午夜 UTC 日、专注钳制不一致，2026-09 系统审查再修专注联动打断、续播偏好绕过、跨分P笔记跳转、片尾死循环等十项。"
           ]
         },
         {
           heading: "现场可跑",
-          code: "npm install\nnpm run dev\nnpm test          # 763 Vitest + 32 Node\nnpm run typecheck && npm run build"
+          code: "npm install\nnpm run dev\nnpm test          # 768 Vitest + 32 Node\nnpm run typecheck && npm run build"
         },
         {
           heading: "诚实边界",
