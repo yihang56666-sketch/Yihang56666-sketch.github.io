@@ -4,7 +4,7 @@ from pathlib import Path
 p = Path(r"D:\boke\assets\app.js")
 text = p.read_text(encoding="utf-8")
 
-old_hw = '''            "ruff 与 mypy 全绿，1017 个单元测试回归通过；真实板卡日流程有独立 runbook 记录。"
+old_hw = '''            "ruff 与 mypy 全绿，最近一轮回归为 1013 passed / 12 skipped；真实板卡日流程有独立 runbook 记录。"
           ]
         }
       ]
@@ -12,7 +12,7 @@ old_hw = '''            "ruff 与 mypy 全绿，1017 个单元测试回归通过
     {
       title: "Codex 原生子智能体编排 Skill",'''
 
-new_hw = '''            "ruff 与 mypy 全绿，1017 个单元测试回归通过；真实板卡日流程有独立 runbook 记录。"
+new_hw = '''            "ruff 与 mypy 全绿，最近一轮回归为 1013 passed / 12 skipped；真实板卡日流程有独立 runbook 记录。"
           ]
         },
         {
@@ -37,7 +37,7 @@ new_hw = '''            "ruff 与 mypy 全绿，1017 个单元测试回归通过
       title: "Codex 原生子智能体编排 Skill",'''
 
 if old_hw not in text:
-    idx = text.find("1017 个单元测试")
+    idx = text.find("最近一轮回归为 1013 passed / 12 skipped")
     print("HW NOT FOUND", repr(text[idx:idx+180]) if idx>=0 else "no marker")
 else:
     text = text.replace(old_hw, new_hw, 1)

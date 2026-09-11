@@ -115,7 +115,7 @@ add_project(
         "默认 mock；真实烧录需环境变量 opt-in + 确认 token + 值域防呆 + 固件 hash + 审计日志。",
         "覆盖 14 个 MCU 厂商族；5 层行为验证（关键词/频率/文本/正则/数值范围）。",
         "LLM 只产结构化意图，执行器与门控由确定性代码掌控。",
-        "回归：1017 passed / 12 skipped；ruff + mypy 全绿；GUI 13 tab、CLI 35 命令。",
+        "回归：1013 passed / 12 skipped；ruff + mypy 全绿；GUI 13 tab、CLI 35 命令。",
     ],
 )
 
@@ -128,7 +128,7 @@ add_project(
         "自研 MSE 管线：sidx 索引 seek、背压与缓冲淘汰、CDN 备用源；不嵌官方 iframe。",
         "Zustand persist schema v3 + v1/v2 迁移；配额失败可见；companion backup。",
         "修复真实缺陷：BV 直链误判、逾期任务导航丢失、跨午夜 UTC 日、专注钳制不一致。",
-        "回归：762 Vitest + 32 Node；typecheck 与生产构建通过。",
+        "回归：763 Vitest + 32 Node；typecheck 与生产构建通过。",
     ],
 )
 

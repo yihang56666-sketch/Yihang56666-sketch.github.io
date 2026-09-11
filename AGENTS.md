@@ -14,7 +14,7 @@ Vanilla HTML/CSS/JS static SPA — **no build step, no framework**. Root directo
 | `assets/styles.css` | **All CSS** — blog theme, motion layers, responsive layouts |
 | `assets/images/anime/` | Cover / hero visual assets |
 | `assets/vendor/` | Localized Lenis / Atropos / medium-zoom / Lucide / fonts |
-| `tests/blog.spec.js` | Playwright E2E (15 cases) |
+| `tests/blog.spec.js` | Playwright E2E (16 cases) |
 | `playwright.config.js` | Playwright config |
 | `atom.xml` | Static Atom feed |
 
@@ -53,4 +53,4 @@ npx playwright test
 - External motion libs are **localized** under `assets/vendor/` (no CDN required for core paths).
 - Dark/light theme via `.dark` on `<html>`, CSS custom properties swap.
 - `downloads/*.apk` is gitignored; link APK via GitHub Releases instead of committing binaries.
-- Keep `app.js` project stats in sync with real test counts (Hardware Butler = 1017).
+- Keep `app.js` project stats in sync with real test counts (Hardware Butler = 1013 passed / 12 skipped).

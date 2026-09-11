@@ -246,7 +246,7 @@
       },
       stats: [
         { label: "本地数据", value: "100%" },
-        { label: "Vitest", value: "762" },
+        { label: "Vitest", value: "763" },
         { label: "Node边界", value: "32" },
         { label: "多端", value: "Web/Electron/Android" }
       ],
@@ -266,7 +266,7 @@
         },
         {
           heading: "现场可跑",
-          code: "npm install\nnpm run dev\nnpm test          # 762 Vitest + 32 Node\nnpm run typecheck && npm run build"
+          code: "npm install\nnpm run dev\nnpm test          # 763 Vitest + 32 Node\nnpm run typecheck && npm run build"
         },
         {
           heading: "诚实边界",
@@ -293,7 +293,7 @@
         { label: "流水线路段", value: "9" },
         { label: "CLI 子命令", value: "35" },
         { label: "厂商族", value: "14" },
-        { label: "单元测试", value: "1017" }
+        { label: "单元测试", value: "1013" }
       ],
       detail: [
         {
@@ -308,7 +308,7 @@
             "LLM 只负责把自然语言转成结构化意图，执行器、门控和验证器由确定性代码掌控。",
             "覆盖 STM32、ESP32、MSP430、AVR、Nordic、RISC-V 等厂商族，GD32/CH32 映射到 STM32 兼容路径。",
             "PyQt6 GUI 提供 13 个 tab，CLI 提供 35 个扁平子命令，行为验证支持 regex、频率测量和 QEMU 仿真分层。",
-            "ruff 与 mypy 全绿，1017 个单元测试回归通过；真实板卡日流程有独立 runbook 记录。"
+            "ruff 与 mypy 全绿，最近一轮回归为 1013 passed / 12 skipped；真实板卡日流程有独立 runbook 记录。"
           ]
         },
         {
