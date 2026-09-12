@@ -833,7 +833,7 @@
           <p>${esc(post.summary)}</p>
           <div class="maikire-post-foot">
             <span><i data-lucide="flag"></i>${esc(post.category)}</span>
-            <a href="${postHref(post)}">more...</a>
+            <a href="${postHref(post)}">阅读全文</a>
           </div>
         </div>
       </article>
@@ -1457,7 +1457,8 @@
   const motion = {
     lenis: null,
     tilts: [],
-    zoom: null
+    zoom: null,
+    petals: null
   };
 
   function prefersReducedMotion() {
@@ -1465,9 +1466,17 @@
   }
 
   function destroyMotionEnhancements() {
-    motion.tilts.splice(0).forEach((tilt) => tilt.destroy?.());
+    motion.tilts.splice(0).forEach((tilt) => {
+      try {
+        tilt?.destroy?.();
+      } catch {
+        // Atropos instances can outlive their DOM; dropping them is enough.
+      }
+    });
     motion.zoom?.detach();
     motion.zoom = null;
+    motion.petals?.destroy();
+    motion.petals = null;
   }
 
   function initLenis() {
@@ -1483,7 +1492,8 @@
     document.querySelectorAll("[data-magazine-tilt]").forEach((node) => {
       if (!window.Atropos) return;
       try {
-        motion.tilts.push(window.Atropos(node, { activeOffset: 28, rotateXMax: 9, rotateYMax: 9 }));
+        const tilt = window.Atropos(node, { activeOffset: 28, rotateXMax: 9, rotateYMax: 9 });
+        if (tilt) motion.tilts.push(tilt);
       } catch {
         // Atropos is decorative; keep the page readable if the CDN module fails.
       }
@@ -1507,6 +1517,8 @@
     updateScrollState();
     prepareHeroMotion();
     initMotionEnhancements();
+    splitHeroTitle();
+    initHeroPetals();
     initCounters();
 
 
@@ -1630,6 +1642,132 @@
       hero.style.removeProperty("--hero-x");
       hero.style.removeProperty("--hero-y");
     });
+  }
+
+  function splitHeroTitle() {
+    const node = document.querySelector("[data-split-text]");
+    if (!node || prefersReducedMotion()) return;
+    const text = (node.textContent || "").trim();
+    if (!text) return;
+
+    node.setAttribute("aria-label", text);
+    node.textContent = "";
+    [...text].forEach((char, index) => {
+      const span = document.createElement("span");
+      span.className = "split-char";
+      span.textContent = char;
+      span.setAttribute("aria-hidden", "true");
+      span.style.setProperty("--char-i", String(index));
+      node.appendChild(span);
+    });
+  }
+
+  function initHeroPetals() {
+    const hero = document.querySelector(".maikire-hero");
+    if (!hero || motion.petals || prefersReducedMotion()) return;
+
+    const canvas = document.createElement("canvas");
+    canvas.className = "petal-canvas";
+    canvas.setAttribute("aria-hidden", "true");
+    hero.appendChild(canvas);
+    const ctx = canvas.getContext("2d");
+    if (!ctx) {
+      canvas.remove();
+      return;
+    }
+
+    const palette = root.classList.contains("dark")
+      ? ["rgba(229, 139, 184, 0.5)", "rgba(179, 164, 240, 0.45)", "rgba(230, 193, 90, 0.36)"]
+      : ["rgba(245, 184, 208, 0.78)", "rgba(229, 139, 184, 0.62)", "rgba(196, 107, 158, 0.5)", "rgba(216, 199, 245, 0.66)"];
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let width = 0;
+    let height = 0;
+    let petals = [];
+    let rafId = 0;
+    let running = false;
+    let heroInView = true;
+
+    const spawnPetal = (fromTop) => ({
+      x: Math.random() * width,
+      y: fromTop ? -14 - Math.random() * 46 : Math.random() * height,
+      size: 4 + Math.random() * 5,
+      speedY: 16 + Math.random() * 26,
+      swayAmp: 14 + Math.random() * 26,
+      swayFreq: 0.4 + Math.random() * 0.7,
+      phase: Math.random() * Math.PI * 2,
+      angle: Math.random() * Math.PI * 2,
+      spin: -0.6 + Math.random() * 1.2,
+      color: palette[Math.floor(Math.random() * palette.length)]
+    });
+
+    const resize = () => {
+      const rect = hero.getBoundingClientRect();
+      width = Math.max(1, rect.width);
+      height = Math.max(1, rect.height);
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const target = Math.min(26, Math.max(10, Math.round(width / 64)));
+      petals = Array.from({ length: target }, () => spawnPetal(false));
+    };
+
+    const frame = (now) => {
+      const delta = Math.min(0.05, (now - lastTick) / 1000);
+      lastTick = now;
+      ctx.clearRect(0, 0, width, height);
+      for (const petal of petals) {
+        petal.y += petal.speedY * delta;
+        petal.phase += petal.swayFreq * delta;
+        petal.angle += petal.spin * delta;
+        if (petal.y - petal.size > height) Object.assign(petal, spawnPetal(true));
+        ctx.save();
+        ctx.translate(petal.x + Math.sin(petal.phase) * petal.swayAmp, petal.y);
+        ctx.rotate(petal.angle);
+        ctx.fillStyle = petal.color;
+        ctx.beginPath();
+        ctx.ellipse(0, 0, petal.size, petal.size * 0.55, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+      rafId = requestAnimationFrame(frame);
+    };
+
+    const start = () => {
+      if (running) return;
+      running = true;
+      lastTick = performance.now();
+      rafId = requestAnimationFrame(frame);
+    };
+    const stop = () => {
+      if (!running) return;
+      running = false;
+      cancelAnimationFrame(rafId);
+    };
+
+    let lastTick = performance.now();
+    resize();
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(hero);
+    const visibilityObserver = new IntersectionObserver((entries) => {
+      heroInView = entries.some((entry) => entry.isIntersecting);
+      heroInView && !document.hidden ? start() : stop();
+    }, { threshold: 0.02 });
+    visibilityObserver.observe(hero);
+    const onDocumentVisibility = () => {
+      document.hidden || !heroInView ? stop() : start();
+    };
+    document.addEventListener("visibilitychange", onDocumentVisibility);
+
+    start();
+    motion.petals = {
+      destroy() {
+        stop();
+        resizeObserver.disconnect();
+        visibilityObserver.disconnect();
+        document.removeEventListener("visibilitychange", onDocumentVisibility);
+        canvas.remove();
+      }
+    };
   }
 
   function initCursorFx() {
