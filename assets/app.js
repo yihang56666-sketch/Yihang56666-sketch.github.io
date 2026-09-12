@@ -246,7 +246,7 @@
       },
       stats: [
         { label: "本地数据", value: "100%" },
-        { label: "Vitest", value: "768" },
+        { label: "Vitest", value: "773" },
         { label: "Node边界", value: "32" },
         { label: "多端", value: "Web/Electron/Android" }
       ],
@@ -266,7 +266,7 @@
         },
         {
           heading: "现场可跑",
-          code: "npm install\nnpm run dev\nnpm test          # 768 Vitest + 32 Node\nnpm run typecheck && npm run build"
+          code: "npm install\nnpm run dev\nnpm test          # 773 Vitest + 32 Node\nnpm run typecheck && npm run build"
         },
         {
           heading: "诚实边界",
